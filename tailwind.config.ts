@@ -11,6 +11,9 @@ export default {
       colors: {
         appRed: "#ec2424",
         appDark: "#18191d",
+        appBorderGray: "#323434",
+        appGhost: "#dededf",
+        appOffWhite: "#F6F6F6",
       },
     },
   },
