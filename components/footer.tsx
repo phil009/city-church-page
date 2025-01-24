@@ -48,27 +48,30 @@ const Footer = () => {
         height={1000}
         className="w-full h-full absolute top-0 left-0"
       />
-      <div className="relative px-20 py-12 border-b border-appBorderGray">
-        <div className="flex justify-between items-center w-full">
-          <div className="w-1/3">
-            <span className="text-appRed text-xl">Have Any Question? </span>{" "}
-            <br />
-            <b className="text-2xl">+234 803 681 1155</b>
-          </div>
-          <div className="w-1/3">
+      <div className="relative px-4 sm:px-12 md:px-20 py-12 border-b border-appBorderGray">
+        <div className="flex flex-col gap-4 md:flex-row justify-between md:items-center w-full">
+          <div className="md:w-1/3">
             <div className="max-w-64">
               <Logo />
             </div>
           </div>
-          <div className="w-1/3">
-            <span className="text-appRed text-xl">Send Email</span> <br />
-            <b className="text-2xl">info@citychurchcalabar.org</b>
+          <div className="md:w-1/3">
+            <span className="text-appRed text-base md:text-xl">
+              Have Any Question?{" "}
+            </span>{" "}
+            <br />
+            <b className="md:text-2xl">+234 803 681 1155</b>
+          </div>
+          <div className="md:w-1/3">
+            <span className="text-appRed text-base md:text-xl">Send Email</span>{" "}
+            <br />
+            <b className="md:text-2xl">info@citychurchcalabar.org</b>
           </div>
         </div>
       </div>
-      <div className="relative text-appGhost flex justify-between px-20 py-10">
-        <div className="w-1/3">
-          <p className="text-xl mb-6 max-w-[40ch]">
+      <div className="relative text-appGhost flex flex-col gap-12 md:gap-4 md:flex-row justify-between px-4 sm:px-12 md:px-20 py-10">
+        <div className="md:w-1/3">
+          <p className="text-sm sm:text-base md:text-xl mb-6 max-w-[40ch]">
             We are a Life Development Church with practical teachings and loving
             relationships, led by Tony Aleogena-Raphael
           </p>
@@ -78,9 +81,11 @@ const Footer = () => {
             ))}
           </div>
         </div>
-        <div className="w-1/3">
-          <h2 className="text-3xl font-bold mb-6">Explore</h2>
-          <ul className="grid grid-cols-2 gap-2 uppercase text-lg font-semibold">
+        <div className="md:w-1/3">
+          <h2 className="text-lg sm:text-xl md:text-3xl font-bold mb-6">
+            Explore
+          </h2>
+          <ul className="grid grid-cols-2 gap-2 uppercase text-sm sm:text-base md:text-lg font-semibold">
             <li>
               <Link href={"/about"}>About</Link>
             </li>
@@ -101,13 +106,15 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className="w-1/3">
-          <h2 className="text-3xl font-bold mb-6">Newsletter</h2>
-          <p className="text-xl mb-6 max-w-[40ch]">
+        <div className="md:w-1/3">
+          <h2 className="text-lg sm:text-xl md:text-3xl font-bold sm:mb-6">
+            Newsletter
+          </h2>
+          <p className="text-sm sm:text-lg md:text-xl mb-6 max-w-[40ch]">
             Stay tuned to receive updates about us right in your email when you
             subscribe.
           </p>
-          <div className="bg-appBorderGray h-20 p-2 rounded-md">
+          <div className="bg-appBorderGray h-12 text-sm md:text-base md:h-20 p-2 rounded-md">
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}

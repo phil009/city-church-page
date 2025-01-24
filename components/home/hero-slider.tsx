@@ -27,15 +27,6 @@ const slides = [
   },
   {
     id: 2,
-    image: "/images/pastors/daddy-t-hebrews-distant-view.jpg",
-    alt: "Daddy T Hebrews",
-    title: "Welcome to City Church Calabar",
-    subtitle:
-      "A Life Development Church with practical teachings and loving relationships, led by Tony Aleogena-Raphael",
-    button: "Discover more",
-  },
-  {
-    id: 3,
     image: "/images/slider/series-banner.jpg",
     alt: "Church service",
     title: "Life is a Journey",
@@ -44,7 +35,7 @@ const slides = [
     button: "Other programs",
   },
   {
-    id: 4,
+    id: 3,
     image: "/images/outdoors/dominion-and-friends-walking-in.jpg",
     alt: "Community outreach",
     title: "Serving Our Community",
@@ -111,14 +102,14 @@ export default function HomeHeroSlider() {
             style={{ objectFit: "cover" }}
             priority
           />
-          <div className="absolute px-20 inset-0 bg-black bg-opacity-40 flex flex-col justify-center text-white">
-            <h1 className="text-4xl md:text-8xl font-bold mb-4 max-w-[15ch]">
+          <div className="absolute px-4 sm:px-12 md:px-20 inset-0 bg-black bg-opacity-40 flex flex-col items-center sm:items-start text-center sm:text-start justify-center text-white">
+            <h1 className="text-4xl md:text-8xl font-bold sm:mb-4 sm:max-w-[15ch]">
               {slides[imageIndex].title}
             </h1>
-            <p className="text-xl md:text-3xl mb-6 max-w-[48ch]">
+            <p className="text-sm sm:text-base md:text-xl lg:text-3xl mb-4 md:mb-6 max-w-[48ch]">
               {slides[imageIndex].subtitle}
             </p>
-            <Button className="bg-appRed w-max h-12 text-xl p-4">
+            <Button className="bg-appRed w-max sm:h-12 text-sm sm:text-base md:text-xl p-2 sm:p-4">
               {slides[imageIndex].button}
             </Button>
           </div>
@@ -134,7 +125,7 @@ export default function HomeHeroSlider() {
           />
         ))}
       </div>
-      <div className="absolute top-1/2 -translate-y-1/2 z-20 right-12 flex flex-col gap-4">
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto md:bottom-auto md:top-1/2 md:-translate-y-1/2 z-20 md:right-12 flex md:flex-col gap-4">
         {socials.map((link, index) => (
           <SocialLink key={index} href={link.href} type={link.type} />
         ))}

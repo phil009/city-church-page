@@ -1,4 +1,6 @@
+"use client";
 import { GenericCard } from "./generic-card";
+import { motion } from "framer-motion";
 
 const services = [
   {
@@ -28,19 +30,36 @@ const services = [
 ];
 
 export const Introduction = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
   return (
-    <section className="px-20 py-14 bg-appOffWhite">
-      <div className="mb-16 flex justify-between">
+    <section className="px-4 sm:px-12 md:px-20 py-14 bg-appOffWhite">
+      <div className="mb-16 flex flex-col md:flex-row justify-between">
         <div>
-          <p className="text-appRed text-xl">Welcome to</p>
-          <h2 className="text-4xl font-bold">City Church Calabar</h2>
+          <p className="text-appRed textbase sm:text-xl">Welcome to</p>
+          <h2 className="text-2xl sm:text-4xl font-bold">
+            City Church Calabar
+          </h2>
         </div>
-        <p className="max-w-[38ch] text-xl">
+        <p className="max-w-[38ch] text-base sm:text-xl">
           A Life Development Church with practical teachings and loving
           relationships, led by Tony Aleogena-Raphael
         </p>
       </div>
-      <div className="grid grid-cols-4 gap-4">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4"
+      >
         {services.map((service, index) => (
           <GenericCard
             key={index}
@@ -52,8 +71,8 @@ export const Introduction = () => {
             imageAlt="Pictures"
           />
         ))}
-      </div>
-      <p className="text-center text-2xl my-16">
+      </motion.div>
+      <p className="text-center text-base md:text-2xl my-16">
         We currently run two amazing services on{" "}
         <span className="text-appRed">Sundays - 9:30am and 11am</span>. In those
         ninety minutes, we make it easy for attendees to connect intimately with

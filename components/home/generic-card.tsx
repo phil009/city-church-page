@@ -30,11 +30,21 @@ export const GenericCard: React.FC<GenericCardProps> = ({
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+      },
+    },
+  };
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+      variants={itemVariants}
       className={`border-t-4 p-4 grid transition-colors bg-white duration-300 rounded-b-lg ${
         isHovered ? "border-appRed" : "border-appDark"
       }`}
@@ -43,15 +53,15 @@ export const GenericCard: React.FC<GenericCardProps> = ({
     >
       <div className="flex gap-3 mb-4 items-center">
         <div
-          className={`p-2 w-24 aspect-square flex justify-center items-center rounded-md transition-colors duration-300 ${
+          className={`p-2 w-16 sm:w-24 aspect-square flex justify-center items-center rounded-md transition-colors duration-300 ${
             isHovered ? "bg-appRed" : "bg-appDark"
           }`}
         >
-          <Icon icon={icon} className="text-6xl text-white" />
+          <Icon icon={icon} className="text-4xl sm:text-6xl text-white" />
         </div>
-        <h3 className="text-3xl font-semibold">{title}</h3>
+        <h3 className="text-xl sm:text-3xl font-medium">{title}</h3>
       </div>
-      <p className="mb-4 text-xl opacity-60">{description}</p>
+      <p className="mb-4 text-base sm:text-xl opacity-60">{description}</p>
       {type === "event" && (time || venue) && (
         <div className="mb-4 text-sm text-gray-600">
           {time && <p>Time: {time}</p>}

@@ -51,13 +51,15 @@ export default function TestimonialSlider() {
         alt=""
         className="w-full h-full absolute top-0 left-0 object-cover"
       />
-      <div className="container flex mx-auto relative px-4">
+      <div className="flex flex-col md:flex-row mx-auto relative px-4 md:px-10">
         <div className=" mb-12">
-          <p className="text-red-600 text-xl font-medium mb-2">
+          <p className="text-red-600 text-base sm:text-xl font-medium sm:mb-2">
             It&apos;s the Lord&apos;s Doing
           </p>
-          <h2 className="text-5xl font-bold mb-4">Testimonies</h2>
-          <p className="text-gray-600 text-xl max-w-3xl mx-auto">
+          <h2 className="text-3xl sm:text-5xl font-bold mb-2 sm:mb-4">
+            Testimonies
+          </h2>
+          <p className="text-gray-600 text-base sm:text-xl max-w-3xl mx-auto">
             Testimonies contribute to the spiritual growth and edification of
             believers, fostering a deeper sense of faith, unity, and connection
             among members. We celebrate God&apos;s work in individuals&apos;
@@ -66,8 +68,8 @@ export default function TestimonialSlider() {
           </p>
         </div>
 
-        <div className="relative translate-x-1/3">
-          <motion.div className="flex gap-6 justify-center" initial={false}>
+        <div className="relative translate-x-1/2 md:translate-x-3/4 lg:translate-x-2/3 xl:translate-x-1/3">
+          <motion.div className="flex md:gap-6 justify-center" initial={false}>
             <AnimatePresence mode="popLayout">
               {testimonialsList.slice(0, 4).map((testimonial, index) => (
                 <motion.div
