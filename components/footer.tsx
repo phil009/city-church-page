@@ -71,7 +71,7 @@ const Footer = () => {
       </div>
       <div className="relative text-appGhost flex flex-col gap-12 md:gap-4 md:flex-row justify-between px-4 sm:px-12 md:px-20 py-10">
         <div className="md:w-1/3">
-          <p className="text-sm sm:text-base md:text-xl mb-6 max-w-[40ch]">
+          <p className="text-sm sm:text-base mb-6 max-w-[40ch]">
             We are a Life Development Church with practical teachings and loving
             relationships, led by Tony Aleogena-Raphael
           </p>
@@ -82,10 +82,10 @@ const Footer = () => {
           </div>
         </div>
         <div className="md:w-1/3">
-          <h2 className="text-lg sm:text-xl md:text-3xl font-bold mb-6">
+          <h2 className="text-base sm:text-lg md:text-2xl font-bold mb-6">
             Explore
           </h2>
-          <ul className="grid grid-cols-2 gap-2 uppercase text-sm sm:text-base md:text-lg font-semibold">
+          <ul className="grid grid-cols-2 gap-2 uppercase text-sm sm:text-base md:text-lg font-medium">
             <li>
               <Link href={"/about"}>About</Link>
             </li>
@@ -107,10 +107,10 @@ const Footer = () => {
           </ul>
         </div>
         <div className="md:w-1/3">
-          <h2 className="text-lg sm:text-xl md:text-3xl font-bold sm:mb-6">
+          <h2 className="text-base sm:text-lg md:text-2xl font-bold sm:mb-6">
             Newsletter
           </h2>
-          <p className="text-sm sm:text-lg md:text-xl mb-6 max-w-[40ch]">
+          <p className="text-sm sm:text-lg mb-6 max-w-[40ch]">
             Stay tuned to receive updates about us right in your email when you
             subscribe.
           </p>

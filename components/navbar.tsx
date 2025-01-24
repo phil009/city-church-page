@@ -69,7 +69,7 @@ export default function Navbar() {
           <div className="w-full flex items-center justify-between max-w-48 sm:max-w-72">
             <Logo />
           </div>
-          <ul className="hidden md:flex gap-4 uppercase text-lg font-bold">
+          <ul className="hidden md:flex gap-4 uppercase text-sm lg:text-lg font-bold">
             <li>
               <Link href={"/about"}>About</Link>
             </li>
@@ -90,12 +90,12 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
-        <div className="hidden md:flex items-center gap-2">
+        <div className="hidden lg:flex items-center gap-2">
           <Icon
-            className="text-5xl text-appRed"
+            className="text-2xl lg:text-5xl text-appRed"
             icon={"solar:phone-line-duotone"}
           />
-          <div>
+          <div className="text-">
             We CARE! Call us: <br />
             <b>+234 803 681 1155</b>
           </div>

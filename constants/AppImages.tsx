@@ -18,6 +18,11 @@ import pstMarkInAction1 from "../public/images/pastors/pst-mark-action.jpg";
 import pstMarkInAction2 from "../public/images/pastors/pst-mark-action-2.jpg";
 import pstMarkPotrait from "../public/images/pastors/pst-mark-temp-potrait.jpg";
 
+import aboutUsBg from "../public/images/hero-backgrounds/about-us-bg.jpg";
+import contactUsBg from "../public/images/hero-backgrounds/contact-us-bg.jpg";
+import ministriesBg from "../public/images/hero-backgrounds/ministries-bg.jpg";
+import eventsBg from "../public/images/hero-backgrounds/events-bg.jpg";
+
 export {
   daddyTInBlue,
   daddyTInAction,
@@ -34,4 +39,8 @@ export {
   pstMarkInAction1,
   pstMarkInAction2,
   pstMarkPotrait,
+  aboutUsBg,
+  contactUsBg,
+  ministriesBg,
+  eventsBg,
 };

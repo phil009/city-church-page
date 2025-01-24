@@ -41,27 +41,6 @@ export const MeetOurPastors = () => {
       ],
     },
     {
-      name: "Pst. Goodluck Opue",
-      position: "Team Pastor",
-      images: [
-        {
-          id: 1,
-          src: pstGeeinAction1,
-          alt: "Pastor preaching",
-        },
-        {
-          id: 2,
-          src: pstGeeinAction2,
-          alt: "Pastor praying",
-        },
-        {
-          id: 3,
-          src: pstGeePotrait,
-          alt: "Pastor profile",
-        },
-      ],
-    },
-    {
       name: "Pst. Aniekan Umoh",
       position: "Team Pastor",
       images: [
@@ -78,6 +57,27 @@ export const MeetOurPastors = () => {
         {
           id: 3,
           src: pstAniekanPotrait,
+          alt: "Pastor profile",
+        },
+      ],
+    },
+    {
+      name: "Pst. Goodluck Opue",
+      position: "Team Pastor",
+      images: [
+        {
+          id: 1,
+          src: pstGeeinAction1,
+          alt: "Pastor preaching",
+        },
+        {
+          id: 2,
+          src: pstGeeinAction2,
+          alt: "Pastor praying",
+        },
+        {
+          id: 3,
+          src: pstGeePotrait,
           alt: "Pastor profile",
         },
       ],

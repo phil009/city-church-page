@@ -4,6 +4,7 @@ import { Phone, Mail, MapPin } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 
 export default function ContactSection() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -13,7 +14,7 @@ export default function ContactSection() {
 
   return (
     <section className="bg-zinc-900 min-h-screen">
-      <div className="container mx-auto px-4 py-16">
+      <div className="mx-auto px-4 md:px-10 lg:px-20 py-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column */}
           <div className="space-y-8">
@@ -85,7 +86,18 @@ export default function ContactSection() {
               }}
             />
 
-            <div className="relative bg-white rounded-3xl p-4 sm:p-8 lg:p-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{
+                stiffness: 260,
+                type: "spring",
+                damping: 20,
+                delay: 0.5,
+              }}
+              className="relative bg-white max-w-md rounded-3xl p-4 sm:p-8 lg:p-12"
+            >
               <h3 className="text-xl sm:text-3xl font-bold mb-8">Contact Us</h3>
               <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-6">
                 <Input
@@ -114,7 +126,7 @@ export default function ContactSection() {
                   Submit Now
                 </Button>
               </form>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

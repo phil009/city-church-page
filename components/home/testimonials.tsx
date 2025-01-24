@@ -83,7 +83,7 @@ export default function TestimonialSlider() {
                     damping: 30,
                     opacity: { duration: 0.2 },
                   }}
-                  className="flex-shrink-0"
+                  className="flex-shrink-0 w-full sm:w-auto"
                 >
                   <TestimonialCard
                     name={testimonial.name}
