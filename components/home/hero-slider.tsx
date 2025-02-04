@@ -91,7 +91,7 @@ export default function HomeHeroSlider() {
           animate="center"
           exit="exit"
           transition={{
-            x: { type: "spring", stiffness: 300, damping: 30, duration: 0.5 },
+            x: { duration: 0.5 },
           }}
           className="absolute inset-0"
         >
@@ -103,13 +103,13 @@ export default function HomeHeroSlider() {
             priority
           />
           <div className="absolute px-4 sm:px-12 md:px-20 inset-0 bg-black bg-opacity-40 flex flex-col items-center sm:items-start text-center sm:text-start justify-center text-white">
-            <h1 className="text-4xl md:text-8xl font-bold sm:mb-4 sm:max-w-[15ch]">
+            <h1 className="text-4xl md:text-6xl font-bold sm:mb-4 sm:max-w-[15ch]">
               {slides[imageIndex].title}
             </h1>
-            <p className="text-sm sm:text-base md:text-xl lg:text-3xl mb-4 md:mb-6 max-w-[48ch]">
+            <p className="text-sm sm:text-base md:text-xl mb-4 md:mb-6 max-w-[48ch]">
               {slides[imageIndex].subtitle}
             </p>
-            <Button className="bg-appRed w-max sm:h-12 text-sm sm:text-base md:text-xl p-2 sm:p-4">
+            <Button className="bg-appRed w-max sm:h-12 text-sm sm:text-base md:text-lg p-2 sm:p-4">
               {slides[imageIndex].button}
             </Button>
           </div>

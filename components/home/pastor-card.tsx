@@ -67,7 +67,7 @@ export const PastorCard = ({ name, position, images }: PastorCardProps) => {
 
           {/* Content */}
           <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-            <h3 className="text-base sm:text-2xl font-bold sm:mb-2">{name}</h3>
+            <h3 className="text-base sm:text-xl font-bold sm:mb-2">{name}</h3>
             <p className="text-gray-300 text-sm">{position}</p>
           </div>
         </motion.div>

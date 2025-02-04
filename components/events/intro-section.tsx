@@ -6,18 +6,18 @@ const IntroSection = () => {
       <div className="flex flex-col md:flex-row gap-3 justify-between">
         <div>
           <p className="text-appRed text-base md:text-xl md:mb-2">
-            Our Ministries
+            Powerful & Impactful Services
           </p>
           <h2 className="text-3xl md:text-4xl font-semibold">
-            Specialized Areas Of Service
+            Events & Programmes
           </h2>
         </div>
         <p className="text-xs sm:text-sm md:text-base max-w-[50ch] opacity-65">
-          These are specialized areas of service and outreach focused on meeting
-          specific needs within the congregation and the broader community.
-          These include worship, youth, women, and men&apos;s missions.
-          Ministries aim to fulfill the church&apos;s mission, foster spiritual
-          growth, and serve others in accordance with Christian principles.
+          We make it easy for attendees to connect intimately with God using
+          contemporary worship music, reflect on His person and nature using
+          other artistic and creative art forms; and challenge them to make
+          deliberate behavioral and character change with a Bible-based teaching
+          format giving them principles they can readily apply
         </p>
       </div>
     </section>

@@ -91,14 +91,14 @@ export const WhoWeAre = () => {
           </AnimatePresence>
         </div>
         <div className="md:w-1/2 grid sm:gap-4">
-          <p className="text-appRed text-xl sm:text-3xl sm:mb-2">
+          <p className="text-appRed text-xl sm:text-2xl">
             We are a living church
           </p>
-          <h1 className="text-3xl md:text-7xl font-semibold mb-4">
+          <h1 className="text-3xl md:text-5xl max-w-[18ch] font-semibold mb-2">
             Get Ready for a shift in your life through the{" "}
             <span className="text-appRed">WORD</span>
           </h1>
-          <p className="text-base sm:text-xl">
+          <p className="text-base max-w-[50ch]">
             A Life Development Church with practical teachings and loving
             relationships, led by Tony Aleogena-Raphael. <br />
             <br /> We are a Church with a heart for people who are far from

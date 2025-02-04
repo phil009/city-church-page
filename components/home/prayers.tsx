@@ -82,7 +82,7 @@ export const Prayers = () => {
       </div>
       <div className="hidden md:block w-2/5">
         <Image
-          src="/images/pastors/daddy-t-in-red.jpg"
+          src="/images/pastors/daddy-t-action-2.jpg"
           alt="prayers"
           width={500}
           height={500}

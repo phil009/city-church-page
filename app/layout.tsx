@@ -12,7 +12,7 @@ const font = Rubik({
 });
 
 export const metadata: Metadata = {
-  title: "City Church Calabr",
+  title: "City Church Calabar",
   description: "",
 };
 

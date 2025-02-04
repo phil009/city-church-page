@@ -132,7 +132,7 @@ export const MeetOurPastors = () => {
         <p className="text-appRed text-base md:text-2xl mb-2">
           Meet Our Pastors
         </p>
-        <h1 className="text-xl md:text-5xl md:max-w-[35ch] font-semibold">
+        <h1 className="text-xl md:text-3xl md:max-w-[35ch] font-semibold">
           Dedicated spiritual leaders, teachers, and shepherds, guiding us
           together on our faith journey.
         </h1>

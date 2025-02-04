@@ -1,3 +1,5 @@
+import { EventsSection } from "@/components/events/events";
+import IntroSection from "@/components/events/intro-section";
 import { GlobalHero } from "@/components/global-hero";
 import { eventsBg } from "@/constants/AppImages";
 
@@ -12,6 +14,8 @@ export default function Events() {
           { label: "Events", href: "/events" },
         ]}
       />
+      <IntroSection />
+      <EventsSection />
     </section>
   );
 }
