@@ -1,15 +1,21 @@
-"use client"
+"use client";
 
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-import { useCart } from "@/hooks/useCart"
-import { ShoppingCart } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { CartItem } from "./CartItem"
-import { useState } from "react"
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { useCart } from "@/hooks/useCart";
+import { ShoppingCart } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { CartItem } from "./CartItem";
+import { useState } from "react";
 
 export function Cart() {
-  const { items, total } = useCart()
-  const [isOpen, setIsOpen] = useState(false)
+  const { items, total } = useCart();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -23,7 +29,7 @@ export function Cart() {
           )}
         </Button>
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent className="bg-white">
         <SheetHeader>
           <SheetTitle>Shopping Cart</SheetTitle>
         </SheetHeader>
@@ -40,7 +46,10 @@ export function Cart() {
                   <span className="font-semibold">Total:</span>
                   <span className="font-bold">${total.toFixed(2)}</span>
                 </div>
-                <Button className="w-full" onClick={() => alert("Checkout functionality coming soon!")}>
+                <Button
+                  className="w-full"
+                  onClick={() => alert("Checkout functionality coming soon!")}
+                >
                   Checkout
                 </Button>
               </div>
@@ -49,6 +58,5 @@ export function Cart() {
         </div>
       </SheetContent>
     </Sheet>
-  )
+  );
 }
-

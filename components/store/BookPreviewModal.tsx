@@ -1,29 +1,43 @@
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import type { Book } from "@/types/store"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { useCart } from "@/hooks/useCart"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import type { Book } from "@/types/store";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { useCart } from "@/hooks/useCart";
 
 interface BookPreviewModalProps {
-  book: Book | null
-  isOpen: boolean
-  onClose: () => void
+  book: Book | null;
+  isOpen: boolean;
+  onClose: () => void;
 }
 
-export function BookPreviewModal({ book, isOpen, onClose }: BookPreviewModalProps) {
-  const { addItem } = useCart()
+export function BookPreviewModal({
+  book,
+  isOpen,
+  onClose,
+}: BookPreviewModalProps) {
+  const { addItem } = useCart();
 
-  if (!book) return null
+  if (!book) return null;
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-3xl">
+      <DialogContent className="max-w-3xl bg-white">
         <DialogHeader>
           <DialogTitle>{book.title}</DialogTitle>
         </DialogHeader>
         <div className="grid md:grid-cols-2 gap-6">
           <div className="relative h-[400px]">
-            <Image src={book.image || "/placeholder.svg"} alt={book.title} fill className="object-contain" />
+            <Image
+              src={book.image || "/placeholder.svg"}
+              alt={book.title}
+              fill
+              className="object-contain"
+            />
           </div>
           <div className="flex flex-col">
             <p className="text-lg mb-4">{book.description}</p>
@@ -41,8 +55,8 @@ export function BookPreviewModal({ book, isOpen, onClose }: BookPreviewModalProp
             </div>
             <Button
               onClick={() => {
-                addItem(book)
-                onClose()
+                addItem(book);
+                onClose();
               }}
               className="mt-auto"
             >
@@ -52,6 +66,5 @@ export function BookPreviewModal({ book, isOpen, onClose }: BookPreviewModalProp
         </div>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
-

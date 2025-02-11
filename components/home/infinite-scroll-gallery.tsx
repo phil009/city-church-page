@@ -111,7 +111,7 @@ export default function HorizontalInfiniteGallery() {
         {[...images, ...images].map((image, index) => (
           <motion.div
             key={`${image.id}-${index}`}
-            className="min-w-[300px] aspect-[3/4y] p-2"
+            className="min-w-[300px] aspect-[3/4] p-2"
           >
             <Image
               src={image.url || "/placeholder.svg"}

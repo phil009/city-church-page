@@ -11,7 +11,7 @@ interface ProductCardProps {
 export function ProductCard({ product, onPreview }: ProductCardProps) {
   return (
     <div className="group relative bg-white rounded-lg border-b-2 border-appRed shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-      <div className="relative h-[300px]">
+      <div className="relative h-[45%] aspect-square w-full">
         <Image
           src={product.image || "/placeholder.svg"}
           alt={product.title}
@@ -30,12 +30,22 @@ export function ProductCard({ product, onPreview }: ProductCardProps) {
           )}
         </div>
       </div>
-      <div className="p-4">
-        <h3 className="font-semibold text-lg mb-2">{product.title}</h3>
-        <p className="text-gray-600 line-clamp-2 mb-4">{product.description}</p>
-        <div className="flex items-center justify-between">
-          <span className="text-lg font-bold">${product.price.toFixed(2)}</span>
-          <Button onClick={onPreview}>Preview</Button>
+      <div className="p-2 h-[55%] flex flex-col justify-between sm:p-4">
+        <div>
+          <h3 className="text-xs sm:text-lg sm:mb-2 uppercase">
+            {product.title}
+          </h3>
+          <p className="text-sm sm:block hidden text-gray-600 line-clamp-2">
+            {product.description}
+          </p>
+        </div>
+        <div className="flex flex-col w-full">
+          <span className="text-sm sm:text-base font-medium">
+            ₦ {product.price.toFixed(2)}
+          </span>
+          <Button className="text-xs bg-appDark text-white" onClick={onPreview}>
+            Preview
+          </Button>
         </div>
       </div>
     </div>

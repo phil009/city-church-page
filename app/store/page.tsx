@@ -19,28 +19,45 @@ export default function StorePage() {
     <section className="before:block before:h-12">
       <GlobalHero
         backgroundImage={ministriesBg}
-        title="Ministries"
+        title="Store"
         breadcrumbs={[
           { label: "City Church", href: "/" },
-          { label: "Ministries", href: "/ministries" },
+          { label: "Store", href: "/store" },
         ]}
       />
       <div className="min-h-screen bg-gray-50 px-4 md:px-20 py-12">
-        <div className="container mx-auto px-4">
+        <div className="">
           <div className="flex justify-between items-center mb-8">
-            <h1 className="text-4xl font-bold">Church Store</h1>
+            <h1 className="text-xl sm:text-2xl md:text-4xl font-bold">
+              Church Store
+            </h1>
             <Cart />
           </div>
 
-          <Tabs defaultValue="all" className="mb-8">
-            <TabsList>
-              <TabsTrigger value="all">All Products</TabsTrigger>
-              <TabsTrigger value="books">Books</TabsTrigger>
-              <TabsTrigger value="audio">Audio Messages</TabsTrigger>
+          <Tabs defaultValue="all">
+            <TabsList className="mb-8">
+              <TabsTrigger
+                className="text-xs sm:text-sm md:text-base"
+                value="all"
+              >
+                All Products
+              </TabsTrigger>
+              <TabsTrigger
+                className="text-xs sm:text-sm md:text-base"
+                value="books"
+              >
+                Books
+              </TabsTrigger>
+              <TabsTrigger
+                className="text-xs sm:text-sm md:text-base"
+                value="audio"
+              >
+                Audio Messages
+              </TabsTrigger>
             </TabsList>
 
             <TabsContent value="all">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
                 {books.map((book) => (
                   <ProductCard
                     key={book.id}
@@ -59,7 +76,7 @@ export default function StorePage() {
             </TabsContent>
 
             <TabsContent value="books">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
                 {books.map((book) => (
                   <ProductCard
                     key={book.id}
@@ -71,7 +88,7 @@ export default function StorePage() {
             </TabsContent>
 
             <TabsContent value="audio">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
                 {audioMessages.map((audio) => (
                   <ProductCard
                     key={audio.id}

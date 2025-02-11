@@ -15,6 +15,9 @@ export default {
         appGhost: "#dededf",
         appOffWhite: "#F6F6F6",
       },
+      fontSize: {
+        xxs: "12px",
+      },
     },
   },
   plugins: [],
