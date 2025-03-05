@@ -99,7 +99,6 @@ export default function HomeHeroSlider() {
             src={slides[imageIndex].image || "/placeholder.svg"}
             alt={slides[imageIndex].alt}
             fill
-            sizes="100%"
             style={{ objectFit: "cover" }}
             priority
           />

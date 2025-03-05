@@ -61,7 +61,7 @@ export const GenericCard: React.FC<GenericCardProps> = ({
           </div>
           <h3 className="text-xl sm:text-2xl font-medium">{title}</h3>
         </div>
-        <p className="mb-4 text-base sm:text-base opacity-60">{description}</p>
+        <p className="mb-4 text-xs sm:text-sm opacity-60">{description}</p>
         {type === "event" && (time || venue) && (
           <div className="mb-4 text-sm text-gray-600">
             {time && <p>Time: {time}</p>}
