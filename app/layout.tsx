@@ -14,6 +14,7 @@ const font = Rubik({
 export const metadata: Metadata = {
   title: "City Church Calabar",
   description: "",
+  icons: "/images/favicon.png",
 };
 
 export default function RootLayout({

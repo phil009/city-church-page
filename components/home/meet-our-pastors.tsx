@@ -40,6 +40,49 @@ export const MeetOurPastors = () => {
         },
       ],
     },
+
+    {
+      name: "Pst. Anointed Enoh",
+      position: "Team Pastor",
+      images: [
+        {
+          id: 1,
+          src: pstAnointedInAction1,
+          alt: "Pastor preaching",
+        },
+        {
+          id: 2,
+          src: pstAnointedInAction2,
+          alt: "Pastor praying",
+        },
+        {
+          id: 3,
+          src: pstAnointedPotrait,
+          alt: "Pastor profile",
+        },
+      ],
+    },
+    {
+      name: "Pst. Mark Ettan",
+      position: "Team Pastor",
+      images: [
+        {
+          id: 1,
+          src: pstMarkInAction1,
+          alt: "Pastor preaching",
+        },
+        {
+          id: 2,
+          src: pstMarkInAction2,
+          alt: "Pastor praying",
+        },
+        {
+          id: 3,
+          src: pstMarkPotrait,
+          alt: "Pastor profile",
+        },
+      ],
+    },
     {
       name: "Pst. Aniekan Umoh",
       position: "Team Pastor",
@@ -78,48 +121,6 @@ export const MeetOurPastors = () => {
         {
           id: 3,
           src: pstGeePotrait,
-          alt: "Pastor profile",
-        },
-      ],
-    },
-    {
-      name: "Pst. Anointed Enoh",
-      position: "Team Pastor",
-      images: [
-        {
-          id: 1,
-          src: pstAnointedInAction1,
-          alt: "Pastor preaching",
-        },
-        {
-          id: 2,
-          src: pstAnointedInAction2,
-          alt: "Pastor praying",
-        },
-        {
-          id: 3,
-          src: pstAnointedPotrait,
-          alt: "Pastor profile",
-        },
-      ],
-    },
-    {
-      name: "Pst. Mark",
-      position: "Team Pastor",
-      images: [
-        {
-          id: 1,
-          src: pstMarkInAction1,
-          alt: "Pastor preaching",
-        },
-        {
-          id: 2,
-          src: pstMarkInAction2,
-          alt: "Pastor praying",
-        },
-        {
-          id: 3,
-          src: pstMarkPotrait,
           alt: "Pastor profile",
         },
       ],

@@ -58,6 +58,7 @@ export const PastorCard = ({ name, position, images }: PastorCardProps) => {
             src={images[currentImageIndex].src || "/placeholder.svg"}
             alt={images[currentImageIndex].alt}
             fill
+            sizes="100%"
             className="object-cover"
             priority
           />

@@ -9,7 +9,7 @@ import { Cart } from "@/components/store/Cart";
 import type { Book, AudioMessage } from "@/types/store";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { GlobalHero } from "@/components/global-hero";
-import { ministriesBg } from "@/constants/AppImages";
+import { storeBg } from "@/constants/AppImages";
 
 export default function StorePage() {
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
@@ -18,7 +18,7 @@ export default function StorePage() {
   return (
     <section className="before:block before:h-12">
       <GlobalHero
-        backgroundImage={ministriesBg}
+        backgroundImage={storeBg}
         title="Store"
         breadcrumbs={[
           { label: "City Church", href: "/" },

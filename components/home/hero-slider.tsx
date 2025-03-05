@@ -29,16 +29,16 @@ const slides = [
     id: 2,
     image: "/images/slider/series-banner.jpg",
     alt: "Church service",
-    title: "Life is a Journey",
+    title: "We Teach in Series",
     subtitle:
-      "Join us to explore how to navigate life’s uncertainties and make the journey of life worthwhile through worship and fellowship. Every Sunday in January at 9:30 AM and 11:00 AM",
+      "Each month, we focus on a specific theme, diving deep into biblical principles through engaging teachings and discussions.",
     button: "Other programs",
   },
   {
     id: 3,
     image: "/images/outdoors/dominion-and-friends-walking-in.jpg",
     alt: "Community outreach",
-    title: "Serving Our Community",
+    title: "Raising Change Agents",
     subtitle: "Making a difference together",
     button: "Discover more",
   },
@@ -99,6 +99,7 @@ export default function HomeHeroSlider() {
             src={slides[imageIndex].image || "/placeholder.svg"}
             alt={slides[imageIndex].alt}
             fill
+            sizes="100%"
             style={{ objectFit: "cover" }}
             priority
           />
