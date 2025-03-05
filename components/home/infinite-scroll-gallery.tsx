@@ -63,6 +63,7 @@ export default function HorizontalInfiniteGallery() {
   const carousel = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
   const x = useMotionValue(0);
+  const isMounted = useRef(false);
 
   useEffect(() => {
     if (carousel.current) {
@@ -71,18 +72,26 @@ export default function HorizontalInfiniteGallery() {
   }, []);
 
   useEffect(() => {
+    isMounted.current = true;
+
     const animate = async () => {
+      if (!isMounted.current) return;
       await controls.start({
         x: -width,
         transition: { duration: 50, ease: "linear" },
       });
-      controls.set({ x: 0 });
-      animate();
+      if (isMounted.current) {
+        controls.set({ x: 0 });
+        animate();
+      }
     };
 
     animate();
 
-    return () => controls.stop();
+    return () => {
+      isMounted.current = false;
+      controls.stop();
+    };
   }, [controls, width]);
 
   const handleDragEnd = () => {
