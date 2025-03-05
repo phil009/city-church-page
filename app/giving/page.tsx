@@ -6,6 +6,7 @@ import { GlobalHero } from "@/components/global-hero";
 import IntroSection from "@/components/giving/intro-section";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { givingBg } from "@/constants/AppImages";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -53,7 +54,7 @@ export default function GivingPage() {
   return (
     <>
       <GlobalHero
-        backgroundImage="/images/hero-backgrounds/giving-bg.jpg"
+        backgroundImage={givingBg}
         title="Give to Our Ministry"
         breadcrumbs={[
           { label: "Home", href: "/" },

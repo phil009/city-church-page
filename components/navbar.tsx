@@ -97,22 +97,22 @@ export default function Navbar() {
           </div>
           <ul className="hidden md:flex gap-6 uppercase text-sm lg:text-base font-semibold">
             <li>
-              <Link href={"/about"}>About</Link>
+              <Link href="/about">About</Link>
             </li>
             <li>
-              <Link href={"/ministries"}>Ministries</Link>
+              <Link href="/ministries">Ministries</Link>
             </li>
             <li>
-              <Link href={"/events"}>Events</Link>
+              <Link href="/events">Events</Link>
             </li>
             <li>
-              <Link href={"/giving"}>Giving</Link>
+              <Link href="/giving">Giving</Link>
             </li>
             <li>
-              <Link href={"/store"}>Store</Link>
+              <Link href="/store">Store</Link>
             </li>
             <li>
-              <Link href={"/contact"}>Contact</Link>
+              <Link href="/contact">Contact</Link>
             </li>
           </ul>
         </div>
@@ -162,42 +162,42 @@ export default function Navbar() {
               </div>
               <ul className="flex-grow p-4 space-y-4">
                 <li className="hover:text-appRed">
-                  <Link href={"/"} onClick={closeMenu}>
+                  <Link href="/" onClick={closeMenu}>
                     Home
                   </Link>
                 </li>
                 <li className="hover:text-appRed">
-                  <Link href={"/about"} onClick={closeMenu}>
+                  <Link href="/about" onClick={closeMenu}>
                     About
                   </Link>
                 </li>
                 <li className="hover:text-appRed">
-                  <Link href={"/ministries"} onClick={closeMenu}>
+                  <Link href="/ministries" onClick={closeMenu}>
                     Ministries
                   </Link>
                 </li>
                 <li className="hover:text-appRed">
-                  <Link href={"/events"} onClick={closeMenu}>
+                  <Link href="/events" onClick={closeMenu}>
                     Events
                   </Link>
                 </li>
                 <li className="hover:text-appRed">
-                  <Link href={"/giving"} onClick={closeMenu}>
+                  <Link href="/giving" onClick={closeMenu}>
                     Giving
                   </Link>
                 </li>
                 <li className="hover:text-appRed">
-                  <Link href={"/store"} onClick={closeMenu}>
+                  <Link href="/store" onClick={closeMenu}>
                     Store
                   </Link>
                 </li>
                 <li className="hover:text-appRed">
-                  <Link href={"/contact"} onClick={closeMenu}>
+                  <Link href="/contact" onClick={closeMenu}>
                     Contact
                   </Link>
                 </li>
                 <li className="hover:text-appRed">
-                  <Link href={"/prayer-request"} onClick={closeMenu}>
+                  <Link href="/prayer-request" onClick={closeMenu}>
                     Send Prayer Request
                   </Link>
                 </li>

@@ -22,6 +22,8 @@ import aboutUsBg from "../public/images/hero-backgrounds/about-us-bg.jpg";
 import contactUsBg from "../public/images/hero-backgrounds/contact-us-bg.jpg";
 import ministriesBg from "../public/images/hero-backgrounds/ministries-bg.jpg";
 import eventsBg from "../public/images/hero-backgrounds/events-bg.jpg";
+import givingBg from "../public//images/hero-backgrounds/percentage-giving.png";
+import storeBg from "../public/images/events/SERIES - YOU, YOUR MONEY AND GOD.jpg";
 
 export {
   daddyTInBlue,
@@ -43,4 +45,6 @@ export {
   contactUsBg,
   ministriesBg,
   eventsBg,
+  givingBg,
+  storeBg,
 };

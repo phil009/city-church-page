@@ -16,6 +16,7 @@ export function ProductCard({ product, onPreview }: ProductCardProps) {
           src={product.image || "/placeholder.svg"}
           alt={product.title}
           fill
+          sizes="100%"
           className="object-cover group-hover:scale-105 transition-transform duration-300"
         />
         <div className="absolute top-2 right-2">
