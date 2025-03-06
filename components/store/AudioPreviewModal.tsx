@@ -10,8 +10,6 @@ import type { AudioMessage } from "@/types/store";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/useCart";
-import { useState, useRef } from "react";
-import { Play, Pause } from "lucide-react";
 
 interface AudioPreviewModalProps {
   audioMessage: AudioMessage | null;
@@ -24,22 +22,9 @@ export function AudioPreviewModal({
   isOpen,
   onClose,
 }: AudioPreviewModalProps) {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement>(null);
   const { addItem } = useCart();
 
   if (!audioMessage) return null;
-
-  const togglePlay = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>

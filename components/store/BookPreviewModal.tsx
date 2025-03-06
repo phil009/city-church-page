@@ -33,7 +33,7 @@ export function BookPreviewModal({
         <div className="grid md:grid-cols-2 gap-6">
           <div className="relative h-[400px]">
             <Image
-              src={book.image || "/placeholder.svg"}
+              src={book.coverArt || "/placeholder.svg"}
               alt={book.title}
               fill
               className="object-contain"
