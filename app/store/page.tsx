@@ -99,9 +99,9 @@ export default function StorePage() {
 
             <TabsContent value="all">
               <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
-                {books.map((book, id) => (
+                {books.map((book) => (
                   <ProductCard
-                    key={id}
+                    key={book.id}
                     product={book}
                     onPreview={() => setSelectedBook(book)}
                   />

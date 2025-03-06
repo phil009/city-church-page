@@ -10,7 +10,7 @@ interface ProductCardProps {
 
 export function ProductCard({ product, onPreview }: ProductCardProps) {
   return (
-    <div className="group relative bg-white rounded-lg border-b-2 border-appRed shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+    <div className="group relative bg-white aspect-[10/14] rounded-lg border-b-2 border-appRed shadow-md overflow-hidden hover:shadow-lg transition-shadow">
       <div className="relative h-[45%] aspect-square w-full">
         <Image
           src={product.coverArt || "/images/events/sunday-service.jpg"}
