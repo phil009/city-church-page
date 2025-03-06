@@ -17,7 +17,7 @@ export default function Home() {
         <Introduction />
         <TestimonialSlider />
         <WhoWeAre />
-        <Gallery />
+        {/* <Gallery /> */}
         <MeetOurPastors />
         <Prayers />
         <ContactSection />
