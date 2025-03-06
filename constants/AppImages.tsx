@@ -25,6 +25,8 @@ import eventsBg from "../public/images/hero-backgrounds/events-bg.jpg";
 import givingBg from "../public//images/hero-backgrounds/percentage-giving.png";
 import storeBg from "../public/images/events/SERIES - YOU, YOUR MONEY AND GOD.jpg";
 
+import avatar from "../public/images/avatar.png";
+
 export {
   daddyTInBlue,
   daddyTInAction,
@@ -47,4 +49,5 @@ export {
   eventsBg,
   givingBg,
   storeBg,
+  avatar,
 };

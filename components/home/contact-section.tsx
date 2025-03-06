@@ -13,7 +13,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="bg-zinc-900 min-h-screen">
+    <section className="bg-zinc-900 min-h-screen flex items-center">
       <div className="mx-auto px-4 md:px-10 lg:px-20 py-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column */}

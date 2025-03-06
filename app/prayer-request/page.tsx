@@ -20,7 +20,7 @@ export default function SendPrayerRequestsPage() {
   };
 
   return (
-    <section className="bg-zinc-900 min-h-screen">
+    <section className="bg-zinc-900 min-h-screen flex items-center ">
       <div className="mx-auto px-4 md:px-10 lg:px-20 py-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column */}
@@ -30,13 +30,14 @@ export default function SendPrayerRequestsPage() {
                 Prayer Ministry
               </p>
               <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-3 sm:mb-6">
-                Share Your Prayer Requests With Us. We&apos;re Here To Pray With You.
+                Share Your Prayer Requests With Us. We&apos;re Here To Pray With
+                You.
               </h2>
               <p className="text-gray-300 text-sm sm:text-base">
                 Our prayer team is committed to lifting your needs before God.
-                Whatever you&apos;re facing, you don&apos;t have to face it alone. Submit
-                your prayer request and our dedicated prayer team will intercede
-                on your behalf.
+                Whatever you&apos;re facing, you don&apos;t have to face it
+                alone. Submit your prayer request and our dedicated prayer team
+                will intercede on your behalf.
               </p>
             </div>
 

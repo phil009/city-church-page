@@ -18,7 +18,7 @@ const images = [
   },
   {
     id: 3,
-    url: "/images/outdoors/first-impression-2.jpg",
+    url: "/images/ministries/CAD-1.jpg",
     alt: "Church event 3",
   },
   {
@@ -92,7 +92,8 @@ export default function HorizontalInfiniteGallery() {
       isMounted.current = false;
       controls.stop();
     };
-  }, [controls, width]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [width]);
 
   const handleDragEnd = () => {
     const currentX = x.get();

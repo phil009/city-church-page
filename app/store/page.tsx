@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { books, audioMessages } from "@/data/store-data";
+import { useState, useEffect } from "react";
+import { books } from "@/data/store-data";
 import { ProductCard } from "@/components/store/ProductCard";
 import { BookPreviewModal } from "@/components/store/BookPreviewModal";
 import { AudioPreviewModal } from "@/components/store/AudioPreviewModal";
@@ -10,10 +10,49 @@ import type { Book, AudioMessage } from "@/types/store";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { GlobalHero } from "@/components/global-hero";
 import { storeBg } from "@/constants/AppImages";
+import { toast } from "sonner";
+import axios from "../../utils/axiosInstance";
+import { Skeleton } from "@/components/ui/skeleton";
+
+// Skeleton component for loading states
+const ProductSkeleton = () => (
+  <div className="min-w-[300px] aspect-[3/4] p-2">
+    <Skeleton className="w-full h-full rounded-lg" />
+  </div>
+);
 
 export default function StorePage() {
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
   const [selectedAudio, setSelectedAudio] = useState<AudioMessage | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [audioMessages, setAudioMessages] = useState<AudioMessage[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchAudioMessages = async () => {
+      setLoading(true);
+      try {
+        const res = await axios.get("/audio/");
+        setAudioMessages(res.data);
+      } catch (error) {
+        console.error("Fetch error:", error);
+        setError(
+          "An error occurred while fetching audio messages. Please try again later."
+        );
+        toast(
+          "An error occurred while fetching audio messages. Please try again later."
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAudioMessages();
+  }, []);
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <section className="before:block before:h-12">
@@ -65,13 +104,17 @@ export default function StorePage() {
                     onPreview={() => setSelectedBook(book)}
                   />
                 ))}
-                {audioMessages.map((audio) => (
-                  <ProductCard
-                    key={audio.id}
-                    product={audio}
-                    onPreview={() => setSelectedAudio(audio)}
-                  />
-                ))}
+                {loading
+                  ? Array.from({ length: 5 }).map((_, index) => (
+                      <ProductSkeleton key={index} />
+                    ))
+                  : audioMessages.map((audio) => (
+                      <ProductCard
+                        key={audio.id}
+                        product={audio}
+                        onPreview={() => setSelectedAudio(audio)}
+                      />
+                    ))}
               </div>
             </TabsContent>
 
@@ -89,13 +132,17 @@ export default function StorePage() {
 
             <TabsContent value="audio">
               <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
-                {audioMessages.map((audio) => (
-                  <ProductCard
-                    key={audio.id}
-                    product={audio}
-                    onPreview={() => setSelectedAudio(audio)}
-                  />
-                ))}
+                {loading
+                  ? Array.from({ length: 5 }).map((_, index) => (
+                      <ProductSkeleton key={index} />
+                    ))
+                  : audioMessages.map((audio) => (
+                      <ProductCard
+                        key={audio.id}
+                        product={audio}
+                        onPreview={() => setSelectedAudio(audio)}
+                      />
+                    ))}
               </div>
             </TabsContent>
           </Tabs>
