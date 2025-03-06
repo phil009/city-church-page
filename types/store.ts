@@ -2,8 +2,9 @@ export interface BaseProduct {
   id: string;
   title: string;
   description: string;
+  fileUrl: string;
   price: number;
-  image: string;
+  coverArt: string;
   category: "book" | "audio";
 }
 
@@ -18,7 +19,6 @@ export interface AudioMessage extends BaseProduct {
   category: "audio";
   speaker: string;
   duration: string;
-  previewClip: string;
   date: string;
 }
 

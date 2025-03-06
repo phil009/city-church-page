@@ -50,7 +50,7 @@ export function AudioPreviewModal({
         <div className="grid md:grid-cols-2 justify-items-start gap-6">
           <div className="relative w-full">
             <Image
-              src={audioMessage.image || "/placeholder.svg"}
+              src={audioMessage.coverArt || "/placeholder.svg"}
               alt={audioMessage.title}
               fill
               className="object-contain"
@@ -74,26 +74,6 @@ export function AudioPreviewModal({
               <p className="text-2xl font-bold">
                 ${audioMessage.price.toFixed(2)}
               </p>
-            </div>
-
-            <div className="bg-gray-100 p-4 rounded-lg mb-6">
-              <div className="flex items-center gap-4 mb-2">
-                <Button variant="outline" size="icon" onClick={togglePlay}>
-                  {isPlaying ? (
-                    <Pause className="h-4 w-4" />
-                  ) : (
-                    <Play className="h-4 w-4" />
-                  )}
-                </Button>
-                <span className="font-medium">Preview Clip</span>
-              </div>
-              <audio
-                ref={audioRef}
-                src={audioMessage.previewClip}
-                onEnded={() => setIsPlaying(false)}
-                className="w-full"
-                controls
-              />
             </div>
 
             <Button

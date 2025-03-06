@@ -13,7 +13,7 @@ export function ProductCard({ product, onPreview }: ProductCardProps) {
     <div className="group relative bg-white rounded-lg border-b-2 border-appRed shadow-md overflow-hidden hover:shadow-lg transition-shadow">
       <div className="relative h-[45%] aspect-square w-full">
         <Image
-          src={product.image || "/placeholder.svg"}
+          src={product.coverArt || "/images/events/sunday-service.jpg"}
           alt={product.title}
           fill
           sizes="100%"

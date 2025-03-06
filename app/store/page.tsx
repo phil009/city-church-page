@@ -34,6 +34,7 @@ export default function StorePage() {
       try {
         const res = await axios.get("/audio/");
         setAudioMessages(res.data);
+        console.log(audioMessages);
       } catch (error) {
         console.error("Fetch error:", error);
         setError(
@@ -48,6 +49,7 @@ export default function StorePage() {
     };
 
     fetchAudioMessages();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (error) {
@@ -97,9 +99,9 @@ export default function StorePage() {
 
             <TabsContent value="all">
               <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
-                {books.map((book) => (
+                {books.map((book, id) => (
                   <ProductCard
-                    key={book.id}
+                    key={id}
                     product={book}
                     onPreview={() => setSelectedBook(book)}
                   />
