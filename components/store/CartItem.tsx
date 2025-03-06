@@ -15,7 +15,7 @@ export function CartItem({ item }: CartItemProps) {
     <div className="flex gap-4">
       <div className="relative w-20 h-20">
         <Image
-          src={item.product.image || "/placeholder.svg"}
+          src={item.product.coverArt || "/placeholder.svg"}
           alt={item.product.title}
           fill
           className="object-cover rounded"
