@@ -93,7 +93,7 @@ export default function HorizontalInfiniteGallery() {
       controls.stop();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [width]);
+  }, []);
 
   const handleDragEnd = () => {
     const currentX = x.get();

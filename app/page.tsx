@@ -1,4 +1,4 @@
-// import { Gallery } from "@/components/home/gallery";
+import { Gallery } from "@/components/home/gallery";
 import HomeHeroSlider from "@/components/home/hero-slider";
 import { Introduction } from "@/components/home/introduction";
 import { MeetOurPastors } from "@/components/home/meet-our-pastors";
@@ -17,7 +17,7 @@ export default function Home() {
         <Introduction />
         <TestimonialSlider />
         <WhoWeAre />
-        {/* <Gallery /> */}
+        <Gallery />
         <MeetOurPastors />
         <Prayers />
         <ContactSection />
