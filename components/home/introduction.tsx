@@ -22,7 +22,7 @@ const services = [
     image: "/images/outdoors/choir-group-and-daddy-t.jpg",
   },
   {
-    title: "The Kingdom Seeds",
+    title: "The Junior Church",
     text: "Our involvement of children in church helps to nurture their spiritual development, teach them about their faith, and foster a sense of belonging and community.",
     icon: "mdi:seed-outline",
     image: "/images/outdoors/dominion-and-friends-walking-in.jpg",
