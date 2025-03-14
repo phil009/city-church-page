@@ -1,9 +1,10 @@
 interface VideoPlayerProps {
-  isLive: boolean
-  channelID: string | undefined
+  isLive: boolean;
+  channelID: string | undefined;
 }
 
 export default function VideoPlayer({ isLive, channelID }: VideoPlayerProps) {
+  console.log(isLive, channelID);
   return (
     <div className="bg-gray-100 rounded-lg overflow-hidden mb-6">
       <div className="aspect-video w-full">
@@ -28,6 +29,5 @@ export default function VideoPlayer({ isLive, channelID }: VideoPlayerProps) {
         )}
       </div>
     </div>
-  )
+  );
 }
-

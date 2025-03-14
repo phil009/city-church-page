@@ -80,7 +80,7 @@ export default function LiveStream() {
         ]}
       />
 
-      <div className="container px-2 md:px-20 py-16">
+      <section className="px-4 bg-appDark md:px-20 py-16">
         {/* Live Status Banner */}
         <LiveStatusBanner
           isLive={isLive}
@@ -117,7 +117,7 @@ export default function LiveStream() {
             <UpcomingEvents />
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }

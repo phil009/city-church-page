@@ -21,7 +21,7 @@ export default function LiveStatusBanner({ isLive, timeRemaining, nextServiceTim
       <AlertDescription>Join our service in progress. Worship with us and participate in the chat.</AlertDescription>
     </Alert>
   ) : (
-    <Alert className="bg-appDark text-white border-none mb-6">
+    <Alert className="bg-appGhost text-appDark border-none mb-6">
       <Clock className="h-4 w-4 mr-2" />
       <AlertTitle>Next Service in {timeRemaining}</AlertTitle>
       <AlertDescription>

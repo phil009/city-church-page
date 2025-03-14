@@ -9,7 +9,7 @@ interface ConnectWaysProps {
 
 export default function ConnectWays({ channelID }: ConnectWaysProps) {
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
+    <div className="bg-appOffWhite rounded-lg shadow-md p-6">
       <h2 className="text-xl font-bold mb-4">Ways to Connect</h2>
       <ul className="space-y-3">
         <li className="flex items-start">
@@ -41,7 +41,7 @@ export default function ConnectWays({ channelID }: ConnectWaysProps) {
         </li>
       </ul>
       <Button
-        className="w-full mt-4"
+        className="w-full mt-4 bg-appDark text-white"
         onClick={() => window.open(`https://www.youtube.com/channel/${channelID}`, "_blank")}
       >
         Visit Our YouTube Channel

@@ -17,11 +17,11 @@ interface PreviousSermonsProps {
 
 export default function PreviousSermons({ sermons }: PreviousSermonsProps) {
   return (
-    <div className="mb-8">
+    <div className="mb-8 text-appDark">
       <h2 className="text-2xl font-bold mb-4">Previous Services</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {sermons.map((sermon) => (
-          <div key={sermon.id} className="bg-white rounded-lg overflow-hidden shadow-md">
+          <div key={sermon.id} className="bg-appGhost border-b-4 border-appRed rounded-lg overflow-hidden shadow-md">
             <div className="relative">
               <iframe
                 width="100%"
