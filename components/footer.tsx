@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { z } from "zod";
+import { footerbg } from "@/constants/AppImages";
 
 const Footer = () => {
   const formSchema = z.object({
@@ -42,11 +43,11 @@ const Footer = () => {
   return (
     <section className="w-full text-white relative">
       <Image
-        src={"/images/footer_bg.jpeg"}
+        src={footerbg}
         alt="map"
         width={1000}
         height={1000}
-        className="w-full h-full absolute top-0 left-0"
+        className="w-full h-full object-cover absolute top-0 left-0"
       />
       <div className="relative px-4 sm:px-12 md:px-20 py-12 border-b border-appBorderGray">
         <div className="flex flex-col gap-4 md:flex-row justify-between md:items-center w-full">

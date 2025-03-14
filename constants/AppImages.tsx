@@ -26,8 +26,11 @@ import givingBg from "../public//images/hero-backgrounds/percentage-giving.png";
 import storeBg from "../public/images/events/SERIES - YOU, YOUR MONEY AND GOD.jpg";
 
 import avatar from "../public/images/avatar.png";
+import logo from "../public/images/logo-1.png";
+import footerbg from "../public/images/footer_bg.jpeg";
 
 export {
+  logo,
   daddyTInBlue,
   daddyTInAction,
   daddyTPortrait,
@@ -50,4 +53,5 @@ export {
   givingBg,
   storeBg,
   avatar,
+  footerbg,
 };

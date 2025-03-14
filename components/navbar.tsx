@@ -112,6 +112,9 @@ export default function Navbar() {
               <Link href="/store">Store</Link>
             </li>
             <li>
+              <Link href="/live">Watch</Link>
+            </li>
+            <li>
               <Link href="/contact">Contact</Link>
             </li>
           </ul>
@@ -189,6 +192,11 @@ export default function Navbar() {
                 <li className="hover:text-appRed">
                   <Link href="/store" onClick={closeMenu}>
                     Store
+                  </Link>
+                </li>
+                <li className="hover:text-appRed">
+                  <Link href="/live" onClick={closeMenu}>
+                    Watch
                   </Link>
                 </li>
                 <li className="hover:text-appRed">
