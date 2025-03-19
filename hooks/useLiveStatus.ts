@@ -31,3 +31,20 @@ export function useLiveStatus(
 
   return isLive;
 }
+
+export const fetchLatestSermons = async (
+  channelID: string | undefined,
+  apiKey: string | undefined
+) => {
+  const response = await fetch(
+    `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelID}&order=date&maxResults=5&key=${apiKey}`
+  );
+  const data = await response.json();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return data.items.map((video: any) => ({
+    id: video.id.videoId,
+    title: video.snippet.title,
+    thumbnail: video.snippet.thumbnails.high.url,
+    publishedAt: video.snippet.publishedAt,
+  }));
+};

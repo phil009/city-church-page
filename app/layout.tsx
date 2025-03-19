@@ -26,12 +26,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${font.variable} antialiased bg-white relative`}>
-        <Navbar />
         <Suspense fallback={<Loading />}>
+          <Navbar />
           <div className="min-h-screen">{children}</div>
+          <Footer />
+          <Toaster />
         </Suspense>
-        <Footer />
-        <Toaster />
       </body>
     </html>
   );

@@ -27,7 +27,7 @@ const slides = [
   },
   {
     id: 2,
-    image: "/images/slider/series-banner.jpg",
+    image: "/images/hero-backgrounds/watch-live-bg.png",
     alt: "Church service",
     title: "We Teach in Series",
     subtitle:
