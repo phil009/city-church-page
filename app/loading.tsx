@@ -1,12 +1,18 @@
-import React from "react";
-import ClipLoader from "react-spinners/ClipLoader";
+"use client";
+import Image from "next/image";
+import { loading } from "@/constants/AppImages";
 
-const Loading = () => {
+export default function MyApp() {
   return (
-    <div className="absolute w-full h-full bg-white">
-      <ClipLoader size={50} color="#ec2424" />
-    </div>
+    <>
+      <div className="absolute top-0 left-0 z-50 object-cover">
+        <Image
+          src={loading}
+          className="w-full h-full"
+          alt="Loading"
+          layout="fill"
+        />
+      </div>
+    </>
   );
-};
-
-export default Loading;
+}

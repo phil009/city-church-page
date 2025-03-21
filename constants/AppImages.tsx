@@ -24,10 +24,12 @@ import ministriesBg from "../public/images/hero-backgrounds/ministries-bg.jpg";
 import eventsBg from "../public/images/hero-backgrounds/events-bg.jpg";
 import givingBg from "../public//images/hero-backgrounds/percentage-giving.png";
 import storeBg from "../public/images/events/SERIES - YOU, YOUR MONEY AND GOD.jpg";
+import watchBg from "../public/images/hero-backgrounds/watch-live-bg.png";
 
 import avatar from "../public/images/avatar.png";
 import logo from "../public/images/logo-1.png";
 import footerbg from "../public/images/footer_bg.jpeg";
+import loading from "../public/images/loading.jpg";
 
 export {
   logo,
@@ -52,6 +54,8 @@ export {
   eventsBg,
   givingBg,
   storeBg,
+  watchBg,
   avatar,
   footerbg,
+  loading,
 };

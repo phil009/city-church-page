@@ -18,7 +18,7 @@ export const GlobalHero: React.FC<GlobalHeroProps> = ({
   breadcrumbs,
 }) => {
   return (
-    <div className="relative min-h-[calc(100dvh-240px)] sm:min-h-[calc(100dvh-200px)] md:min-h-[calc(100dvh-100px)] w-full overflow-hidden">
+    <div className="relative min-h-[calc(100dvh-240px)] sm:min-h-[calc(100dvh-200px)] md:min-h-[calc(100dvh-0px)] w-full overflow-hidden">
       <div className="absolute inset-0 flex items-end">
         <Image
           src={backgroundImage || "/placeholder.svg"}

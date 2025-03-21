@@ -103,6 +103,9 @@ export default function Navbar() {
               <Link href="/ministries">Ministries</Link>
             </li>
             <li>
+              <Link href="/small-groups">Group Life</Link>
+            </li>
+            <li>
               <Link href="/events">Events</Link>
             </li>
             <li>
@@ -177,6 +180,11 @@ export default function Navbar() {
                 <li className="hover:text-appRed">
                   <Link href="/ministries" onClick={closeMenu}>
                     Ministries
+                  </Link>
+                </li>
+                <li className="hover:text-appRed">
+                  <Link href="/small-groups" onClick={closeMenu}>
+                    Group Life
                   </Link>
                 </li>
                 <li className="hover:text-appRed">

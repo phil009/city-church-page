@@ -1,7 +1,7 @@
 "use client";
 import { GlobalHero } from "@/components/global-hero";
-import { givingBg } from "@/constants/AppImages";
-import { useLiveStatus } from "@/hooks/useLiveStatus";
+import { watchBg } from "@/constants/AppImages";
+import { fetchLatestSermons, useLiveStatus } from "@/hooks/useLiveStatus";
 import { useNextService } from "@/hooks/useNextService";
 import LiveStatusBanner from "@/components/live/LiveStatusBanner";
 import VideoPlayer from "@/components/live/VideoPlayer";
@@ -10,6 +10,7 @@ import PreviousSermons from "@/components/live/PreviousSermons";
 import ServiceSchedule from "@/components/live/ServiceSchedule";
 import ConnectWays from "@/components/live/ConnectWays";
 import UpcomingEvents from "@/components/live/UpcomingEvents";
+import { useState, useEffect } from "react";
 
 const channelID = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID;
 const YOUTUBE_API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
@@ -18,31 +19,6 @@ const YOUTUBE_API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
 const serviceSchedule = [
   { day: "Sunday", time: "9:00 AM", type: "First Service" },
   { day: "Sunday", time: "11:30 AM", type: "Second Service" },
-];
-
-// Previous sermons data
-const previousSermons = [
-  {
-    id: "1",
-    title: "Broken",
-    date: "March 2, 2025",
-    embed: "https://www.youtube.com/embed/Bfh0I0b5IZo?si=pDPvoaC9GN8bYXZX",
-    link: "https://www.youtube.com/watch?v=Bfh0I0b5IZo&t=2383s",
-  },
-  {
-    id: "2",
-    title: "Family Values",
-    date: "February 23, 2025",
-    embed: "https://www.youtube.com/embed/wd0SdgGwDgg?si=vxPYZHTt2mOmFWwK",
-    link: "https://www.youtube.com/watch?v=wd0SdgGwDgg&t=2941s",
-  },
-  {
-    id: "3",
-    title: "Life is a Journey",
-    date: "February 2, 2025",
-    embed: "https://www.youtube.com/embed/3dCsh09DChU?si=D9RfkaK0pYHDYTEA",
-    link: "https://www.youtube.com/watch?v=3dCsh09DChU",
-  },
 ];
 
 export default function LiveStream() {
@@ -69,10 +45,25 @@ export default function LiveStream() {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [latestVideo, setLatestVideo] = useState<any>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [recentVideos, setRecentVideos] = useState<any[]>([]);
+
+  useEffect(() => {
+    const getVideos = async () => {
+      const videos = await fetchLatestSermons(channelID, YOUTUBE_API_KEY);
+      setLatestVideo(videos[0]); // First video (most recent)
+      setRecentVideos(videos.slice(2)); // Next 3 videos
+    };
+
+    getVideos();
+  }, []);
+
   return (
     <>
       <GlobalHero
-        backgroundImage={givingBg}
+        backgroundImage={watchBg}
         title="Join Us Live"
         breadcrumbs={[
           { label: "Home", href: "/" },
@@ -92,7 +83,11 @@ export default function LiveStream() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Video Section - Takes up 2/3 on desktop */}
           <div className="lg:col-span-2">
-            <VideoPlayer isLive={isLive} channelID={channelID} />
+            <VideoPlayer
+              isLive={isLive}
+              video={latestVideo}
+              channelID={channelID}
+            />
 
             {/* Introductory Message */}
             <IntroMessage
@@ -102,7 +97,7 @@ export default function LiveStream() {
             />
 
             {/* Previous Sermons Section */}
-            {!isLive && <PreviousSermons sermons={previousSermons} />}
+            {!isLive && <PreviousSermons video={recentVideos} />}
           </div>
 
           {/* Sidebar - Takes up 1/3 on desktop */}

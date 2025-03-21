@@ -1,9 +1,11 @@
 interface VideoPlayerProps {
   isLive: boolean;
   channelID: string | undefined;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  video: any;
 }
 
-export default function VideoPlayer({ isLive, channelID }: VideoPlayerProps) {
+export default function VideoPlayer({ isLive, channelID, video }: VideoPlayerProps) {
   console.log(isLive, channelID);
   return (
     <div className="bg-gray-100 rounded-lg overflow-hidden mb-6">
@@ -21,8 +23,8 @@ export default function VideoPlayer({ isLive, channelID }: VideoPlayerProps) {
           <iframe
             width="100%"
             height="100%"
-            src="https://www.youtube.com/embed/AXbmAZrk6WM?si=kHAzmcLXDkMPE4ZD"
-            title="Welcome Video"
+            src={`https://www.youtube.com/embed/${video?.id}`}
+            title={video?.title}
             allowFullScreen
             className="w-full h-full"
           ></iframe>

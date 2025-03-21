@@ -67,3 +67,58 @@ a:hover {
     --chart-5: 340 75% 55%;
   }
 }
+
+/* Glassmorphic Card */
+.glassmorphic-card {
+  background: transparent;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+}
+
+/* Swiper Customization */
+.swiper {
+  width: 100%;
+  padding: 50px 0;
+}
+
+.swiper-slide {
+  width: 80%;
+  max-width: 500px;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+
+.swiper-slide-active {
+  opacity: 1;
+}
+
+.swiper-pagination {
+  position: relative;
+  margin-top: 20px;
+}
+
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background-color: #ccc;
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: var(--app-red, #ef4444);
+}
+
+/* Hide default Swiper navigation buttons */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none;
+}
+
+/* Custom background for the carousel section */
+.swiper-container {
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+  border-radius: 16px;
+  padding: 20px;
+}
