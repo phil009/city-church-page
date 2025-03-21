@@ -31,6 +31,7 @@ interface GroupsCarouselProps {
     vision: string;
     description: string;
   }>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
   onJoinGroup: (group: any) => void;
 }
 
