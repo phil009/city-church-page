@@ -115,7 +115,7 @@ export default function HowItWorks() {
                     }`}
                   >
                     {/* Icon */}
-                    <div className="absolute right-0 md:static md:transform-none z-10 md:flex-shrink-0">
+                    <div className="absolute right-2 md:static md:transform-none z-10 md:flex-shrink-0">
                       <div className="w-16 h-16 rounded-full bg-appRed flex items-center justify-center shadow-lg">
                         {step.icon}
                       </div>
