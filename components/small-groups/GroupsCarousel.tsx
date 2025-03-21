@@ -9,9 +9,13 @@ import {
   MapPin,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
+  ChevronUp,
+  MoveHorizontalIcon as SwipeHorizontal,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useMediaQuery } from "@/hooks/use-media-query";
+import { motion, AnimatePresence } from "framer-motion";
 
 // Import Swiper styles
 import "swiper/css";
@@ -31,7 +35,7 @@ interface GroupsCarouselProps {
     vision: string;
     description: string;
   }>;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onJoinGroup: (group: any) => void;
 }
 
@@ -41,10 +45,35 @@ export default function GroupsCarousel({
 }: GroupsCarouselProps) {
   const [domLoaded, setDomLoaded] = useState(false);
   const isMobile = useMediaQuery("(max-width: 768px)");
+  const [expandedStories, setExpandedStories] = useState<
+    Record<number, boolean>
+  >({});
+  const [showSwipeHint, setShowSwipeHint] = useState(true);
 
   useEffect(() => {
     setDomLoaded(true);
-  }, []);
+
+    // Hide swipe hint after 5 seconds
+    if (isMobile) {
+      const timer = setTimeout(() => {
+        setShowSwipeHint(false);
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isMobile]);
+
+  const toggleStory = (groupId: number) => {
+    setExpandedStories((prev) => ({
+      ...prev,
+      [groupId]: !prev[groupId],
+    }));
+  };
+
+  const handleSwipe = () => {
+    // Hide the swipe hint once user has swiped
+    setShowSwipeHint(false);
+  };
 
   if (!domLoaded) {
     return (
@@ -98,6 +127,31 @@ export default function GroupsCarousel({
       {/* Background pattern */}
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-80"></div>
 
+      {/* Mobile swipe indicator */}
+      {isMobile && showSwipeHint && (
+        <AnimatePresence>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            className="absolute top-0 left-0 right-0 z-20 flex justify-center"
+          >
+            <div className="bg-appDark/80 backdrop-blur-sm text-white px-4 py-2 rounded-full flex items-center space-x-2 shadow-lg">
+              <SwipeHorizontal className="h-5 w-5 text-appRed" />
+              <span className="text-sm">Swipe to see more groups</span>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      )}
+      {/* Swipe indicator for mobile (persistent at bottom) */}
+      {isMobile && (
+        <div className="flex justify-center mt-2 mb-4">
+          <div className="flex items-center text-appOffWhite text-sm">
+            <SwipeHorizontal className="h-4 w-4 mr-1 text-appRed" />
+            <span>Swipe to explore more groups</span>
+          </div>
+        </div>
+      )}
       <Swiper
         effect="coverflow"
         grabCursor={true}
@@ -118,23 +172,54 @@ export default function GroupsCarousel({
         }}
         modules={[EffectCoverflow, Pagination, Navigation]}
         className="mySwiper"
+        onSlideChange={handleSwipe}
       >
         {groups.map((group) => (
-          <SwiperSlide key={group.id} className="max-w-lg mb-12 text-white">
+          <SwiperSlide key={group.id} className="max-w-lg mb-8 md:mb-12 text-white">
             <div className="glassmorphic-card p-6 md:p-8 rounded-xl">
               <h3 className="text-2xl font-bold mb-2">{group.name}</h3>
               <p className="text-gray-400 mb-4">Led by {group.leaderName}</p>
+
+              {/* Leader's Story with Show More/Less */}
               <div className="mb-4">
-                <h4 className="font-semibold mb-2">Leader&apos;s Story</h4>
-                <p className="text-gray-300">{group.leaderStory}</p>
+                <div className="flex justify-between items-center mb-2">
+                  <h4 className="font-semibold">Leader&apos;s Story</h4>
+                  <button
+                    onClick={() => toggleStory(group.id)}
+                    className="text-appRed flex items-center text-sm"
+                    aria-label={
+                      expandedStories[group.id] ? "Show less" : "Show more"
+                    }
+                  >
+                    {expandedStories[group.id] ? (
+                      <>
+                        <span className="mr-1">Show less</span>
+                        <ChevronUp className="h-4 w-4" />
+                      </>
+                    ) : (
+                      <>
+                        <span className="mr-1">Show more</span>
+                        <ChevronDown className="h-4 w-4" />
+                      </>
+                    )}
+                  </button>
+                </div>
+
+                <div
+                  className={`text-gray-300 overflow-hidden transition-all duration-300 ${
+                    expandedStories[group.id] ? "max-h-[500px]" : "max-h-[70px]"
+                  }`}
+                >
+                  <p>{group.leaderStory}</p>
+                </div>
               </div>
 
-              <div className="grid sm:grid-cols-2 gap-4 mb-6">
+              <div className="grid grid-cols-2 gap-4 mb-6">
                 <div className="flex items-start">
                   <Calendar className="h-5 w-5 text-appRed mr-2 mt-0.5" />
                   <div>
                     <p className="text-sm">Meeting Day</p>
-                    <p className="font-medium text-gray-400">
+                    <p className="font-medium text-gray-400 text-xs sm:text-sm">
                       {group.meetingDay}
                     </p>
                   </div>
@@ -144,7 +229,7 @@ export default function GroupsCarousel({
                   <Clock className="h-5 w-5 text-appRed mr-2 mt-0.5" />
                   <div>
                     <p className="text-sm">Meeting Time</p>
-                    <p className="font-medium text-gray-400">
+                    <p className="font-medium text-gray-400 text-xs sm:text-sm">
                       {group.meetingTime}
                     </p>
                   </div>
@@ -154,7 +239,7 @@ export default function GroupsCarousel({
                   <MapPin className="h-5 w-5 text-appRed mr-2 mt-0.5" />
                   <div>
                     <p className="text-sm">Location</p>
-                    <p className="font-medium text-gray-400">
+                    <p className="font-medium text-gray-400 text-xs sm:text-sm">
                       {group.location}
                     </p>
                   </div>
@@ -177,19 +262,24 @@ export default function GroupsCarousel({
                   </svg>
                   <div>
                     <p className="text-sm">Group Vision</p>
-                    <p className="font-medium text-gray-400">{group.vision}</p>
+                    <p className="font-medium text-gray-400 text-xs sm:text-sm">
+                      {group.vision}
+                    </p>
                   </div>
                 </div>
               </div>
 
               <div className="mb-6">
-                <h4 className="font-semibold mb-2">
-                  What to Expect
-                </h4>
-                <p className="text-gray-300">{group.description}</p>
+                <h4 className="font-semibold mb-2">What to Expect</h4>
+                <p className="text-gray-300 text-xs sm:text-sm">
+                  {group.description}
+                </p>
               </div>
 
-              <Button onClick={() => onJoinGroup(group)} className="w-full border border-appBorderGray">
+              <Button
+                onClick={() => onJoinGroup(group)}
+                className="w-full border border-appBorderGray"
+              >
                 Join This Group
               </Button>
             </div>
