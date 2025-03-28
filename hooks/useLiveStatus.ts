@@ -11,7 +11,6 @@ export function useLiveStatus(
   useEffect(() => {
     const checkLiveStatus = async () => {
       if (!channelID || !apiKey) return;
-      console.log(channelID, apiKey);
       try {
         const response = await fetch(
           `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelID}&type=video&eventType=live&key=${apiKey}`
