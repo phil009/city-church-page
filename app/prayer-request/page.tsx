@@ -50,10 +50,10 @@ export default function SendPrayerRequestsPage() {
                 <div>
                   <p className="text-red-600 mb-1">Prayer Times</p>
                   <p className="text-white text-sm sm:text-lg">
-                    Mondays & Fridays: 6:00 PM - 7:30 PM
+                    Mondays - Fridays: 5:00 AM - 6:00 AM (Telegram Channel)
                   </p>
                   <p className="text-white text-sm sm:text-lg">
-                    Wednesdays: 5:30 AM - 6:30 AM
+                    Fridays: 6:00 PM - 7:00 PM (The Big Tent)
                   </p>
                 </div>
               </div>
