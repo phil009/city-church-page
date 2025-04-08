@@ -20,6 +20,7 @@
         try {
           const res = await fetchPaystackProducts();
           setProducts(res);
+          console.log("Products fetched:", res);
         } catch (error) {
           console.error("Fetch error:", error);
           setError(

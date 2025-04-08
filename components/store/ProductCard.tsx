@@ -8,14 +8,14 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-  const isDigital = product.type === "digital_asset";
+  const isDigital = product.type === "digital";
 
   return (
     <Link href={`https://paystack.com/buy/${product.slug}`} target="_blank">
       <div className="group relative bg-white aspect-[10/14] rounded-lg border-b-2 border-appRed shadow-md overflow-hidden hover:shadow-lg transition-shadow">
         <div className="relative h-[45%] aspect-square w-full">
           <Image
-            src={product?.files[0]?.path || "/images/default-product.jpg"}
+            src={product?.files[0]?.path || "/images/events/sunday-service.jpg"}
             alt={product?.name}
             fill
             sizes="100%"

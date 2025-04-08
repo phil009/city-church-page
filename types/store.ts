@@ -6,6 +6,6 @@ export interface PaystackProduct {
   currency: string;
   files: { path: string }[];
   metadata?: { background_color?: string };
-  type: "good" | "digital_asset"; // 'good' = physical, 'digital_asset' = digital
+  type: "good" | "digital"; // 'good' = physical, 'digital_asset' = digital
   slug: string;
 }
