@@ -17,8 +17,8 @@ const YOUTUBE_API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
 
 // Service schedule data
 const serviceSchedule = [
-  { day: "Sunday", time: "9:00 AM", type: "First Service" },
-  { day: "Sunday", time: "11:30 AM", type: "Second Service" },
+  { day: "Sunday", time: "9:30 AM", type: "First Service" },
+  { day: "Sunday", time: "11:00 AM", type: "Second Service" },
 ];
 
 export default function LiveStream() {
@@ -55,6 +55,7 @@ export default function LiveStream() {
       const videos = await fetchLatestSermons(channelID, YOUTUBE_API_KEY);
       setLatestVideo(videos[0]); // First video (most recent)
       setRecentVideos(videos.slice(2)); // Next 3 videos
+      console.log("Latest Video:", videos[0]);
     };
 
     getVideos();

@@ -5,12 +5,51 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { useState } from "react";
+
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
+import {
+  contactFormSchema,
+  type ContactFormValues,
+} from "@/lib/validations/contact-form-schema";
+import { toast } from "sonner";
+import { contactUs } from "@/utils/axiosInstance";
 
 export default function ContactSection() {
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Handle form submission
-  };
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const form = useForm<ContactFormValues>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    },
+  });
+
+  async function onSubmit(data: ContactFormValues) {
+    setIsSubmitting(true);
+    try {
+      await contactUs(data);
+      toast.success("Message sent successfully!");
+      form.reset();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      toast.error("Failed to send message. Please try again later.");
+      console.error("Error sending message:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
 
   return (
     <section className="bg-zinc-900 min-h-screen flex items-center">
@@ -99,33 +138,86 @@ export default function ContactSection() {
               className="relative bg-white max-w-md rounded-3xl p-4 sm:p-8 lg:p-12"
             >
               <h3 className="text-xl sm:text-3xl font-bold mb-8">Contact Us</h3>
-              <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-6">
-                <Input
-                  type="text"
-                  placeholder="Your Name"
-                  className="bg-gray-50 border-0"
-                />
-                <Input
-                  type="email"
-                  placeholder="Your Email"
-                  className="bg-gray-50 border-0"
-                />
-                <Input
-                  type="tel"
-                  placeholder="Your Phone"
-                  className="bg-gray-50 border-0"
-                />
-                <Textarea
-                  placeholder="Message here ..."
-                  className="bg-gray-50 border-0 min-h-[160px]"
-                />
-                <Button
-                  type="submit"
-                  className="w-full bg-red-600 hover:bg-red-700 text-white py-6 rounded-lg text-sm sm:text-lg"
+              <Form {...form}>
+                <form
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className="space-y-3 sm:space-y-6"
                 >
-                  Submit Now
-                </Button>
-              </form>
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input
+                            placeholder="Your Name"
+                            className="bg-gray-50 border-0"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input
+                            type="email"
+                            placeholder="Your Email"
+                            className="bg-gray-50 border-0"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input
+                            type="tel"
+                            placeholder="Your Phone"
+                            className="bg-gray-50 border-0"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="message"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Textarea
+                            placeholder="Message here ..."
+                            className="bg-gray-50 border-0 min-h-[160px]"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <Button
+                    type="submit"
+                    className="w-full bg-red-600 hover:bg-red-700 text-white py-6 rounded-lg text-sm sm:text-lg"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Submitting..." : "Submit Now"}
+                  </Button>
+                </form>
+              </Form>
             </motion.div>
           </div>
         </div>

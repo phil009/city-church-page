@@ -5,6 +5,18 @@ import { Button } from "@/components/ui/button";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function PreviousSermons({ video }: { video: any }) {
+  const friendlyDate = (dateString: string) => {
+    const date = new Date(dateString);
+    const options: Intl.DateTimeFormatOptions = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    };
+    return date.toLocaleTimeString("en-US", options);
+  };
   return (
     <div className="mb-8 text-appDark">
       <h2 className="text-2xl font-bold mb-4">Previous Services</h2>
@@ -41,8 +53,10 @@ export default function PreviousSermons({ video }: { video: any }) {
               </div>
             </div>
             <div className="p-4">
-              <h3 className="font-semibold mb-1">{vid.title}</h3>
-              <p className="text-sm text-gray-500">{vid.publishedAt}</p>
+              <h3 className="font-semibold text-sm mb-1">{vid.title}</h3>
+              <p className="text-xs text-gray-500">
+                {friendlyDate(vid.publishedAt)}
+              </p>
             </div>
           </div>
         ))}
