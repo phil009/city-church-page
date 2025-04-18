@@ -35,10 +35,10 @@ export function ProductCard({ product }: ProductCardProps) {
         </div>
         <div className="p-2 h-[55%] flex flex-col justify-between sm:p-4">
           <div>
-            <h3 className="text-xs sm:text-lg sm:mb-2 uppercase">
+            <h3 className="text-xs sm:text-sm sm:mb-1 uppercase">
               {product.name}
             </h3>
-            <p className="text-sm sm:block hidden text-gray-600 line-clamp-2">
+            <p className="text-xs sm:block hidden text-gray-600 line-clamp-2 truncate-2">
               {product.description}
             </p>
           </div>
