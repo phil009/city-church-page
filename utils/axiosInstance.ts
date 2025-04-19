@@ -64,3 +64,18 @@ export async function joinMinistry(data: any): Promise<any | null> {
     return null;
   }
 }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function leadSmallGroup(data: any): Promise<any | null> {
+  try {
+    const response = await axiosInstance.post("/lead-small-group", data);
+    return response.data;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    console.error(
+      "Error leading small group:",
+      error.response?.data || error.message
+    );
+    return null;
+  }
+}
