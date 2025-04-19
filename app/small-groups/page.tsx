@@ -1,32 +1,32 @@
 "use client";
 
 import { GlobalHero } from "@/components/global-hero";
-import { useState, useRef } from "react";
-import { ArrowDown, Users } from "lucide-react";
-import GroupsCarousel from "@/components/small-groups/GroupsCarousel";
-import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+// import { useState, useRef } from "react";
 import { contactUsBg } from "@/constants/AppImages";
-import JoinGroupModal from "@/components/small-groups/JoinGroupModal";
-import LeaderApplicationModal from "@/components/small-groups/LeaderApplicationModal";
-import HowItWorks from "@/components/small-groups/HowItWorks";
-import { smallGroups } from "@/data/small-groups-data";
-import Image from "next/image";
+// import { ArrowDown, Users } from "lucide-react";
+// import GroupsCarousel from "@/components/small-groups/GroupsCarousel";
+// import { Button } from "@/components/ui/button";
+// import { motion } from "framer-motion";
+// import JoinGroupModal from "@/components/small-groups/JoinGroupModal";
+// import LeaderApplicationModal from "@/components/small-groups/LeaderApplicationModal";
+// import HowItWorks from "@/components/small-groups/HowItWorks";
+// import { smallGroups } from "@/data/small-groups-data";
+// import Image from "next/image";
 
 export default function SmallGroupsPage() {
-  const [showJoinModal, setShowJoinModal] = useState(false);
-  const [showLeaderModal, setShowLeaderModal] = useState(false);
-  const [selectedGroup, setSelectedGroup] = useState(smallGroups[0]);
-  const groupsRef = useRef<HTMLDivElement>(null);
+  // const [showJoinModal, setShowJoinModal] = useState(false);
+  // const [showLeaderModal, setShowLeaderModal] = useState(false);
+  // const [selectedGroup, setSelectedGroup] = useState(smallGroups[0]);
+  // const groupsRef = useRef<HTMLDivElement>(null);
 
-  const handleJoinGroup = (group: (typeof smallGroups)[0]) => {
-    setSelectedGroup(group);
-    setShowJoinModal(true);
-  };
+  // const handleJoinGroup = (group: (typeof smallGroups)[0]) => {
+  //   setSelectedGroup(group);
+  //   setShowJoinModal(true);
+  // };
 
-  const scrollToGroups = () => {
-    groupsRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
+  // const scrollToGroups = () => {
+  //   groupsRef.current?.scrollIntoView({ behavior: "smooth" });
+  // };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -41,8 +41,13 @@ export default function SmallGroupsPage() {
         ]}
       />
 
+      <div className="flex justify-center items-center min-h-96">
+        <h1 className="text-4xl font-bold text-center">
+          Small Groups Coming Soon!
+        </h1>
+      </div>
       {/* Landing Section */}
-      <section className="py-16 relative bg-white overflow-x-hidden">
+      {/* <section className="py-16 relative bg-white overflow-x-hidden">
         <div className="px-4 sm:px-12 md:px-20 md:flex text-center md:text-start md:items-center gap-24">
           <motion.div
             initial={{ opacity: 0, x: 20 }}
@@ -80,15 +85,14 @@ export default function SmallGroupsPage() {
               priority
               className="w-full h-full object-cover object-center"
             />
-            {/* Gradient Overlay */}
             <div className="absolute inset-0 bg-appDark opacity-20 z-10"></div>
             <div className="absolute bottom-0 right-0 h-full -skew-x-12 bg-gradient-to-t from-white/40 to-transparent z-10 w-1/3 opacity-55" />
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* Why Join Section */}
-      <section className="py-16 bg-appDark">
+      {/* <section className="py-16 bg-appDark">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-appOffWhite mb-12">
             Why Join a Small Group?
@@ -170,10 +174,10 @@ export default function SmallGroupsPage() {
             </motion.div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Available Groups Carousel */}
-      <section ref={groupsRef} className="py-16 relative bg-white">
+      {/* <section ref={groupsRef} className="py-16 relative bg-white">
         <Image
           src="/images/footer_bg.jpeg"
           alt="background"
@@ -188,13 +192,13 @@ export default function SmallGroupsPage() {
 
           <GroupsCarousel groups={smallGroups} onJoinGroup={handleJoinGroup} />
         </div>
-      </section>
+      </section> */}
 
       {/* How It Works */}
-      <HowItWorks />
+      {/* <HowItWorks /> */}
 
       {/* Call to Action */}
-      <section className="py-16 bg-appDark text-white">
+      {/* <section className="py-16 bg-appDark text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-xl md:text-3xl font-bold mb-8">
             Ready to Join a Small Group?
@@ -218,10 +222,10 @@ export default function SmallGroupsPage() {
             </Button>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Modals */}
-      <JoinGroupModal
+      {/* <JoinGroupModal
         isOpen={showJoinModal}
         onClose={() => setShowJoinModal(false)}
         group={selectedGroup}
@@ -230,7 +234,7 @@ export default function SmallGroupsPage() {
       <LeaderApplicationModal
         isOpen={showLeaderModal}
         onClose={() => setShowLeaderModal(false)}
-      />
+      /> */}
     </div>
   );
 }
