@@ -177,7 +177,7 @@ export default function SmallGroupsPage() {
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-xl md:text-3xl font-bold text-center text-appOffWhite relative mb-12">
             Available Groups
           </h2>
 

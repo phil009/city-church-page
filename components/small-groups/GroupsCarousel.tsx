@@ -10,7 +10,6 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { useMediaQuery } from "@/hooks/use-media-query";
 
 // Import Swiper styles
@@ -31,6 +30,7 @@ interface GroupsCarouselProps {
     vision: string;
     description: string;
   }>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onJoinGroup: (group: any) => void;
 }
 
@@ -39,6 +39,9 @@ export default function GroupsCarousel({
   onJoinGroup,
 }: GroupsCarouselProps) {
   const [domLoaded, setDomLoaded] = useState(false);
+  const [seeMore, setSeeMore] = useState(false);
+  const [visionSeeMore, setVisionSeeMore] = useState(false);
+  const [descriptionSeeMore, setDescriptionSeeMore] = useState(false);
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   useEffect(() => {
@@ -125,7 +128,24 @@ export default function GroupsCarousel({
               <p className="text-gray-400 mb-4">Led by {group.leaderName}</p>
               <div className="mb-4">
                 <h4 className="font-semibold mb-2">Leader&apos;s Story</h4>
-                <p className="text-gray-300">{group.leaderStory}</p>
+                <p className={`text-gray-300 ${seeMore ? "" : "line-clamp-3"}`}>
+                  {group.leaderStory}
+                </p>
+                {seeMore ? (
+                  <span
+                    onClick={() => setSeeMore(false)}
+                    className="text-appRed cursor-pointer"
+                  >
+                    ...see less
+                  </span>
+                ) : (
+                  <span
+                    onClick={() => setSeeMore(true)}
+                    className="text-appRed cursor-pointer"
+                  >
+                    ...see more
+                  </span>
+                )}
               </div>
 
               <div className="grid sm:grid-cols-2 gap-4 mb-6">
@@ -176,21 +196,66 @@ export default function GroupsCarousel({
                   </svg>
                   <div>
                     <p className="text-sm">Group Vision</p>
-                    <p className="font-medium text-gray-400">{group.vision}</p>
+                    <p
+                      className={`font-medium text-gray-400 ${
+                        visionSeeMore ? "" : "line-clamp-2"
+                      }`}
+                    >
+                      {group.vision}
+                    </p>
+                    {visionSeeMore ? (
+                      <span
+                        onClick={() => setVisionSeeMore(false)}
+                        className="text-appRed cursor-pointer"
+                      >
+                        ...see less
+                      </span>
+                    ) : (
+                      <span
+                        onClick={() => setVisionSeeMore(true)}
+                        className="text-appRed cursor-pointer"
+                      >
+                        ...see more
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
 
               <div className="mb-6">
-                <h4 className="font-semibold mb-2">
-                  What to Expect
-                </h4>
-                <p className="text-gray-300">{group.description}</p>
+                <h4 className="font-semibold mb-2">What to Expect</h4>
+                <p
+                  className={`text-gray-300 ${
+                    descriptionSeeMore ? "" : "line-clamp-3"
+                  }`}
+                >
+                  {group.description}
+                </p>
+                {descriptionSeeMore ? (
+                  <span
+                    onClick={() => setDescriptionSeeMore(false)}
+                    className="text-appRed cursor-pointer"
+                  >
+                    ...see less
+                  </span>
+                ) : (
+                  <span
+                    onClick={() => setDescriptionSeeMore(true)}
+                    className="text-appRed cursor-pointer"
+                  >
+                    ...see more
+                  </span>
+                )}
               </div>
 
-              <Button onClick={() => onJoinGroup(group)} className="w-full border border-appBorderGray">
+              <a
+                href="https://airtable.com/apphS7w9HaRtskLSI/pagB9I0FABWKmcK1m/form"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full border block text-center p-2 border-appBorderGray"
+              >
                 Join This Group
-              </Button>
+              </a>
             </div>
           </SwiperSlide>
         ))}
