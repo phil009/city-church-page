@@ -6,7 +6,6 @@ interface VideoPlayerProps {
 }
 
 export default function VideoPlayer({ isLive, channelID, video }: VideoPlayerProps) {
-  console.log(isLive, channelID);
   return (
     <div className="bg-gray-100 rounded-lg overflow-hidden mb-6">
       <div className="aspect-video w-full">

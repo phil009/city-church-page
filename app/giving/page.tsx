@@ -127,7 +127,7 @@ export default function GivingPage() {
                           <strong>Account Name:</strong> City Church Calabar
                         </p>
                         <p>
-                          <strong>Account Number:</strong> 2020 2020 2020
+                          <strong>Account Number:</strong> 101 339 5192
                         </p>
                       </div>
                       <div>

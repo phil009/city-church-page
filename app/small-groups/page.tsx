@@ -42,12 +42,12 @@ export default function SmallGroupsPage() {
       />
 
       {/* Landing Section */}
-      <section className="py-16 relative bg-white">
+      <section className="py-16 relative bg-white overflow-x-hidden">
         <div className="px-4 sm:px-12 md:px-20 md:flex text-center md:text-start md:items-center gap-24">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3, duration: 0.3 }}
             className="w-full md:w-1/2 text-appDark"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
@@ -67,7 +67,12 @@ export default function SmallGroupsPage() {
               <ArrowDown className="ml-2 h-4 w-4 group-hover:animate-bounce" />
             </Button>
           </motion.div>
-          <div className="w-1/2 max-w-96 border-b-4 border-r-4 border-appDark aspect-[10/16] relative hidden md:block rounded-xl overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3, duration: 0.3 }}
+            className="w-1/2 max-w-lg border-b-4 border-r-4 border-appDark aspect-[13/16] relative hidden md:block rounded-xl overflow-hidden"
+          >
             <Image
               src="/images/outdoors/cheerful-ladies-pose.jpg"
               alt="background"
@@ -78,7 +83,7 @@ export default function SmallGroupsPage() {
             {/* Gradient Overlay */}
             <div className="absolute inset-0 bg-appDark opacity-20 z-10"></div>
             <div className="absolute bottom-0 right-0 h-full -skew-x-12 bg-gradient-to-t from-white/40 to-transparent z-10 w-1/3 opacity-55" />
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -93,7 +98,7 @@ export default function SmallGroupsPage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
+              transition={{ delay: 0.3 }}
               className="border border-appBorderGray text-appOffWhite p-6 rounded-lg shadow-md"
             >
               <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-4">
@@ -109,7 +114,7 @@ export default function SmallGroupsPage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
+              transition={{ delay: 0.3 }}
               className="border border-appBorderGray text-appOffWhite p-6 rounded-lg shadow-md"
             >
               <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-4">

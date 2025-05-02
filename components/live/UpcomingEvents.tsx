@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
 export default function UpcomingEvents() {
   return (
@@ -9,17 +9,20 @@ export default function UpcomingEvents() {
       <div className="space-y-3">
         <div className="border-l-4 border-appRed pl-3">
           <div className="font-medium">Easter Service</div>
-          <p className="text-sm text-gray-50">April 9, 2024 • 10:00 AM</p>
+          <p className="text-sm text-gray-50">April 20, 2024 • 11:30 AM</p>
         </div>
         <div className="border-l-4 border-appRed pl-3">
-          <div className="font-medium">Youth Conference</div>
-          <p className="text-sm text-gray-50">April 15-17, 2024</p>
+          <div className="font-medium">Easter Movie Night</div>
+          <p className="text-sm text-gray-50">April 18, 2024</p>
         </div>
       </div>
-      <Button variant="outline" className="w-full mt-4" onClick={() => (window.location.href = "/events")}>
+      <Button
+        variant="outline"
+        className="w-full mt-4"
+        onClick={() => (window.location.href = "/events")}
+      >
         View All Events
       </Button>
     </div>
-  )
+  );
 }
-

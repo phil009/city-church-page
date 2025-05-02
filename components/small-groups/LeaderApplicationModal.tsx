@@ -1,58 +1,84 @@
-"use client"
+"use client";
 
-import type React from "react"
+import { Dialog, Transition } from "@headlessui/react";
+import { Fragment, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { X } from "lucide-react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 
-import { Dialog, Transition } from "@headlessui/react"
-import { Fragment, useState } from "react"
-import { Button } from "@/components/ui/button"
-import { X } from "lucide-react"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  leaderFormSchema,
+  type LeaderFormValues,
+} from "@/lib/validations/leader-form-schema";
+import { toast } from "sonner";
+import { leadSmallGroup } from "@/utils/axiosInstance";
 
 interface LeaderApplicationModalProps {
-  isOpen: boolean
-  onClose: () => void
+  isOpen: boolean;
+  onClose: () => void;
 }
 
-export default function LeaderApplicationModal({ isOpen, onClose }: LeaderApplicationModalProps) {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    experience: "",
-    vision: "",
-    availability: "",
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
+export default function LeaderApplicationModal({
+  isOpen,
+  onClose,
+}: LeaderApplicationModalProps) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false)
-      setIsSubmitted(true)
-      // In a real app, you would send this data to your backend
-      console.log("Leader application submitted:", formData)
-    }, 1500)
-  }
-
-  const resetForm = () => {
-    setFormData({
+  const form = useForm<LeaderFormValues>({
+    resolver: zodResolver(leaderFormSchema),
+    defaultValues: {
       name: "",
       email: "",
       phone: "",
       experience: "",
       vision: "",
       availability: "",
-    })
-    setIsSubmitted(false)
-  }
+    },
+  });
+
+  const onSubmit = async (data: LeaderFormValues) => {
+    setIsSubmitting(true);
+
+    try {
+      const res = await leadSmallGroup(data);
+      if (!res) {
+        toast.error("Failed to submit application. Please try again later.");
+        return;
+      }
+      setIsSubmitted(true);
+      toast.success("Application submitted successfully!");
+      form.reset();
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("Failed to submit application. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const resetForm = () => {
+    form.reset();
+    setIsSubmitted(false);
+  };
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -60,8 +86,8 @@ export default function LeaderApplicationModal({ isOpen, onClose }: LeaderApplic
         as="div"
         className="relative z-50"
         onClose={() => {
-          onClose()
-          setTimeout(resetForm, 300)
+          onClose();
+          setTimeout(resetForm, 300);
         }}
       >
         <Transition.Child
@@ -89,13 +115,18 @@ export default function LeaderApplicationModal({ isOpen, onClose }: LeaderApplic
             >
               <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <div className="flex justify-between items-center mb-4">
-                  <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                    {isSubmitted ? "Application Received!" : "Apply to Lead a Small Group"}
+                  <Dialog.Title
+                    as="h3"
+                    className="text-lg font-medium leading-6 text-gray-900"
+                  >
+                    {isSubmitted
+                      ? "Application Received!"
+                      : "Apply to Lead a Small Group"}
                   </Dialog.Title>
                   <button
                     onClick={() => {
-                      onClose()
-                      setTimeout(resetForm, 300)
+                      onClose();
+                      setTimeout(resetForm, 300);
                     }}
                     className="text-gray-400 hover:text-gray-500"
                   >
@@ -114,19 +145,25 @@ export default function LeaderApplicationModal({ isOpen, onClose }: LeaderApplic
                           viewBox="0 0 24 24"
                           stroke="currentColor"
                         >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M5 13l4 4L19 7"
+                          />
                         </svg>
                       </div>
                     </div>
                     <p className="text-center text-gray-500 mb-4">
-                      Thank you for your interest in leading a small group! Our small groups coordinator will contact
-                      you soon to discuss the next steps.
+                      Thank you for your interest in leading a small group! Our
+                      small groups coordinator will contact you soon to discuss
+                      the next steps.
                     </p>
                     <div className="mt-4 flex justify-center">
                       <Button
                         onClick={() => {
-                          onClose()
-                          setTimeout(resetForm, 300)
+                          onClose();
+                          setTimeout(resetForm, 300);
                         }}
                       >
                         Close
@@ -137,116 +174,157 @@ export default function LeaderApplicationModal({ isOpen, onClose }: LeaderApplic
                   <>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500 mb-4">
-                        Please fill out this form to apply to lead a small group. Our small groups coordinator will
-                        contact you to discuss the next steps.
+                        Please fill out this form to apply to lead a small
+                        group. Our small groups coordinator will contact you to
+                        discuss the next steps.
                       </p>
-                      <form onSubmit={handleSubmit} className="space-y-4">
-                        <div>
-                          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                            Full Name
-                          </label>
-                          <input
-                            type="text"
-                            id="name"
+                      <Form {...form}>
+                        <form
+                          onSubmit={form.handleSubmit(onSubmit)}
+                          className="space-y-4"
+                        >
+                          <FormField
+                            control={form.control}
                             name="name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            required
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-appRed focus:ring focus:ring-appRed focus:ring-opacity-50"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Full Name</FormLabel>
+                                <FormControl>
+                                  <Input
+                                    {...field}
+                                    className="focus:border-appRed focus:ring focus:ring-appRed focus:ring-opacity-50"
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
                           />
-                        </div>
-                        <div>
-                          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                            Email Address
-                          </label>
-                          <input
-                            type="email"
-                            id="email"
+                          <FormField
+                            control={form.control}
                             name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-appRed focus:ring focus:ring-appRed focus:ring-opacity-50"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Email Address</FormLabel>
+                                <FormControl>
+                                  <Input
+                                    type="email"
+                                    {...field}
+                                    className="focus:border-appRed focus:ring focus:ring-appRed focus:ring-opacity-50"
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
                           />
-                        </div>
-                        <div>
-                          <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-                            Phone Number
-                          </label>
-                          <input
-                            type="tel"
-                            id="phone"
+                          <FormField
+                            control={form.control}
                             name="phone"
-                            value={formData.phone}
-                            onChange={handleChange}
-                            required
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-appRed focus:ring focus:ring-appRed focus:ring-opacity-50"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Phone Number</FormLabel>
+                                <FormControl>
+                                  <Input
+                                    type="tel"
+                                    {...field}
+                                    className="focus:border-appRed focus:ring focus:ring-appRed focus:ring-opacity-50"
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
                           />
-                        </div>
-                        <div>
-                          <label htmlFor="experience" className="block text-sm font-medium text-gray-700">
-                            Previous Leadership Experience
-                          </label>
-                          <textarea
-                            id="experience"
+                          <FormField
+                            control={form.control}
                             name="experience"
-                            value={formData.experience}
-                            onChange={handleChange}
-                            rows={3}
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-appRed focus:ring focus:ring-appRed focus:ring-opacity-50"
-                            placeholder="Please share any previous experience leading small groups or other ministries."
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>
+                                  Previous Leadership Experience
+                                </FormLabel>
+                                <FormControl>
+                                  <Textarea
+                                    {...field}
+                                    rows={3}
+                                    className="focus:border-appRed focus:ring focus:ring-appRed focus:ring-opacity-50"
+                                    placeholder="Please share any previous experience leading small groups or other ministries."
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
                           />
-                        </div>
-                        <div>
-                          <label htmlFor="vision" className="block text-sm font-medium text-gray-700">
-                            Vision for Your Group
-                          </label>
-                          <textarea
-                            id="vision"
+                          <FormField
+                            control={form.control}
                             name="vision"
-                            value={formData.vision}
-                            onChange={handleChange}
-                            rows={3}
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-appRed focus:ring focus:ring-appRed focus:ring-opacity-50"
-                            placeholder="What type of group would you like to lead? What is your vision for this group?"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Vision for Your Group</FormLabel>
+                                <FormControl>
+                                  <Textarea
+                                    {...field}
+                                    rows={3}
+                                    className="focus:border-appRed focus:ring focus:ring-appRed focus:ring-opacity-50"
+                                    placeholder="What type of group would you like to lead? What is your vision for this group?"
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
                           />
-                        </div>
-                        <div>
-                          <label htmlFor="availability" className="block text-sm font-medium text-gray-700">
-                            Availability
-                          </label>
-                          <select
-                            id="availability"
+                          <FormField
+                            control={form.control}
                             name="availability"
-                            value={formData.availability}
-                            onChange={handleChange}
-                            required
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-appRed focus:ring focus:ring-appRed focus:ring-opacity-50"
-                          >
-                            <option value="">Select your availability</option>
-                            <option value="weekday-evenings">Weekday Evenings</option>
-                            <option value="weekday-mornings">Weekday Mornings</option>
-                            <option value="weekends">Weekends</option>
-                            <option value="flexible">Flexible</option>
-                          </select>
-                        </div>
-                        <div className="mt-4 flex justify-end">
-                          <Button
-                            type="button"
-                            variant="outline"
-                            onClick={() => {
-                              onClose()
-                              setTimeout(resetForm, 300)
-                            }}
-                            className="mr-2"
-                          >
-                            Cancel
-                          </Button>
-                          <Button type="submit" disabled={isSubmitting}>
-                            {isSubmitting ? "Submitting..." : "Submit Application"}
-                          </Button>
-                        </div>
-                      </form>
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Availability</FormLabel>
+                                <Select
+                                  onValueChange={field.onChange}
+                                  defaultValue={field.value}
+                                >
+                                  <FormControl>
+                                    <SelectTrigger className="focus:border-appRed focus:ring focus:ring-appRed focus:ring-opacity-50">
+                                      <SelectValue placeholder="Select your availability" />
+                                    </SelectTrigger>
+                                  </FormControl>
+                                  <SelectContent className="bg-appOffWhite">
+                                    <SelectItem value="weekday-evenings">
+                                      Weekday Evenings
+                                    </SelectItem>
+                                    <SelectItem value="weekday-mornings">
+                                      Weekday Mornings
+                                    </SelectItem>
+                                    <SelectItem value="weekends">
+                                      Weekends
+                                    </SelectItem>
+                                    <SelectItem value="flexible">
+                                      Flexible
+                                    </SelectItem>
+                                  </SelectContent>
+                                </Select>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          <div className="mt-4 flex justify-end">
+                            <Button
+                              type="button"
+                              variant="outline"
+                              onClick={() => {
+                                onClose();
+                                setTimeout(resetForm, 300);
+                              }}
+                              className="mr-2"
+                            >
+                              Cancel
+                            </Button>
+                            <Button type="submit" disabled={isSubmitting}>
+                              {isSubmitting
+                                ? "Submitting..."
+                                : "Submit Application"}
+                            </Button>
+                          </div>
+                        </form>
+                      </Form>
                     </div>
                   </>
                 )}
@@ -256,6 +334,5 @@ export default function LeaderApplicationModal({ isOpen, onClose }: LeaderApplic
         </div>
       </Dialog>
     </Transition>
-  )
+  );
 }
-

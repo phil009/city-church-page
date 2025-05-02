@@ -11,7 +11,6 @@ export function useLiveStatus(
   useEffect(() => {
     const checkLiveStatus = async () => {
       if (!channelID || !apiKey) return;
-      console.log(channelID, apiKey);
       try {
         const response = await fetch(
           `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelID}&type=video&eventType=live&key=${apiKey}`
@@ -40,6 +39,8 @@ export const fetchLatestSermons = async (
     `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelID}&order=date&maxResults=5&key=${apiKey}`
   );
   const data = await response.json();
+  console.log("Latest Sermons Data:", data);
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return data.items.map((video: any) => ({
     id: video.id.videoId,

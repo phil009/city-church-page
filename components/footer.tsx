@@ -17,20 +17,29 @@ import {
 import { Input } from "@/components/ui/input";
 import { z } from "zod";
 import { footerbg } from "@/constants/AppImages";
+import { subscribeNewsletter } from "@/utils/axiosInstance";
+import { toast } from "sonner";
 
 const Footer = () => {
   const formSchema = z.object({
-    username: z.string().min(2).max(50),
+    email: z.string().min(2).max(50),
   });
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      email: "",
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const { email } = values;
+    const res = await subscribeNewsletter(email);
+    if (res) {
+      toast.success("Subscribed successfully!");
+      form.reset();
+    } else {
+      toast.error("Failed to subscribe. Please try again.");
+    }
   }
   const socials: SocialLinkProps[] = [
     { href: "https://facebook.com/citychurchcalabar", type: "FB" },
@@ -123,7 +132,7 @@ const Footer = () => {
               >
                 <FormField
                   control={form.control}
-                  name="username"
+                  name="email"
                   render={({ field }) => (
                     <FormItem className="w-full h-full">
                       <FormControl>

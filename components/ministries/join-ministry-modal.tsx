@@ -1,6 +1,30 @@
+"use client";
+
+import type React from "react";
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import {
+  ministryFormSchema,
+  type MinistryFormValues,
+} from "@/lib/validations/ministry-form-schema";
+import { toast } from "sonner";
+import { joinMinistry } from "@/utils/axiosInstance";
 
 interface JoinMinistryModalProps {
   isOpen: boolean;
@@ -13,27 +37,43 @@ export const JoinMinistryModal: React.FC<JoinMinistryModalProps> = ({
   onClose,
   ministryName,
 }) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    reason: "",
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const form = useForm<MinistryFormValues>({
+    resolver: zodResolver(ministryFormSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      ministery: ministryName,
+      reason: "",
+    },
   });
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prevState) => ({ ...prevState, [name]: value }));
+  const onSubmit = async (data: MinistryFormValues) => {
+    setIsSubmitting(true);
+
+    try {
+      const res = await joinMinistry(data);
+      if (!res) {
+        toast.error("Failed to send request. Please try again later.");
+        return;
+      }
+      setIsSubmitted(true);
+      toast.success("Request sent successfully!");
+      form.reset();
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("Failed to send request. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-    // Reset form and close modal
-    setFormData({ name: "", email: "", phone: "", reason: "" });
-    onClose();
+  const resetForm = () => {
+    form.reset();
+    setIsSubmitted(false);
   };
 
   return (
@@ -44,7 +84,10 @@ export const JoinMinistryModal: React.FC<JoinMinistryModalProps> = ({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-          onClick={onClose}
+          onClick={() => {
+            onClose();
+            setTimeout(resetForm, 300);
+          }}
         >
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
@@ -55,89 +98,137 @@ export const JoinMinistryModal: React.FC<JoinMinistryModalProps> = ({
           >
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-2xl font-bold text-appDark">
-                Join {ministryName}
+                {isSubmitted ? "Request Sent!" : `Join ${ministryName}`}
               </h2>
               <button
-                onClick={onClose}
+                onClick={() => {
+                  onClose();
+                  setTimeout(resetForm, 300);
+                }}
                 className="text-gray-500 hover:text-gray-700"
               >
                 <Icon icon="mdi:close" className="w-6 h-6" />
               </button>
             </div>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-appRed focus:ring focus:ring-appRed focus:ring-opacity-50"
-                />
+
+            {isSubmitted ? (
+              <div className="mt-2">
+                <div className="flex justify-center mb-4">
+                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-8 w-8 text-green-500"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <p className="text-center text-gray-500 mb-4">
+                  Thank you for your interest in joining {ministryName}! We will
+                  contact you soon with more information.
+                </p>
+                <div className="mt-4 flex justify-center">
+                  <Button
+                    onClick={() => {
+                      onClose();
+                      setTimeout(resetForm, 300);
+                    }}
+                  >
+                    Close
+                  </Button>
+                </div>
               </div>
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-700"
+            ) : (
+              <Form {...form}>
+                <form
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className="space-y-4"
                 >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-appRed focus:ring focus:ring-appRed focus:ring-opacity-50"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="phone"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Phone
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-appRed focus:ring focus:ring-appRed focus:ring-opacity-50"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="reason"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Why do you want to join?
-                </label>
-                <textarea
-                  id="reason"
-                  name="reason"
-                  value={formData.reason}
-                  onChange={handleChange}
-                  rows={3}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-appRed focus:ring focus:ring-appRed focus:ring-opacity-50"
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-appRed text-white py-2 px-4 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-appRed focus:ring-opacity-50"
-              >
-                Submit
-              </button>
-            </form>
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Name</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            className="focus:border-appRed focus:ring focus:ring-appRed focus:ring-opacity-50"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="email"
+                            {...field}
+                            className="focus:border-appRed focus:ring focus:ring-appRed focus:ring-opacity-50"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Phone</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="tel"
+                            {...field}
+                            className="focus:border-appRed focus:ring focus:ring-appRed focus:ring-opacity-50"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="reason"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Why do you want to join?</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            {...field}
+                            rows={3}
+                            className="focus:border-appRed focus:ring focus:ring-appRed focus:ring-opacity-50"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <Button
+                    type="submit"
+                    className="w-full bg-appRed text-white py-2 px-4 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-appRed focus:ring-opacity-50"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Submitting..." : "Submit"}
+                  </Button>
+                </form>
+              </Form>
+            )}
           </motion.div>
         </motion.div>
       )}
