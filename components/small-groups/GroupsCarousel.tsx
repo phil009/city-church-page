@@ -9,8 +9,6 @@ import {
   MapPin,
   ChevronLeft,
   ChevronRight,
-  ChevronDown,
-  ChevronUp,
   MoveHorizontalIcon as SwipeHorizontal,
 } from "lucide-react";
 import { useMediaQuery } from "@/hooks/use-media-query";
@@ -35,22 +33,15 @@ interface GroupsCarouselProps {
     description: string;
   }>;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onJoinGroup: (group: any) => void;
 }
 
-export default function GroupsCarousel({
-  groups,
-  onJoinGroup,
-}: GroupsCarouselProps) {
+export default function GroupsCarousel({ groups }: GroupsCarouselProps) {
   const [domLoaded, setDomLoaded] = useState(false);
   const [seeMore, setSeeMore] = useState(false);
   const [visionSeeMore, setVisionSeeMore] = useState(false);
   const [descriptionSeeMore, setDescriptionSeeMore] = useState(false);
   const isMobile = useMediaQuery("(max-width: 768px)");
-  const [expandedStories, setExpandedStories] = useState<
-    Record<number, boolean>
-  >({});
   const [showSwipeHint, setShowSwipeHint] = useState(true);
 
   useEffect(() => {
@@ -65,13 +56,6 @@ export default function GroupsCarousel({
       return () => clearTimeout(timer);
     }
   }, [isMobile]);
-
-  const toggleStory = (groupId: number) => {
-    setExpandedStories((prev) => ({
-      ...prev,
-      [groupId]: !prev[groupId],
-    }));
-  };
 
   const handleSwipe = () => {
     // Hide the swipe hint once user has swiped
