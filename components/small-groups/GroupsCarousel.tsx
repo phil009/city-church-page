@@ -178,7 +178,10 @@ export default function GroupsCarousel({
         onSlideChange={handleSwipe}
       >
         {groups.map((group) => (
-          <SwiperSlide key={group.id} className="max-w-lg mb-8 md:mb-12 text-white">
+          <SwiperSlide
+            key={group.id}
+            className="max-w-lg mb-8 md:mb-12 text-white"
+          >
             <div className="glassmorphic-card p-6 md:p-8 rounded-xl">
               <h3 className="text-2xl font-bold mb-2">{group.name}</h3>
               <p className="text-gray-400 mb-4">Led by {group.leaderName}</p>
