@@ -34,14 +34,6 @@ const ministries = [
     title: "Membership",
     subcategories: [
       {
-        name: "MANdate",
-        description:
-          "A vibrant community for men to find strength, purpose, and support as leaders in faith and family.",
-        icon: "mdi:account-tie",
-        head: null,
-        image: "/images/ministries/mandate.jpg",
-      },
-      {
         name: "City Queens",
         description:
           "A fellowship of nurturing mothers and role models creating a legacy of faith and love in the city.",

@@ -155,7 +155,7 @@ export default function GivingPage() {
                   </motion.div>
                   <div className="relative min-h-[400px]">
                     <Image
-                      src="/images/first-mobile.jpeg"
+                      src="/images/first-mobile.jpg"
                       alt="Person using mobile banking"
                       fill
                       className="object-cover"
@@ -171,7 +171,7 @@ export default function GivingPage() {
                 <div className="grid md:grid-cols-2">
                   <div className="relative min-h-[400px]">
                     <Image
-                      src="/images/credit-card.jpeg"
+                      src="/images/credit-card.jpg"
                       alt="Credit cards"
                       fill
                       className="object-cover"
@@ -194,9 +194,15 @@ export default function GivingPage() {
                       Simple and secure, give online today. Set up a one-time or
                       recurring donation using your credit card.
                     </p>
-                    <Button size="lg" className="w-fit" disabled>
-                      Give Now
-                    </Button>
+                    <a
+                      href="https://paystack.com/pay/3s7qw466cb"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button size="lg" className="w-fit">
+                        Give Now
+                      </Button>
+                    </a>
                   </motion.div>
                 </div>
               </div>

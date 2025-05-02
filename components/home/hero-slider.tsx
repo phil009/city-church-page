@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import SocialLink, { SocialLinkProps } from "../social-links";
+import Link from "next/link";
 
 const socials: SocialLinkProps[] = [
   { href: "https://facebook.com/citychurchcalabar", type: "FB" },
@@ -24,6 +25,7 @@ const slides = [
     subtitle:
       "A Life Development Church with practical teachings and loving relationships, led by Tony Aleogena-Raphael",
     button: "Discover more",
+    link: "/about",
   },
   {
     id: 2,
@@ -33,6 +35,7 @@ const slides = [
     subtitle:
       "Each month, we focus on a specific theme, diving deep into biblical principles through engaging teachings and discussions.",
     button: "Other programs",
+    link: "/events",
   },
   {
     id: 3,
@@ -41,6 +44,7 @@ const slides = [
     title: "Raising Change Agents",
     subtitle: "Making a difference together",
     button: "Discover more",
+    link: "/ministries",
   },
 ];
 
@@ -109,9 +113,11 @@ export default function HomeHeroSlider() {
             <p className="text-sm sm:text-base md:text-xl mb-4 md:mb-6 max-w-[48ch]">
               {slides[imageIndex].subtitle}
             </p>
-            <Button className="bg-appRed w-max sm:h-12 text-sm sm:text-base md:text-lg p-2 sm:p-4">
-              {slides[imageIndex].button}
-            </Button>
+            <Link href={slides[imageIndex].link} className="">
+              <Button className="bg-appRed w-max sm:h-12 text-sm sm:text-base md:text-lg p-2 sm:p-4">
+                {slides[imageIndex].button}
+              </Button>
+            </Link>
           </div>
         </motion.div>
       </AnimatePresence>

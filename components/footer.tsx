@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import Logo from "./logo";
 import SocialLink, { SocialLinkProps } from "./social-links";
 import Link from "next/link";
@@ -21,6 +21,7 @@ import { subscribeNewsletter } from "@/utils/axiosInstance";
 import { toast } from "sonner";
 
 const Footer = () => {
+  const [loading, setLoading] = useState(false);
   const formSchema = z.object({
     email: z.string().min(2).max(50),
   });
@@ -32,6 +33,7 @@ const Footer = () => {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    setLoading(true);
     const { email } = values;
     const res = await subscribeNewsletter(email);
     if (res) {
@@ -40,6 +42,7 @@ const Footer = () => {
     } else {
       toast.error("Failed to subscribe. Please try again.");
     }
+    setLoading(false);
   }
   const socials: SocialLinkProps[] = [
     { href: "https://facebook.com/citychurchcalabar", type: "FB" },
@@ -59,7 +62,7 @@ const Footer = () => {
         className="w-full h-full object-cover absolute top-0 left-0"
       />
       <div className="relative px-4 sm:px-12 md:px-20 py-12 border-b border-appBorderGray">
-        <div className="flex flex-col gap-4 md:flex-row justify-between md:items-center w-full">
+        <div className="flex flex-col gap-4 md:flex-row justify-between md:items-start w-full">
           <div className="md:w-1/3">
             <div className="max-w-64">
               <Logo />
@@ -76,6 +79,8 @@ const Footer = () => {
             <span className="text-appRed text-base md:text-xl">Send Email</span>{" "}
             <br />
             <b className="md:text-2xl">info@citychurchcalabar.org</b>
+            <br />
+            <b className="md:text-2xl">calabarcitychurch@gmail.com</b>
           </div>
         </div>
       </div>
@@ -146,8 +151,12 @@ const Footer = () => {
                     </FormItem>
                   )}
                 />
-                <Button type="submit" className="bg-appRed h-full rounded">
-                  Subscribe
+                <Button
+                  type="submit"
+                  className="bg-appRed h-full rounded disabled:bg-appRed/50"
+                  disabled={loading}
+                >
+                  {loading ? "Subscribing..." : "Subscribe"}
                 </Button>
               </form>
             </Form>
