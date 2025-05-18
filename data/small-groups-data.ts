@@ -17,7 +17,7 @@ export const smallGroups = [
   {
     id: 2,
     name: "Honeycomb",
-    leaderName: "Adebayo Asorose & Esther Etim",
+    leaderName: "Adebayo Asorose & Esta Etim",
     leaderStory:
       "We want better marriages . So we decided to start with ours. For the past months we have seen changes in our homes and we want others to experience these positive changes. Most couples will not ordinarily be intentional  or talk about details.  But this group has the potential to allow that",
     meetingDay: "Thursdays",
