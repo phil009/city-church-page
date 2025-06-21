@@ -9,6 +9,7 @@ import ConnectWays from "@/components/live/ConnectWays";
 import UpcomingEvents from "@/components/live/UpcomingEvents";
 import LiveStreamTabs from "@/components/live/LiveStreamTabs";
 import { useState, useEffect } from "react";
+import { SquareChartGantt, X } from "lucide-react";
 
 const channelID = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID;
 const YOUTUBE_API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
@@ -16,6 +17,9 @@ const YOUTUBE_API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
 export default function LiveStream() {
   const isLive = useLiveStatus(channelID, YOUTUBE_API_KEY);
   const { nextServiceTime, timeRemaining } = useNextService();
+
+  // Modal state for mobile LiveStreamTabs
+  const [tabsModalOpen, setTabsModalOpen] = useState(false);
 
   const handleNotificationSubscribe = () => {
     // Implementation for notification subscription
@@ -86,8 +90,10 @@ export default function LiveStream() {
 
           {/* Interactive Sidebar */}
           <div className="space-y-8">
-            {/* Interactive Features Tabs */}
-            <LiveStreamTabs isLive={isLive} channelID={channelID} />
+            {/* Desktop: Show LiveStreamTabs as usual */}
+            <div className="hidden lg:block">
+              <LiveStreamTabs isLive={isLive} channelID={channelID} />
+            </div>
 
             {/* Ways to Connect */}
             <ConnectWays channelID={channelID} />
@@ -96,6 +102,32 @@ export default function LiveStream() {
             <UpcomingEvents />
           </div>
         </div>
+
+        {/* Mobile: Floating button to open LiveStreamTabs modal */}
+        <button
+          className="fixed bottom-6 right-6 bg-appRed z-50 flex items-center px-2 py-2 rounded-full bg-primary text-white shadow-lg lg:hidden"
+          onClick={() => setTabsModalOpen(true)}
+          aria-label="Open interactive features"
+        >
+          {/* You can use an icon here if you want */}
+          <SquareChartGantt />
+        </button>
+
+        {/* Mobile: Modal for LiveStreamTabs */}
+        {tabsModalOpen && (
+          <div className="fixed inset-0 z-[100] bg-black bg-opacity-70 flex items-end sm:items-center justify-center lg:hidden">
+            <div className="w-full sm:max-w-md bg-white rounded-t-2xl sm:rounded-2xl max-h-[90vh] overflow-y-auto">
+              <LiveStreamTabs isLive={isLive} channelID={channelID} />
+            </div>
+            <button
+              className="absolute rounded-full z-[1000] bottom-2 right-2 text-white bg-appRed p-1 text-sm"
+              onClick={() => setTabsModalOpen(false)}
+              aria-label="Close interactive features"
+            >
+              <X />
+            </button>
+          </div>
+        )}
       </section>
     </>
   );

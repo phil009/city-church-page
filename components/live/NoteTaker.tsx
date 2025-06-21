@@ -142,14 +142,14 @@ export default function NoteTaker() {
       {/* Toolbar */}
       <div className="p-4 border-b bg-gray-50">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="font-semibold">Sermon Notes</h3>
-          <div className="flex items-center gap-2">
+          <h3 className="text-sm sm:text-base font-semibold">Sermon Notes</h3>
+          <div className="flex items-center">
             <Button onClick={saveNotes} variant="ghost" size="sm">
-              <Save className="h-4 w-4 mr-1" />
+              <Save className="h-4 w-4" />
               Save
             </Button>
             <Button onClick={downloadNotes} variant="ghost" size="sm">
-              <Download className="h-4 w-4 mr-1" />
+              <Download className="h-4 w-4" />
               Download
             </Button>
           </div>

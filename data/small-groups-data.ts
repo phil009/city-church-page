@@ -7,7 +7,7 @@ export const smallGroups = [
     location: "No. 4, Okon Inok Layout ",
     landmark:
       "Fiesta Fries is a major landmark. The house is after Vanel Hotel.",
-    whatsAppLink: "#",
+    whatsAppLink: "https://chat.whatsapp.com/LqQ5QsQVFNoDEAJHlmobtQ",
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ export const smallGroups = [
     location: "Udiba Crescent, Asari Eso Layout, Calabar",
     landmark:
       "Locate Angelseyes Academy. The house is after Angeleyes Academy, Asari Eso.",
-    whatsAppLink: "#",
+    whatsAppLink: "https://chat.whatsapp.com/EFf2loAsZwF8f6n16PrERG",
   },
   {
     id: 3,
@@ -26,7 +26,7 @@ export const smallGroups = [
     leadersNumber: "08063406654",
     location: "Plot 13 Duke Henshaw Layout,Atimbo Road ",
     landmark: "The house opposite former Jacaranda Suites.",
-    whatsAppLink: "#",
+    whatsAppLink: "https://chat.whatsapp.com/EvvVedEoGq0ARsQIfuOL2T",
   },
   {
     id: 4,
@@ -36,7 +36,7 @@ export const smallGroups = [
     location: "No. 125B, Old Odukpani Road",
     landmark:
       "Opp. the new MUSBON Filling Station, close to flour mills junction, Ikot Ishie.",
-    whatsAppLink: "#",
+    whatsAppLink: "https://chat.whatsapp.com/JgXuApvp73FLZOtedv3HZO",
   },
   {
     id: 5,
@@ -45,7 +45,7 @@ export const smallGroups = [
     leadersNumber: "09060257949",
     location: "No. 4, Diamond Lane, off Diamond Hill, Calabar",
     landmark: "Winners Chapel Diamond Hill.",
-    whatsAppLink: "#",
+    whatsAppLink: "https://chat.whatsapp.com/FT0e76U8nZ96tkmJY10NMk",
   },
   {
     id: 6,
@@ -54,7 +54,7 @@ export const smallGroups = [
     leadersNumber: "08032006026",
     location: "13/14, David W. Noah street, Ekorinim Calabar",
     landmark: "First Bank Ekorinim ",
-    whatsAppLink: "#",
+    whatsAppLink: "https://chat.whatsapp.com/CJQtLNkgyT5IzasVOTZhJD",
   },
   {
     id: 7,
@@ -63,7 +63,7 @@ export const smallGroups = [
     leadersNumber: "08062623660",
     location: "34, Uwanse Street Calabar ",
     landmark: "Deeper Life Church ",
-    whatsAppLink: "#",
+    whatsAppLink: "https://chat.whatsapp.com/FHgZY32XRAcK9dACBttGVX",
   },
   {
     id: 8,
@@ -73,7 +73,7 @@ export const smallGroups = [
     location:
       "Engr. Edet Street, off Jehovah's Witness Road, Akai Efa/MCC, Calabar ",
     landmark: "Opposite Orange Resort",
-    whatsAppLink: "#",
+    whatsAppLink: "https://chat.whatsapp.com/Dk6M9gKikYd1KJyahT7KyL",
   },
   {
     id: 9,
@@ -83,7 +83,7 @@ export const smallGroups = [
     location: "No. 2, Aqua Edem Crescent, Ekorinim, Calabar",
     landmark:
       "Behind Redeemed Christian Church of God (RCCG), Flourishing Parish. Its a straight drive from First Bank Highway.",
-    whatsAppLink: "#",
+    whatsAppLink: "https://chat.whatsapp.com/FCD7TTcJBL2KQ832y97BmJ",
   },
   {
     id: 10,
@@ -93,7 +93,7 @@ export const smallGroups = [
     location: "No. 3, Kadana Street, State Housing",
     landmark:
       "Access High School, State Housing or Event 45 by Douglas Avenue. ",
-    whatsAppLink: "#",
+    whatsAppLink: "https://chat.whatsapp.com/HyzPCjAIBB5AqPT6xewOO7",
   },
   {
     id: 11,
@@ -102,7 +102,7 @@ export const smallGroups = [
     leadersNumber: "08060532946",
     location: "24, Atimbo Road, Calabar ",
     landmark: "In-between Grand Hotel and A. A. Rano Filling Station.",
-    whatsAppLink: "#",
+    whatsAppLink: "https://chat.whatsapp.com/IbnFTanoFOZJmH6mfZeXOS",
   },
   {
     id: 12,
@@ -112,7 +112,7 @@ export const smallGroups = [
     location:
       "No. 9 Pst. Charles Asuquo Street, Behind Uddy King Filling Station., Parliamentary Extension ",
     landmark: "Uddy King Filling Station, Parliamentary Extension.",
-    whatsAppLink: "#",
+    whatsAppLink: "https://chat.whatsapp.com/IzOWg8I4nYw4dEsk4jNNVh",
   },
   {
     id: 13,
@@ -121,7 +121,7 @@ export const smallGroups = [
     leadersNumber: "08136006750",
     location: "No. 5, Okon Effanga Street, Ikot Effanga, Calabar",
     landmark: "The street opposite the WAEC Office on the Highway.",
-    whatsAppLink: "#",
+    whatsAppLink: "https://chat.whatsapp.com/GKGYaD2DfVP1jY7Di4TnfB",
   },
   {
     id: 14,
@@ -131,7 +131,7 @@ export const smallGroups = [
     location: "No. 8, Ekpo Eyo Street, Calabar ",
     landmark:
       "Banner of God's Grace Headquarters. Ekpo Eyo is off Atamunu or Uwanse.",
-    whatsAppLink: "#",
+    whatsAppLink: "https://chat.whatsapp.com/I5r94TrWv9P93ctxNMOigX",
   },
   {
     id: 15,
@@ -140,7 +140,7 @@ export const smallGroups = [
     leadersNumber: "08039344396",
     location: "No. 69, Ibom Layout, by Mobil Filling Station",
     landmark: "",
-    whatsAppLink: "#",
+    whatsAppLink: "https://chat.whatsapp.com/LtjQOyprU2vJCPqA3uHZ4h",
   },
   {
     id: 16,
@@ -149,7 +149,7 @@ export const smallGroups = [
     leadersNumber: "08037252417",
     location: "NextGen Hall",
     landmark: "",
-    whatsAppLink: "#",
+    whatsAppLink: "https://chat.whatsapp.com/GQNqKtXG9qcK08p2LhHY0J",
   },
   {
     id: 17,
@@ -158,6 +158,6 @@ export const smallGroups = [
     leadersNumber: "09078560384",
     location: "City Church Reception",
     landmark: "",
-    whatsAppLink: "#",
+    whatsAppLink: "https://chat.whatsapp.com/LduiKf4fEoGF56xOPwKzgm",
   },
 ];
