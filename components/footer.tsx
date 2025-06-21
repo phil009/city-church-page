@@ -62,7 +62,7 @@ const Footer = () => {
         className="w-full h-full object-cover absolute top-0 left-0"
       />
       <div className="relative px-4 sm:px-12 md:px-20 py-12 border-b border-appBorderGray">
-        <div className="flex flex-col gap-4 md:flex-row justify-between md:items-start w-full">
+        <div className="flex flex-col gap-4 lg:flex-row justify-between md:items-start w-full">
           <div className="md:w-1/3">
             <div className="max-w-64">
               <Logo />
