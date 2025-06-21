@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
 import {
-  Calendar,
-  Clock,
   MapPin,
+  Phone,
+  Landmark,
+  Map,
   ChevronLeft,
   ChevronRight,
   MoveHorizontalIcon as SwipeHorizontal,
@@ -25,12 +26,10 @@ interface GroupsCarouselProps {
     id: number;
     name: string;
     leaderName: string;
-    leaderStory: string;
-    meetingDay: string;
-    meetingTime: string;
+    leadersNumber: string;
     location: string;
-    vision: string;
-    description: string;
+    landmark: string;
+    whatsAppLink: string;
   }>;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onJoinGroup: (group: any) => void;
@@ -38,28 +37,38 @@ interface GroupsCarouselProps {
 
 export default function GroupsCarousel({ groups }: GroupsCarouselProps) {
   const [domLoaded, setDomLoaded] = useState(false);
-  const [seeMore, setSeeMore] = useState(false);
-  const [visionSeeMore, setVisionSeeMore] = useState(false);
-  const [descriptionSeeMore, setDescriptionSeeMore] = useState(false);
+  const [mapLoadingStates, setMapLoadingStates] = useState<
+    Record<number, boolean>
+  >({});
   const isMobile = useMediaQuery("(max-width: 768px)");
   const [showSwipeHint, setShowSwipeHint] = useState(true);
 
   useEffect(() => {
     setDomLoaded(true);
+    // Initialize loading states for all groups
+    const initialLoadingStates = groups.reduce((acc, group) => {
+      acc[group.id] = true;
+      return acc;
+    }, {} as Record<number, boolean>);
+    setMapLoadingStates(initialLoadingStates);
 
-    // Hide swipe hint after 5 seconds
     if (isMobile) {
       const timer = setTimeout(() => {
         setShowSwipeHint(false);
       }, 5000);
-
       return () => clearTimeout(timer);
     }
-  }, [isMobile]);
+  }, [isMobile, groups]);
 
   const handleSwipe = () => {
-    // Hide the swipe hint once user has swiped
     setShowSwipeHint(false);
+  };
+
+  const handleMapLoad = (groupId: number) => {
+    setMapLoadingStates((prev) => ({
+      ...prev,
+      [groupId]: false,
+    }));
   };
 
   if (!domLoaded) {
@@ -68,13 +77,10 @@ export default function GroupsCarousel({ groups }: GroupsCarouselProps) {
         <div className="flex justify-center">
           <div className="w-full max-w-lg">
             <div className="glassmorphic-card p-6 md:p-8 rounded-xl animate-pulse">
-              {/* Title and leader skeleton */}
               <div className="h-8 bg-gray-200 rounded-md mb-2 w-3/4"></div>
               <div className="h-5 bg-gray-200 rounded-md mb-6 w-1/2"></div>
-
-              {/* Meeting details skeleton */}
               <div className="grid sm:grid-cols-2 gap-4 mb-6">
-                {[...Array(4)].map((_, index) => (
+                {[...Array(3)].map((_, index) => (
                   <div key={index} className="flex items-start">
                     <div className="h-5 w-5 bg-gray-200 rounded-full mr-2 mt-0.5"></div>
                     <div className="flex-1">
@@ -84,22 +90,10 @@ export default function GroupsCarousel({ groups }: GroupsCarouselProps) {
                   </div>
                 ))}
               </div>
-
-              {/* Description skeleton */}
-              <div className="mb-6">
-                <div className="h-5 bg-gray-200 rounded-md mb-2 w-40"></div>
-                <div className="h-4 bg-gray-200 rounded-md mb-1 w-full"></div>
-                <div className="h-4 bg-gray-200 rounded-md mb-1 w-full"></div>
-                <div className="h-4 bg-gray-200 rounded-md w-3/4"></div>
-              </div>
-
-              {/* Button skeleton */}
               <div className="h-10 bg-gray-200 rounded-md w-full"></div>
             </div>
           </div>
         </div>
-
-        {/* Pagination skeleton */}
         <div className="flex justify-center mt-6 space-x-2">
           {[...Array(5)].map((_, index) => (
             <div key={index} className="w-3 h-3 rounded-full bg-gray-200"></div>
@@ -168,138 +162,92 @@ export default function GroupsCarousel({ groups }: GroupsCarouselProps) {
           >
             <div className="glassmorphic-card p-6 md:p-8 rounded-xl">
               <h3 className="text-2xl font-bold mb-2">{group.name}</h3>
-              <p className="text-gray-400 mb-4">Led by {group.leaderName}</p>
-
-              {/* Leader's Story with Show More/Less */}
-              <div className="mb-4">
-                <h4 className="font-semibold mb-2">Leader&apos;s Story</h4>
-                <p className={`text-gray-300 ${seeMore ? "" : "line-clamp-3"}`}>
-                  {group.leaderStory}
-                </p>
-                {seeMore ? (
-                  <span
-                    onClick={() => setSeeMore(false)}
-                    className="text-appRed cursor-pointer"
-                  >
-                    ...see less
-                  </span>
-                ) : (
-                  <span
-                    onClick={() => setSeeMore(true)}
-                    className="text-appRed cursor-pointer"
-                  >
-                    ...see more
-                  </span>
-                )}
+              <div className="mb-2 flex items-center">
+                <span className="text-gray-400 mr-2">Led by</span>
+                <span className="font-semibold text-gray-200">
+                  {group.leaderName}
+                </span>
               </div>
-
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="flex items-start">
-                  <Calendar className="h-5 w-5 text-appRed mr-2 mt-0.5" />
-                  <div>
-                    <p className="text-sm">Meeting Day</p>
-                    <p className="font-medium text-gray-400 text-xs sm:text-sm">
-                      {group.meetingDay}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <Clock className="h-5 w-5 text-appRed mr-2 mt-0.5" />
-                  <div>
-                    <p className="text-sm">Meeting Time</p>
-                    <p className="font-medium text-gray-400 text-xs sm:text-sm">
-                      {group.meetingTime}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <MapPin className="h-5 w-5 text-appRed mr-2 mt-0.5" />
-                  <div>
-                    <p className="text-sm">Location</p>
-                    <p className="font-medium text-gray-400 text-xs sm:text-sm">
-                      {group.location}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 text-appRed mr-2 mt-0.5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 10V3L4 14h7v7l9-11h-7z"
-                    />
-                  </svg>
-                  <div>
-                    <p className="text-sm">Group Vision</p>
-                    <p
-                      className={`font-medium text-gray-400 ${
-                        visionSeeMore ? "" : "line-clamp-2"
-                      }`}
-                    >
-                      {group.vision}
-                    </p>
-                    {visionSeeMore ? (
-                      <span
-                        onClick={() => setVisionSeeMore(false)}
-                        className="text-appRed cursor-pointer"
-                      >
-                        ...see less
-                      </span>
-                    ) : (
-                      <span
-                        onClick={() => setVisionSeeMore(true)}
-                        className="text-appRed cursor-pointer"
-                      >
-                        ...see more
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              <div className="mb-6">
-                <h4 className="font-semibold mb-2">What to Expect</h4>
-                <p
-                  className={`text-gray-300 ${
-                    descriptionSeeMore ? "" : "line-clamp-3"
-                  }`}
+              <div className="mb-2 flex items-center">
+                <Phone className="h-5 w-5 text-appRed mr-2" />
+                <a
+                  href={`tel:${group.leadersNumber}`}
+                  className="text-gray-300 hover:text-appRed transition-colors"
                 >
-                  {group.description}
-                </p>
-                {descriptionSeeMore ? (
-                  <span
-                    onClick={() => setDescriptionSeeMore(false)}
-                    className="text-appRed cursor-pointer"
-                  >
-                    ...see less
-                  </span>
-                ) : (
-                  <span
-                    onClick={() => setDescriptionSeeMore(true)}
-                    className="text-appRed cursor-pointer"
-                  >
-                    ...see more
-                  </span>
-                )}
+                  {group.leadersNumber}
+                </a>
               </div>
+              <div className="mb-2 flex items-center">
+                <MapPin className="h-5 w-5 text-appRed mr-2" />
+                <span className="text-gray-300">{group.location}</span>
+              </div>
+              {group.landmark && (
+                <div className="mb-4 flex items-center">
+                  <Landmark className="h-5 w-5 text-appRed mr-2" />
+                  <span className="text-gray-300">{group.landmark}</span>
+                </div>
+              )}
 
+              {/* Google Maps Section */}
+              <div className="mb-4">
+                <div className="flex items-center mb-2">
+                  <Map className="h-5 w-5 text-appRed mr-2" />
+                  <span className="text-gray-400 text-sm">Location</span>
+                </div>
+                <div className="relative h-32 rounded-lg overflow-hidden border border-gray-600">
+                  {mapLoadingStates[group.id] && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-gray-200 animate-pulse z-10">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-2 h-2 bg-appRed rounded-full animate-bounce"></div>
+                        <div
+                          className="w-2 h-2 bg-appRed rounded-full animate-bounce"
+                          style={{ animationDelay: "0.1s" }}
+                        ></div>
+                        <div
+                          className="w-2 h-2 bg-appRed rounded-full animate-bounce"
+                          style={{ animationDelay: "0.2s" }}
+                        ></div>
+                        <span className="text-gray-600 text-sm ml-2">
+                          Loading map...
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                  <iframe
+                    src={`https://www.google.com/maps/embed/v1/place?key=${
+                      process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
+                    }&q=${encodeURIComponent(
+                      group.location + ", Calabar, Nigeria"
+                    )}`}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title={`Map for ${group.name}`}
+                    onLoad={() => handleMapLoad(group.id)}
+                  />
+                </div>
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                    group.location + ", Calabar, Nigeria"
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-sm text-appRed hover:text-red-400 transition-colors mt-1"
+                >
+                  <Map className="h-4 w-4 mr-1" />
+                  Open in Google Maps
+                </a>
+              </div>
               <a
-                href="https://airtable.com/apphS7w9HaRtskLSI/pagB9I0FABWKmcK1m/form"
+                href={group.whatsAppLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full border block text-center p-2 border-appBorderGray"
+                className="w-full border block text-center p-2 border-appBorderGray bg-appRed/80 text-white rounded hover:text-white hover:bg-appRed transition-all mt-4"
               >
-                Join This Group
+                Join WhatsApp Group
               </a>
             </div>
           </SwiperSlide>
