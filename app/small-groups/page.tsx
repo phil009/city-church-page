@@ -173,7 +173,11 @@ export default function SmallGroupsPage() {
       </section>
 
       {/* Available Groups Carousel */}
-      <section ref={groupsRef} className="py-16 relative bg-white">
+      <section
+        ref={groupsRef}
+        id="available"
+        className="py-16 relative bg-white"
+      >
         <Image
           src="/images/footer_bg.jpeg"
           alt="background"

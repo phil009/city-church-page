@@ -1,25 +1,17 @@
 "use client";
-import { GlobalHero } from "@/components/global-hero";
-import { watchBg } from "@/constants/AppImages";
 import { fetchLatestSermons, useLiveStatus } from "@/hooks/useLiveStatus";
 import { useNextService } from "@/hooks/useNextService";
 import LiveStatusBanner from "@/components/live/LiveStatusBanner";
 import VideoPlayer from "@/components/live/VideoPlayer";
 import IntroMessage from "@/components/live/IntroMessage";
 import PreviousSermons from "@/components/live/PreviousSermons";
-import ServiceSchedule from "@/components/live/ServiceSchedule";
 import ConnectWays from "@/components/live/ConnectWays";
 import UpcomingEvents from "@/components/live/UpcomingEvents";
+import LiveStreamTabs from "@/components/live/LiveStreamTabs";
 import { useState, useEffect } from "react";
 
 const channelID = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID;
 const YOUTUBE_API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
-
-// Service schedule data
-const serviceSchedule = [
-  { day: "Sunday", time: "9:30 AM", type: "First Service" },
-  { day: "Sunday", time: "11:00 AM", type: "Second Service" },
-];
 
 export default function LiveStream() {
   const isLive = useLiveStatus(channelID, YOUTUBE_API_KEY);
@@ -63,16 +55,7 @@ export default function LiveStream() {
 
   return (
     <>
-      <GlobalHero
-        backgroundImage={watchBg}
-        title="Join Us Live"
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "Watch", href: "/live" },
-        ]}
-      />
-
-      <section className="px-4 bg-appDark md:px-20 py-16">
+      <section className="px-4 bg-appDark md:px-20 py-16 before:block before:h-20">
         {/* Live Status Banner */}
         <LiveStatusBanner
           isLive={isLive}
@@ -101,10 +84,10 @@ export default function LiveStream() {
             {!isLive && <PreviousSermons video={recentVideos} />}
           </div>
 
-          {/* Sidebar - Takes up 1/3 on desktop */}
+          {/* Interactive Sidebar */}
           <div className="space-y-8">
-            {/* Service Schedule */}
-            <ServiceSchedule services={serviceSchedule} />
+            {/* Interactive Features Tabs */}
+            <LiveStreamTabs isLive={isLive} channelID={channelID} />
 
             {/* Ways to Connect */}
             <ConnectWays channelID={channelID} />

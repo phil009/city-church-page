@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Rubik } from "next/font/google";
+// import { Rubik } from "next/font/google";
 import "./globals.css";
 import { Suspense } from "react";
 import Loading from "./loading";
@@ -7,10 +7,10 @@ import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import { Toaster } from "sonner";
 
-const font = Rubik({
-  subsets: ["latin"],
-  variable: "--font-rubik",
-});
+// const font = Rubik({
+//   subsets: ["latin"],
+//   variable: "--font-rubik",
+// });
 
 export const metadata: Metadata = {
   title: "City Church Calabar",
@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${font.variable} antialiased bg-white relative`}>
+      <body className={`antialiased bg-white relative`}>
         <Suspense fallback={<Loading />}>
           <Navbar />
           <div className="min-h-screen">{children}</div>
