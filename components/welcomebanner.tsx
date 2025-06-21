@@ -97,18 +97,18 @@ export default function WelcomeModal() {
                 className="block"
               >
                 <Button className="w-full bg-appRed hover:bg-red-700 text-white py-3 text-lg font-semibold">
-                  Join the Challenge
+                  Join the Campaign
                 </Button>
               </Link>
 
-              <div className="flex items-center justify-center space-x-4 text-sm text-gray-500">
+              {/* <div className="flex items-center justify-center space-x-4 text-sm text-gray-500">
                 <button
                   onClick={handleClose}
                   className="hover:text-gray-700 transition-colors"
                 >
                   Maybe later
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
