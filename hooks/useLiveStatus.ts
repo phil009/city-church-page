@@ -49,3 +49,26 @@ export const fetchLatestSermons = async (
     publishedAt: video.snippet.publishedAt,
   }));
 };
+
+// Function to get the current live stream's video ID (if live)
+export const getLiveVideoId = async (
+  channelID: string | undefined,
+  apiKey: string | undefined
+): Promise<string | null> => {
+  if (!channelID || !apiKey) return null;
+
+  try {
+    const response = await fetch(
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelID}&type=video&eventType=live&key=${apiKey}`
+    );
+    const data = await response.json();
+
+    if (data.items && data.items.length > 0) {
+      return data.items[0].id.videoId; // First live video
+    }
+    return null;
+  } catch (error) {
+    console.error("Error fetching live video ID:", error);
+    return null;
+  }
+};
