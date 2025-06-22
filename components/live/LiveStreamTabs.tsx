@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { MessageCircle, BookOpen, Calendar, FileText } from "lucide-react"
-import LiveChat from "./LiveChat"
+//import LiveChat from "./LiveChat"
 import BibleReader from "./BibleReader"
 import ServiceSchedule from "./ServiceSchedule"
 import NoteTaker from "./NoteTaker"
@@ -20,10 +20,10 @@ export default function LiveStreamTabs({ isLive, channelID }: LiveStreamTabsProp
     <div className="bg-white rounded-lg shadow-md overflow-hidden h-[600px] flex flex-col">
       <Tabs value={activeTab} onValueChange={setActiveTab} className="flex flex-col h-full">
         <TabsList className="grid w-full grid-cols-4 rounded-none border-b">
-          <TabsTrigger value="chat" className="flex items-center gap-2">
+          {/*<TabsTrigger value="chat" className="flex items-center gap-2">
             <MessageCircle className="h-4 w-4" />
             <span className="hidden sm:inline">Chat</span>
-          </TabsTrigger>
+          </TabsTrigger>*/}
           <TabsTrigger value="notes" className="flex items-center gap-2">
             <FileText className="h-4 w-4" />
             <span className="hidden sm:inline">Notes</span>
@@ -39,9 +39,9 @@ export default function LiveStreamTabs({ isLive, channelID }: LiveStreamTabsProp
         </TabsList>
 
         <div className="flex-1 overflow-hidden">
-          <TabsContent value="chat" className="h-full m-0">
+          {/*<TabsContent value="chat" className="h-full m-0">
             <LiveChat isLive={isLive} channelID={channelID} />
-          </TabsContent>
+          </TabsContent>*/}
 
           <TabsContent value="notes" className="h-full m-0">
             <NoteTaker />
