@@ -2,18 +2,18 @@
 
 import { useState } from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { MessageCircle, BookOpen, Calendar, FileText } from "lucide-react"
+import { BookOpen, Calendar, FileText } from "lucide-react"
 //import LiveChat from "./LiveChat"
 import BibleReader from "./BibleReader"
 import ServiceSchedule from "./ServiceSchedule"
 import NoteTaker from "./NoteTaker"
 
-interface LiveStreamTabsProps {
+/*interface LiveStreamTabsProps {
   isLive: boolean
   channelID?: string
-}
+}*/
 
-export default function LiveStreamTabs({ isLive, channelID }: LiveStreamTabsProps) {
+export default function LiveStreamTabs() {
   const [activeTab, setActiveTab] = useState("chat")
 
   return (
