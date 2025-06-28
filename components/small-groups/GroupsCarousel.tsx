@@ -138,7 +138,7 @@ export default function GroupsCarousel({ groups }: GroupsCarouselProps) {
         grabCursor={true}
         centeredSlides={true}
         slidesPerView={"auto"}
-        initialSlide={1}
+        initialSlide={0}
         coverflowEffect={{
           rotate: 5,
           stretch: 0,
