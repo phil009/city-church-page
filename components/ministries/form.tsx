@@ -195,7 +195,7 @@ export default function JoinUnitForm() {
         <div className="min-h-screen px-4 sm:px-12 md:px-20 py-8 md:py-14">
             <div className="max-w-2xl bg-appDark/70 backdrop-blur-sm text-white border border-gray-200/40 rounded-2xl p-6">
                 <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-white mb-2">
+                    <h1 className="text-xl md:text-3xl font-bold text-white mb-2">
                         Join a Service Unit
                     </h1>
                     <p className="text-appGhost/60">
@@ -209,7 +209,7 @@ export default function JoinUnitForm() {
                 >
                     {/* Personal Information Section */}
                     <div className="space-y-4">
-                        <h2 className="text-xl font-semibold text-white mb-4">
+                        <h2 className="text-lg md:text-xl font-semibold text-white mb-4">
                             Personal Information
                         </h2>
 
@@ -364,7 +364,7 @@ export default function JoinUnitForm() {
 
                     {/* Service Interest Section */}
                     <div className="space-y-4">
-                        <h2 className="text-xl font-semibold text-white mb-4">
+                        <h2 className="text-lg md:text-xl font-semibold text-white mb-4">
                             Service Interest
                         </h2>
 
