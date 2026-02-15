@@ -6,7 +6,7 @@ import Loading from "./loading";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import { Toaster } from "sonner";
-import WelcomeModal from "@/components/welcomebanner";
+// import WelcomeModal from "@/components/welcomebanner";
 
 // const font = Rubik({
 //   subsets: ["latin"],
@@ -32,7 +32,7 @@ export default function RootLayout({
           <div className="min-h-screen">{children}</div>
           <Footer />
           <Toaster />
-          <WelcomeModal />
+          {/* <WelcomeModal /> */}
         </Suspense>
       </body>
     </html>
