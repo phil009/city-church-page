@@ -31,7 +31,7 @@ export default function RootLayout({
           <Navbar />
           <div className="min-h-screen">{children}</div>
           <Footer />
-          <Toaster />
+          <Toaster richColors />
           {/* <WelcomeModal /> */}
         </Suspense>
       </body>
