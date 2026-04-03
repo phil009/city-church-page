@@ -9,6 +9,22 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { ChevronRight, ChevronLeft, Check } from "lucide-react";
 
+// ─── Airtable field mapping ───────────────────────────────────────────────────
+// Maps calling ID → { Activities You Enjoy value, Service Group field name }
+const CALLING_FIELD_MAP: Record<string, { activity: string; serviceGroup: string }> = {
+  ministry:     { activity: "Management, and Administration",                    serviceGroup: "Service Group 5" },
+  maturity:     { activity: "Praying for people",                                serviceGroup: "Service Group 2" },
+  membership:   { activity: "Welcoming and helping people feel comfortable",     serviceGroup: "Service Group 3" },
+  magnification:{ activity: "Creative expression (music, drama, dance, art)",   serviceGroup: "Service Group 1" },
+  missions:     { activity: "Caring for people in need",                         serviceGroup: "Service Group 7" },
+  production:   { activity: "Technical or media-related work",                   serviceGroup: "Service Group 6" },
+  guestservices:{ activity: "Welcoming and helping people feel comfortable",     serviceGroup: "Service Group 3" },
+  serviceprog:  { activity: "Management, and Administration",                    serviceGroup: "Service Group 5" },
+  creativearts: { activity: "Creative expression (music, drama, dance, art)",   serviceGroup: "Service Group 1" },
+  brandcomm:    { activity: "Technical or media-related work",                   serviceGroup: "Service Group 6" },
+  grouplife:    { activity: "Welcoming and helping people feel comfortable",     serviceGroup: "Service Group 3" },
+};
+
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 interface Unit {
@@ -266,17 +282,22 @@ export default function VolunteerSignup() {
     if (!selectedCalling || !selectedUnit) return;
     setSubmitting(true);
     try {
+      const fieldMap = CALLING_FIELD_MAP[selectedCalling.id];
+      const fields: Record<string, unknown> = {
+        "Full Name": `${firstName} ${lastName}`.trim(),
+        "Email Address": email,
+        "Phone Number": phone,
+        "Previous Service Experience": notes || "",
+        "Date Submitted": new Date().toISOString(),
+      };
+      if (fieldMap) {
+        fields["Activities You Enjoy"] = fieldMap.activity;
+        fields[fieldMap.serviceGroup] = [selectedUnit.name];
+      }
       const response = await fetch("/api/join-unit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          "Full Name": `${firstName} ${lastName}`.trim(),
-          "Email Address": email,
-          "Phone Number": phone,
-          "Activities You Enjoy": selectedCalling.title,
-          "Previous Service Experience": notes || "",
-          "Service Group 1": `${selectedUnit.name} (${selectedCalling.teamName})`,
-        }),
+        body: JSON.stringify(fields),
       });
       if (!response.ok) throw new Error("Submission failed");
       setDone(true);
@@ -722,7 +743,7 @@ function CallingCard({
     <button
       type="button"
       onClick={onSelect}
-      className={`group text-left flex items-center gap-4 p-4 rounded-xl border-2 transition-all ${
+      className={`relative group text-left flex items-center gap-4 p-4 rounded-xl border-2 transition-all ${
         selected
           ? "border-appRed bg-red-50"
           : "border-gray-200 bg-white hover:border-appRed/40 hover:translate-x-1"
@@ -759,7 +780,7 @@ function UnitCard({
     <button
       type="button"
       onClick={onSelect}
-      className={`group text-left flex items-center gap-4 p-4 rounded-xl border-2 transition-all ${
+      className={`relative group text-left flex items-center gap-4 p-4 rounded-xl border-2 transition-all ${
         selected
           ? "border-appRed bg-red-50"
           : "border-gray-200 bg-white hover:border-appRed/40 hover:translate-x-1"
