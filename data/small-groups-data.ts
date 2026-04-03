@@ -56,16 +56,16 @@ export const smallGroups = [
     //   landmark: "Deeper Life Church ",
     //   whatsAppLink: "https://chat.whatsapp.com/FHgZY32XRAcK9dACBttGVX",
     // },
-    {
-        id: 8,
-        name: "Group 8",
-        leaderName: "Daniel Kanu ",
-        leadersNumber: "09034427647",
-        location:
-            "Engr. Edet Street, off Jehovah's Witness Road, Akai Efa/MCC, Calabar ",
-        landmark: "Opposite Orange Resort",
-        whatsAppLink: "https://chat.whatsapp.com/Dk6M9gKikYd1KJyahT7KyL",
-    },
+    // {
+    //     id: 8,
+    //     name: "Group 8",
+    //     leaderName: "Daniel Kanu ",
+    //     leadersNumber: "09034427647",
+    //     location:
+    //         "Engr. Edet Street, off Jehovah's Witness Road, Akai Efa/MCC, Calabar ",
+    //     landmark: "Opposite Orange Resort",
+    //     whatsAppLink: "https://chat.whatsapp.com/Dk6M9gKikYd1KJyahT7KyL",
+    // },
     // {
     //   id: 9,
     //   name: "Group 9",
@@ -85,16 +85,16 @@ export const smallGroups = [
         landmark: "First Bank Ekorinim ",
         whatsAppLink: "https://chat.whatsapp.com/CJQtLNkgyT5IzasVOTZhJD",
     },
-    {
-        id: 10,
-        name: "Group 10",
-        leaderName: "Victor Eboigbe ",
-        leadersNumber: "09036572100",
-        location: "No. 3, Kadana Street, State Housing",
-        landmark:
-            "Access High School, State Housing or Event 45 by Douglas Avenue. ",
-        whatsAppLink: "https://chat.whatsapp.com/HyzPCjAIBB5AqPT6xewOO7",
-    },
+    // {
+    //     id: 10,
+    //     name: "Group 10",
+    //     leaderName: "Victor Eboigbe ",
+    //     leadersNumber: "09036572100",
+    //     location: "No. 3, Kadana Street, State Housing",
+    //     landmark:
+    //         "Access High School, State Housing or Event 45 by Douglas Avenue. ",
+    //     whatsAppLink: "https://chat.whatsapp.com/HyzPCjAIBB5AqPT6xewOO7",
+    // },
     {
         id: 11,
         name: "Group 11",
