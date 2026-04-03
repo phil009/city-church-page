@@ -7,6 +7,14 @@ import Link from "next/link";
 import { PaystackProduct } from "@/types/store";
 import { MinisterFormDialog } from "./MinisterFormDialog";
 
+const MINISTER_FORM_PRODUCTS = ["change agent", "catalysis"];
+
+function requiresMinisterForm(name: string) {
+    return MINISTER_FORM_PRODUCTS.some((p) =>
+        name.toLowerCase().includes(p)
+    );
+}
+
 function stripHtml(html: string) {
     return html
         .replace(/<[^>]*>/g, " ")
@@ -23,12 +31,14 @@ export function ProductCard({ product }: ProductCardProps) {
     const [dialogOpen, setDialogOpen] = useState(false);
     const paystackUrl = `https://paystack.com/buy/${product.slug}`;
 
+    const needsForm = isDigital && requiresMinisterForm(product.name);
+
     if (isDigital) {
         return (
             <>
                 <div
                     className="group relative bg-white aspect-[10/14] rounded-lg border-b-2 border-appRed shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
-                    onClick={() => setDialogOpen(true)}
+                    onClick={() => needsForm ? setDialogOpen(true) : window.open(paystackUrl, "_blank")}
                 >
                     <div className="relative h-[45%] aspect-square w-full">
                         <Image
@@ -64,12 +74,14 @@ export function ProductCard({ product }: ProductCardProps) {
                     </div>
                 </div>
 
-                <MinisterFormDialog
-                    open={dialogOpen}
-                    onOpenChange={setDialogOpen}
-                    productName={product.name}
-                    paystackUrl={paystackUrl}
-                />
+                {needsForm && (
+                    <MinisterFormDialog
+                        open={dialogOpen}
+                        onOpenChange={setDialogOpen}
+                        productName={product.name}
+                        paystackUrl={paystackUrl}
+                    />
+                )}
             </>
         );
     }
