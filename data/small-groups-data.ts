@@ -35,7 +35,7 @@ export const smallGroups = [
         leadersNumber: "08033909260",
         location: "No. 125B, Old Odukpani Road",
         landmark:
-            "Opp. the new MUSBON Filling Station, close to flour mills junction, Ikot Ishie.",
+            "House 8, Fiekong Estate, off Marian (after Apples Fast Food)",
         whatsAppLink: "https://chat.whatsapp.com/JgXuApvp73FLZOtedv3HZO",
     },
     {
