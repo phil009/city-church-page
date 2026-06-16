@@ -33,9 +33,8 @@ export const smallGroups = [
         name: "Group 4",
         leaderName: "Ani Etim Ani",
         leadersNumber: "08033909260",
-        location: "No. 125B, Old Odukpani Road",
-        landmark:
-            "House 8, Fiekong Estate, off Marian (after Apples Fast Food)",
+        location: "House 8, Fiekong Estate, Off Marian",
+        landmark: "After Apples Fast Food",
         whatsAppLink: "https://chat.whatsapp.com/JgXuApvp73FLZOtedv3HZO",
     },
     {
