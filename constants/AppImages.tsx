@@ -39,7 +39,7 @@ export { default as ministriesBg } from "../public/images/hero-backgrounds/minis
 export { default as groupLifeBg } from "../public/images/hero-backgrounds/group-life-bg.jpg";
 export { default as eventsBg } from "../public/images/hero-backgrounds/events-bg.jpg";
 export { default as givingBg } from "../public/images/hero-backgrounds/percentage-giving.png";
-export { default as watchBg } from "../public/images/hero-backgrounds/watch-live-bg.png";
+export { default as watchBg } from "../public/images/hero-backgrounds/series.jpg";
 export { default as digitalDisciples } from "../public/images/hero-backgrounds/digital-disciples-bg.jpg";
 
 // ─── Hero Slider ──────────────────────────────────────────────────────────────

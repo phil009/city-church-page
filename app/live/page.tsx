@@ -7,7 +7,7 @@ import PreviousSermons from "@/components/live/PreviousSermons";
 import ConnectWays from "@/components/live/ConnectWays";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { liveCommunityBanner } from "@/constants/AppImages";
+import { watchBg } from "@/constants/AppImages";
 
 const channelID = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID;
 const YOUTUBE_API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
@@ -93,7 +93,7 @@ export default function LiveStream() {
                                 )}
                             </div>
                             <Image
-                                src={liveCommunityBanner}
+                                src={watchBg}
                                 alt="banner"
                                 fill
                                 style={{ objectFit: "cover" }}

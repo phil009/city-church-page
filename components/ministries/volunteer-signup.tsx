@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { ChevronRight, ChevronLeft, Check } from "lucide-react";
+import Image from "next/image";
 
 // ─── Airtable field mapping ───────────────────────────────────────────────────
 // Maps calling ID → { Activities You Enjoy value, Service Group field name }
@@ -395,6 +396,15 @@ const CALLINGS: Calling[] = [
     },
 ];
 
+// ─── Accordion strips ────────────────────────────────────────────────────────
+
+const accordionStrips = [
+    { src: "/images/ministries/vertical blade.jpg", label: "Serve" },
+    { src: "/images/ministries/vertical-blade2.jpg", label: "Worship" },
+    { src: "/images/ministries/vertical-blade3.jpg", label: "Community" },
+    { src: "/images/ministries/protocol-group-native.jpg", label: "Connect" },
+];
+
 // ─── Step bar ────────────────────────────────────────────────────────────────
 
 const STEPS = ["Your Calling", "Your Role", "Your Match", "Sign Up"];
@@ -456,6 +466,7 @@ export default function VolunteerSignup() {
     const [notes, setNotes] = useState("");
     const [submitting, setSubmitting] = useState(false);
     const [done, setDone] = useState(false);
+    const [activeStrip, setActiveStrip] = useState(0);
 
     const stepBarIndex =
         step === 4 ? 3 : step === 5 ? 4 : step <= 3 ? step : step;
@@ -511,54 +522,97 @@ export default function VolunteerSignup() {
 
     if (done) {
         return (
-            <div className="bg-appOffWhite min-h-[60vh] flex items-center justify-center px-4 py-20">
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="text-center max-w-md"
-                >
-                    <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ type: "spring", delay: 0.15 }}
-                        className="w-20 h-20 rounded-full bg-appRed mx-auto mb-6 flex items-center justify-center text-3xl shadow-lg shadow-appRed/30"
-                    >
-                        🙌
-                    </motion.div>
-                    <h2 className="text-2xl font-bold text-appDark mb-3">
-                        You&apos;re on your way!
-                    </h2>
-                    <p className="text-gray-500 mb-6 leading-relaxed">
-                        Your sign-up has been received. A team coordinator will
-                        reach out shortly to welcome you aboard.
-                    </p>
-                    <div className="inline-block bg-white border border-gray-200 rounded-xl px-6 py-4 mb-8">
-                        <p className="text-xs uppercase tracking-widest text-gray-400 mb-1">
-                            Signed up for
-                        </p>
-                        <p className="font-bold text-appDark">
-                            {selectedUnit?.name} — {selectedCalling?.teamName}
-                        </p>
-                    </div>
-                    <div>
-                        <button
-                            onClick={() => {
-                                setDone(false);
-                                setSelectedCalling(null);
-                                setSelectedUnit(null);
-                                setFirstName("");
-                                setLastName("");
-                                setEmail("");
-                                setPhone("");
-                                setNotes("");
-                                goTo(1);
-                            }}
-                            className="text-sm text-gray-400 border border-gray-300 rounded-full px-5 py-2 hover:text-appDark hover:border-gray-400 transition-colors"
+            <div className="bg-appOffWhite min-h-screen">
+                <StepBar current={stepBarIndex} />
+                <div className="flex">
+                    {/* Success message */}
+                    <div className="flex-1 min-w-0 flex items-center justify-center px-4 py-20">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="text-center max-w-md"
                         >
-                            ← Start over
-                        </button>
+                            <motion.div
+                                initial={{ scale: 0 }}
+                                animate={{ scale: 1 }}
+                                transition={{ type: "spring", delay: 0.15 }}
+                                className="w-20 h-20 rounded-full bg-appRed mb-6 flex items-center justify-center text-3xl shadow-lg shadow-appRed/30 mx-auto"
+                            >
+                                🙌
+                            </motion.div>
+                            <h2 className="text-2xl font-bold text-appDark mb-3">
+                                You&apos;re on your way!
+                            </h2>
+                            <p className="text-gray-500 mb-6 leading-relaxed">
+                                Your sign-up has been received. A team
+                                coordinator will reach out shortly to welcome
+                                you aboard.
+                            </p>
+                            <div className="inline-block bg-white border border-gray-200 rounded-xl px-6 py-4 mb-8">
+                                <p className="text-xs uppercase tracking-widest text-gray-400 mb-1">
+                                    Signed up for
+                                </p>
+                                <p className="font-bold text-appDark">
+                                    {selectedUnit?.name} —{" "}
+                                    {selectedCalling?.teamName}
+                                </p>
+                            </div>
+                            <div>
+                                <button
+                                    onClick={() => {
+                                        setDone(false);
+                                        setSelectedCalling(null);
+                                        setSelectedUnit(null);
+                                        setFirstName("");
+                                        setLastName("");
+                                        setEmail("");
+                                        setPhone("");
+                                        setNotes("");
+                                        goTo(1);
+                                    }}
+                                    className="text-sm text-gray-400 border border-gray-300 rounded-full px-5 py-2 hover:text-appDark hover:border-gray-400 transition-colors"
+                                >
+                                    ← Start over
+                                </button>
+                            </div>
+                        </motion.div>
                     </div>
-                </motion.div>
+
+                    {/* Vertical image accordion */}
+                    <div className="hidden lg:flex flex-col w-80 xl:w-96 sticky top-12 h-[calc(100vh-3rem)] shrink-0 overflow-hidden">
+                        {accordionStrips.map((strip, i) => (
+                            <div
+                                key={i}
+                                onMouseEnter={() => setActiveStrip(i)}
+                                className={`relative overflow-hidden transition-all duration-500 ease-in-out cursor-pointer ${
+                                    activeStrip === i ? "flex-[4]" : "flex-[1]"
+                                }`}
+                            >
+                                <Image
+                                    src={strip.src}
+                                    alt={strip.label}
+                                    fill
+                                    className="object-cover"
+                                />
+                                <div
+                                    className={`absolute inset-0 transition-opacity duration-300 ${activeStrip === i ? "bg-appDark/15" : "bg-appDark/55"}`}
+                                />
+                                <p
+                                    className={`absolute bottom-6 left-5 text-white font-semibold tracking-wide transition-opacity duration-300 ${activeStrip === i ? "opacity-100" : "opacity-0"}`}
+                                >
+                                    {strip.label}
+                                </p>
+                                <div
+                                    className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${activeStrip === i ? "opacity-0" : "opacity-60"}`}
+                                >
+                                    <p className="text-white text-[10px] font-medium tracking-widest uppercase">
+                                        {strip.label}
+                                    </p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
         );
     }
@@ -567,395 +621,468 @@ export default function VolunteerSignup() {
         <div className="bg-appOffWhite min-h-screen">
             <StepBar current={stepBarIndex} />
 
-            <AnimatePresence mode="wait">
-                {/* ── STEP 1: Calling ─────────────────────────── */}
-                {step === 1 && (
-                    <motion.div
-                        key="step1"
-                        initial={{ opacity: 0, y: 16 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -16 }}
-                        transition={{ duration: 0.3 }}
-                        className="max-w-2xl mx-auto px-4 py-10"
-                    >
-                        <p className="text-xs font-bold tracking-widest uppercase text-appRed mb-2">
-                            Step 1 of 4
-                        </p>
-                        <h2 className="text-2xl md:text-3xl font-bold text-appDark mb-2 leading-tight">
-                            Which of these feels most like you?
-                        </h2>
-                        <p className="text-sm text-gray-500 mb-8">
-                            Choose the one that best describes where you feel
-                            called to serve.
-                        </p>
-
-                        <p className="text-xs font-bold tracking-widest uppercase text-gray-400 mb-3 flex items-center gap-3">
-                            The Five Purposes
-                            <span className="flex-1 h-px bg-gray-200" />
-                        </p>
-                        <div className="flex flex-col gap-3 mb-8">
-                            {purposeCallings.map((c) => (
-                                <CallingCard
-                                    key={c.id}
-                                    calling={c}
-                                    selected={selectedCalling?.id === c.id}
-                                    onSelect={() => handleSelectCalling(c)}
-                                />
-                            ))}
-                        </div>
-
-                        <p className="text-xs font-bold tracking-widest uppercase text-gray-400 mb-3 flex items-center gap-3">
-                            Support &amp; Operations
-                            <span className="flex-1 h-px bg-gray-200" />
-                        </p>
-                        <div className="flex flex-col gap-3 mb-8">
-                            {supportCallings.map((c) => (
-                                <CallingCard
-                                    key={c.id}
-                                    calling={c}
-                                    selected={selectedCalling?.id === c.id}
-                                    onSelect={() => handleSelectCalling(c)}
-                                />
-                            ))}
-                        </div>
-
-                        <Button
-                            onClick={() => goTo(2)}
-                            disabled={!selectedCalling}
-                            className="bg-appRed hover:bg-appRed/90 text-white rounded-full px-8 gap-2"
-                        >
-                            Continue <ChevronRight className="w-4 h-4" />
-                        </Button>
-                    </motion.div>
-                )}
-
-                {/* ── STEP 2: Unit ────────────────────────────── */}
-                {step === 2 && selectedCalling && (
-                    <motion.div
-                        key="step2"
-                        initial={{ opacity: 0, y: 16 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -16 }}
-                        transition={{ duration: 0.3 }}
-                        className="max-w-2xl mx-auto px-4 py-10"
-                    >
-                        <div className="flex items-center gap-2 text-xs text-gray-400 mb-5">
-                            <span className="font-semibold text-appDark">
-                                {selectedCalling.teamName}
-                            </span>
-                            <ChevronRight className="w-3 h-3" />
-                            <span>Choose your role</span>
-                        </div>
-
-                        <p className="text-xs font-bold tracking-widest uppercase text-appRed mb-2">
-                            Step 2 of 4
-                        </p>
-                        <h2 className="text-2xl md:text-3xl font-bold text-appDark mb-2 leading-tight">
-                            How would you like to serve?
-                        </h2>
-                        <p className="text-sm text-gray-500 mb-8">
-                            Pick the role that fits you best within the{" "}
-                            {selectedCalling.teamName}.
-                        </p>
-
-                        <div className="flex flex-col gap-3 mb-8">
-                            {selectedCalling.units.map((u) => (
-                                <UnitCard
-                                    key={u.name}
-                                    unit={u}
-                                    selected={selectedUnit?.name === u.name}
-                                    onSelect={() => handleSelectUnit(u)}
-                                />
-                            ))}
-                        </div>
-
-                        <div className="flex items-center gap-3">
-                            <Button
-                                onClick={() => goTo(1)}
-                                variant="outline"
-                                className="rounded-full gap-2"
+            <div className="flex">
+                {/* Form */}
+                <div className="flex-1 min-w-0">
+                    <AnimatePresence mode="wait">
+                        {/* ── STEP 1: Calling ─────────────────────────── */}
+                        {step === 1 && (
+                            <motion.div
+                                key="step1"
+                                initial={{ opacity: 0, y: 16 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -16 }}
+                                transition={{ duration: 0.3 }}
+                                className="max-w-2xl px-4 sm:px-6 md:px-8 lg:px-16 py-10"
                             >
-                                <ChevronLeft className="w-4 h-4" /> Back
-                            </Button>
-                            <Button
-                                onClick={() => {
-                                    setLearnMode(false);
-                                    goTo(3);
-                                }}
-                                disabled={!selectedUnit}
-                                className="bg-appRed hover:bg-appRed/90 text-white rounded-full px-8 gap-2"
-                            >
-                                See My Match{" "}
-                                <ChevronRight className="w-4 h-4" />
-                            </Button>
-                        </div>
-                    </motion.div>
-                )}
+                                <p className="text-xs font-bold tracking-widest uppercase text-appRed mb-2">
+                                    Step 1 of 4
+                                </p>
+                                <h2 className="text-2xl md:text-3xl font-bold text-appDark mb-2 leading-tight">
+                                    Which of these feels most like you?
+                                </h2>
+                                <p className="text-sm text-gray-500 mb-8">
+                                    Choose the one that best describes where you
+                                    feel called to serve.
+                                </p>
 
-                {/* ── STEP 3: Match ────────────────────────────── */}
-                {step === 3 && selectedCalling && selectedUnit && (
-                    <motion.div
-                        key="step3"
-                        initial={{ opacity: 0, y: 16 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -16 }}
-                        transition={{ duration: 0.3 }}
-                        className="max-w-2xl mx-auto px-4 py-10"
-                    >
-                        {learnMode ? (
-                            // Learn More view
-                            <>
-                                <div className="bg-white rounded-2xl p-8 border border-gray-200 mb-4">
-                                    <p className="text-xs font-bold tracking-widest uppercase text-appRed mb-2">
+                                <p className="text-xs font-bold tracking-widest uppercase text-gray-400 mb-3 flex items-center gap-3">
+                                    The Five Purposes
+                                    <span className="flex-1 h-px bg-gray-200" />
+                                </p>
+                                <div className="flex flex-col gap-3 mb-8">
+                                    {purposeCallings.map((c) => (
+                                        <CallingCard
+                                            key={c.id}
+                                            calling={c}
+                                            selected={
+                                                selectedCalling?.id === c.id
+                                            }
+                                            onSelect={() =>
+                                                handleSelectCalling(c)
+                                            }
+                                        />
+                                    ))}
+                                </div>
+
+                                <p className="text-xs font-bold tracking-widest uppercase text-gray-400 mb-3 flex items-center gap-3">
+                                    Support &amp; Operations
+                                    <span className="flex-1 h-px bg-gray-200" />
+                                </p>
+                                <div className="flex flex-col gap-3 mb-8">
+                                    {supportCallings.map((c) => (
+                                        <CallingCard
+                                            key={c.id}
+                                            calling={c}
+                                            selected={
+                                                selectedCalling?.id === c.id
+                                            }
+                                            onSelect={() =>
+                                                handleSelectCalling(c)
+                                            }
+                                        />
+                                    ))}
+                                </div>
+
+                                <Button
+                                    onClick={() => goTo(2)}
+                                    disabled={!selectedCalling}
+                                    className="bg-appRed hover:bg-appRed/90 text-white rounded-full px-8 gap-2"
+                                >
+                                    Continue{" "}
+                                    <ChevronRight className="w-4 h-4" />
+                                </Button>
+                            </motion.div>
+                        )}
+
+                        {/* ── STEP 2: Unit ────────────────────────────── */}
+                        {step === 2 && selectedCalling && (
+                            <motion.div
+                                key="step2"
+                                initial={{ opacity: 0, y: 16 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -16 }}
+                                transition={{ duration: 0.3 }}
+                                className="max-w-2xl  px-4 sm:px-6 md:px-8 lg:px-16 py-10"
+                            >
+                                <div className="flex items-center gap-2 text-xs text-gray-400 mb-5">
+                                    <span className="font-semibold text-appDark">
                                         {selectedCalling.teamName}
-                                    </p>
-                                    <h2 className="text-2xl font-bold text-appDark mb-1">
-                                        {selectedUnit.name}
-                                    </h2>
-                                    <p className="text-sm text-gray-400 mb-5">
-                                        Part of the {selectedCalling.teamName}
-                                    </p>
-                                    <p className="text-sm text-gray-600 leading-relaxed">
-                                        {selectedUnit.desc}
-                                    </p>
+                                    </span>
+                                    <ChevronRight className="w-3 h-3" />
+                                    <span>Choose your role</span>
+                                </div>
 
-                                    <div className="mt-6 bg-appOffWhite rounded-xl p-4 flex items-center gap-4 flex-wrap">
-                                        <span className="text-2xl">💬</span>
-                                        <div className="flex-1">
-                                            <p className="text-sm font-semibold text-appDark">
-                                                Want to speak with a coordinator
-                                                first?
+                                <p className="text-xs font-bold tracking-widest uppercase text-appRed mb-2">
+                                    Step 2 of 4
+                                </p>
+                                <h2 className="text-2xl md:text-3xl font-bold text-appDark mb-2 leading-tight">
+                                    How would you like to serve?
+                                </h2>
+                                <p className="text-sm text-gray-500 mb-8">
+                                    Pick the role that fits you best within the{" "}
+                                    {selectedCalling.teamName}.
+                                </p>
+
+                                <div className="flex flex-col gap-3 mb-8">
+                                    {selectedCalling.units.map((u) => (
+                                        <UnitCard
+                                            key={u.name}
+                                            unit={u}
+                                            selected={
+                                                selectedUnit?.name === u.name
+                                            }
+                                            onSelect={() => handleSelectUnit(u)}
+                                        />
+                                    ))}
+                                </div>
+
+                                <div className="flex items-center gap-3">
+                                    <Button
+                                        onClick={() => goTo(1)}
+                                        variant="outline"
+                                        className="rounded-full gap-2"
+                                    >
+                                        <ChevronLeft className="w-4 h-4" /> Back
+                                    </Button>
+                                    <Button
+                                        onClick={() => {
+                                            setLearnMode(false);
+                                            goTo(3);
+                                        }}
+                                        disabled={!selectedUnit}
+                                        className="bg-appRed hover:bg-appRed/90 text-white rounded-full px-8 gap-2"
+                                    >
+                                        See My Match{" "}
+                                        <ChevronRight className="w-4 h-4" />
+                                    </Button>
+                                </div>
+                            </motion.div>
+                        )}
+
+                        {/* ── STEP 3: Match ────────────────────────────── */}
+                        {step === 3 && selectedCalling && selectedUnit && (
+                            <motion.div
+                                key="step3"
+                                initial={{ opacity: 0, y: 16 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -16 }}
+                                transition={{ duration: 0.3 }}
+                                className="max-w-2xl  px-4 sm:px-6 md:px-8 lg:px-16 py-10"
+                            >
+                                {learnMode ? (
+                                    // Learn More view
+                                    <>
+                                        <div className="bg-white rounded-2xl p-8 border border-gray-200 mb-4">
+                                            <p className="text-xs font-bold tracking-widest uppercase text-appRed mb-2">
+                                                {selectedCalling.teamName}
                                             </p>
-                                            <p className="text-xs text-gray-400">
-                                                Someone from this team will get
-                                                back to you shortly.
+                                            <h2 className="text-2xl font-bold text-appDark mb-1">
+                                                {selectedUnit.name}
+                                            </h2>
+                                            <p className="text-sm text-gray-400 mb-5">
+                                                Part of the{" "}
+                                                {selectedCalling.teamName}
                                             </p>
+                                            <p className="text-sm text-gray-600 leading-relaxed">
+                                                {selectedUnit.desc}
+                                            </p>
+
+                                            <div className="mt-6 bg-appOffWhite rounded-xl p-4 flex items-center gap-4 flex-wrap">
+                                                <span className="text-2xl">
+                                                    💬
+                                                </span>
+                                                <div className="flex-1">
+                                                    <p className="text-sm font-semibold text-appDark">
+                                                        Want to speak with a
+                                                        coordinator first?
+                                                    </p>
+                                                    <p className="text-xs text-gray-400">
+                                                        Someone from this team
+                                                        will get back to you
+                                                        shortly.
+                                                    </p>
+                                                </div>
+                                                <Button
+                                                    onClick={() => {
+                                                        setLearnMode(false);
+                                                        goTo(4);
+                                                    }}
+                                                    className="bg-appRed hover:bg-appRed/90 text-white text-xs"
+                                                >
+                                                    Contact Team
+                                                </Button>
+                                            </div>
                                         </div>
                                         <Button
                                             onClick={() => {
                                                 setLearnMode(false);
                                                 goTo(4);
                                             }}
-                                            className="bg-appRed hover:bg-appRed/90 text-white text-xs"
+                                            className="w-full bg-appRed hover:bg-appRed/90 text-white rounded-xl py-5"
                                         >
-                                            Contact Team
+                                            Sign Me Up ✍️
                                         </Button>
-                                    </div>
+                                        <div className="mt-3">
+                                            <button
+                                                onClick={() =>
+                                                    setLearnMode(false)
+                                                }
+                                                className="flex items-center gap-1 text-xs text-gray-400 hover:text-appDark transition-colors"
+                                            >
+                                                <ChevronLeft className="w-3 h-3" />{" "}
+                                                Back to my match
+                                            </button>
+                                        </div>
+                                    </>
+                                ) : (
+                                    // Match card view
+                                    <>
+                                        <p className="text-xs font-bold tracking-widest uppercase text-appRed mb-2">
+                                            Your Match
+                                        </p>
+                                        <h2 className="text-2xl md:text-3xl font-bold text-appDark mb-2">
+                                            We found your place!
+                                        </h2>
+                                        <p className="text-sm text-gray-500 mb-6">
+                                            Based on what you shared,
+                                            here&apos;s where we think
+                                            you&apos;ll thrive.
+                                        </p>
+
+                                        <div className="bg-appDark rounded-2xl p-8 text-white mb-5 relative overflow-hidden">
+                                            <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-appRed/10 pointer-events-none" />
+                                            <div className="absolute -bottom-16 -left-8 w-36 h-36 rounded-full bg-appRed/5 pointer-events-none" />
+                                            <p className="text-xs font-bold tracking-widest uppercase text-appRed mb-3 relative">
+                                                {selectedCalling.teamName}
+                                            </p>
+                                            <div className="inline-flex items-center gap-2 bg-appRed/15 border border-appRed/30 rounded-full px-3 py-1 text-xs text-appRed mb-4 relative">
+                                                {selectedCalling.icon}{" "}
+                                                {selectedCalling.title}
+                                            </div>
+                                            <h3 className="text-3xl font-bold leading-tight mb-1 relative">
+                                                {selectedUnit.name}
+                                            </h3>
+                                            <p className="text-sm text-white/50 mb-5 relative">
+                                                Part of the{" "}
+                                                {selectedCalling.teamName}
+                                            </p>
+                                            <p className="text-sm text-white/65 leading-relaxed border-t border-white/10 pt-5 relative">
+                                                {selectedUnit.desc}
+                                            </p>
+                                        </div>
+
+                                        <div className="flex gap-3 flex-wrap">
+                                            <Button
+                                                variant="outline"
+                                                onClick={() =>
+                                                    setLearnMode(true)
+                                                }
+                                                className="flex-1 min-w-32"
+                                            >
+                                                📖 Learn More
+                                            </Button>
+                                            <Button
+                                                onClick={() => goTo(4)}
+                                                className="flex-1 min-w-32 bg-appRed hover:bg-appRed/90 text-white"
+                                            >
+                                                ✍️ Sign Me Up
+                                            </Button>
+                                        </div>
+                                        <div className="mt-3">
+                                            <button
+                                                onClick={() => goTo(2)}
+                                                className="flex items-center gap-1 text-xs text-gray-400 hover:text-appDark transition-colors"
+                                            >
+                                                <ChevronLeft className="w-3 h-3" />{" "}
+                                                Back to role selection
+                                            </button>
+                                        </div>
+                                    </>
+                                )}
+                            </motion.div>
+                        )}
+
+                        {/* ── STEP 4: Sign-up form ─────────────────────── */}
+                        {step === 4 && selectedCalling && selectedUnit && (
+                            <motion.div
+                                key="step4"
+                                initial={{ opacity: 0, y: 16 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -16 }}
+                                transition={{ duration: 0.3 }}
+                                className="max-w-2xl  px-4 sm:px-6 md:px-8 lg:px-16 py-10"
+                            >
+                                <div className="bg-white rounded-2xl p-6 md:p-8 border border-gray-200">
+                                    <p className="text-xs font-bold tracking-widest uppercase text-appRed mb-1">
+                                        Signing up for
+                                    </p>
+                                    <h2 className="text-xl font-bold text-appDark mb-6">
+                                        {selectedUnit.name} —{" "}
+                                        {selectedCalling.teamName}
+                                    </h2>
+
+                                    <form
+                                        onSubmit={handleSubmit}
+                                        className="space-y-4"
+                                    >
+                                        <div className="grid grid-cols-2 gap-4">
+                                            <div className="space-y-1">
+                                                <Label className="text-xs uppercase tracking-wide text-gray-400">
+                                                    First Name
+                                                </Label>
+                                                <Input
+                                                    required
+                                                    value={firstName}
+                                                    onChange={(e) =>
+                                                        setFirstName(
+                                                            e.target.value,
+                                                        )
+                                                    }
+                                                    placeholder="Grace"
+                                                />
+                                            </div>
+                                            <div className="space-y-1">
+                                                <Label className="text-xs uppercase tracking-wide text-gray-400">
+                                                    Last Name
+                                                </Label>
+                                                <Input
+                                                    required
+                                                    value={lastName}
+                                                    onChange={(e) =>
+                                                        setLastName(
+                                                            e.target.value,
+                                                        )
+                                                    }
+                                                    placeholder="Okonkwo"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="space-y-1">
+                                            <Label className="text-xs uppercase tracking-wide text-gray-400">
+                                                Email Address
+                                            </Label>
+                                            <Input
+                                                type="email"
+                                                required
+                                                value={email}
+                                                onChange={(e) =>
+                                                    setEmail(e.target.value)
+                                                }
+                                                placeholder="grace@email.com"
+                                            />
+                                        </div>
+
+                                        <div className="space-y-1">
+                                            <Label className="text-xs uppercase tracking-wide text-gray-400">
+                                                Phone Number
+                                            </Label>
+                                            <Input
+                                                type="tel"
+                                                required
+                                                value={phone}
+                                                onChange={(e) =>
+                                                    setPhone(e.target.value)
+                                                }
+                                                placeholder="+234 800 000 0000"
+                                            />
+                                        </div>
+
+                                        <div className="space-y-1">
+                                            <Label className="text-xs uppercase tracking-wide text-gray-400">
+                                                Team &amp; Unit
+                                            </Label>
+                                            <Input
+                                                readOnly
+                                                value={`${selectedUnit.name} (${selectedCalling.teamName})`}
+                                                className="bg-gray-50 cursor-default text-gray-500"
+                                            />
+                                        </div>
+
+                                        <div className="space-y-1">
+                                            <Label className="text-xs uppercase tracking-wide text-gray-400">
+                                                Anything you&apos;d like us to
+                                                know?{" "}
+                                                <span className="normal-case">
+                                                    (optional)
+                                                </span>
+                                            </Label>
+                                            <Textarea
+                                                value={notes}
+                                                onChange={(e) =>
+                                                    setNotes(e.target.value)
+                                                }
+                                                placeholder="Skills, availability, previous experience…"
+                                                rows={3}
+                                            />
+                                        </div>
+
+                                        <Button
+                                            type="submit"
+                                            disabled={submitting}
+                                            className="w-full bg-appRed hover:bg-appRed/90 text-white rounded-xl py-5 mt-2"
+                                        >
+                                            {submitting
+                                                ? "Submitting…"
+                                                : "Submit →"}
+                                        </Button>
+                                    </form>
                                 </div>
-                                <Button
-                                    onClick={() => {
-                                        setLearnMode(false);
-                                        goTo(4);
-                                    }}
-                                    className="w-full bg-appRed hover:bg-appRed/90 text-white rounded-xl py-5"
-                                >
-                                    Sign Me Up ✍️
-                                </Button>
-                                <div className="mt-3">
+
+                                <div className="mt-4">
                                     <button
-                                        onClick={() => setLearnMode(false)}
+                                        onClick={() => goTo(3)}
                                         className="flex items-center gap-1 text-xs text-gray-400 hover:text-appDark transition-colors"
                                     >
                                         <ChevronLeft className="w-3 h-3" /> Back
                                         to my match
                                     </button>
                                 </div>
-                            </>
-                        ) : (
-                            // Match card view
-                            <>
-                                <p className="text-xs font-bold tracking-widest uppercase text-appRed mb-2">
-                                    Your Match
-                                </p>
-                                <h2 className="text-2xl md:text-3xl font-bold text-appDark mb-2">
-                                    We found your place!
-                                </h2>
-                                <p className="text-sm text-gray-500 mb-6">
-                                    Based on what you shared, here&apos;s where
-                                    we think you&apos;ll thrive.
-                                </p>
-
-                                <div className="bg-appDark rounded-2xl p-8 text-white mb-5 relative overflow-hidden">
-                                    <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-appRed/10 pointer-events-none" />
-                                    <div className="absolute -bottom-16 -left-8 w-36 h-36 rounded-full bg-appRed/5 pointer-events-none" />
-                                    <p className="text-xs font-bold tracking-widest uppercase text-appRed mb-3 relative">
-                                        {selectedCalling.teamName}
-                                    </p>
-                                    <div className="inline-flex items-center gap-2 bg-appRed/15 border border-appRed/30 rounded-full px-3 py-1 text-xs text-appRed mb-4 relative">
-                                        {selectedCalling.icon}{" "}
-                                        {selectedCalling.title}
-                                    </div>
-                                    <h3 className="text-3xl font-bold leading-tight mb-1 relative">
-                                        {selectedUnit.name}
-                                    </h3>
-                                    <p className="text-sm text-white/50 mb-5 relative">
-                                        Part of the {selectedCalling.teamName}
-                                    </p>
-                                    <p className="text-sm text-white/65 leading-relaxed border-t border-white/10 pt-5 relative">
-                                        {selectedUnit.desc}
-                                    </p>
-                                </div>
-
-                                <div className="flex gap-3 flex-wrap">
-                                    <Button
-                                        variant="outline"
-                                        onClick={() => setLearnMode(true)}
-                                        className="flex-1 min-w-32"
-                                    >
-                                        📖 Learn More
-                                    </Button>
-                                    <Button
-                                        onClick={() => goTo(4)}
-                                        className="flex-1 min-w-32 bg-appRed hover:bg-appRed/90 text-white"
-                                    >
-                                        ✍️ Sign Me Up
-                                    </Button>
-                                </div>
-                                <div className="mt-3">
-                                    <button
-                                        onClick={() => goTo(2)}
-                                        className="flex items-center gap-1 text-xs text-gray-400 hover:text-appDark transition-colors"
-                                    >
-                                        <ChevronLeft className="w-3 h-3" /> Back
-                                        to role selection
-                                    </button>
-                                </div>
-                            </>
+                            </motion.div>
                         )}
-                    </motion.div>
-                )}
+                    </AnimatePresence>
+                </div>
 
-                {/* ── STEP 4: Sign-up form ─────────────────────── */}
-                {step === 4 && selectedCalling && selectedUnit && (
-                    <motion.div
-                        key="step4"
-                        initial={{ opacity: 0, y: 16 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -16 }}
-                        transition={{ duration: 0.3 }}
-                        className="max-w-2xl mx-auto px-4 py-10"
-                    >
-                        <div className="bg-white rounded-2xl p-6 md:p-8 border border-gray-200">
-                            <p className="text-xs font-bold tracking-widest uppercase text-appRed mb-1">
-                                Signing up for
+                {/* Vertical image accordion */}
+                <div className="hidden w-1/2 lg:flex flex-col flex-1 sticky top-12 h-[calc(100vh-3rem)] shrink-0 overflow-hidden">
+                    {accordionStrips.map((strip, i) => (
+                        <div
+                            key={i}
+                            onMouseEnter={() => setActiveStrip(i)}
+                            className={`relative overflow-hidden transition-all duration-500 ease-in-out cursor-pointer ${
+                                activeStrip === i ? "flex-[4]" : "flex-[1]"
+                            }`}
+                        >
+                            <Image
+                                src={strip.src}
+                                alt={strip.label}
+                                fill
+                                className="object-cover"
+                            />
+                            <div
+                                className={`absolute inset-0 transition-opacity duration-300 ${activeStrip === i ? "bg-appDark/15" : "bg-appDark/55"}`}
+                            />
+
+                            {/* Expanded: label at bottom */}
+                            <p
+                                className={`absolute bottom-6 left-5 text-white font-semibold tracking-wide transition-opacity duration-300 ${activeStrip === i ? "opacity-100" : "opacity-0"}`}
+                            >
+                                {strip.label}
                             </p>
-                            <h2 className="text-xl font-bold text-appDark mb-6">
-                                {selectedUnit.name} — {selectedCalling.teamName}
-                            </h2>
 
-                            <form
-                                onSubmit={handleSubmit}
-                                className="space-y-4"
+                            {/* Collapsed: small label centered */}
+                            <div
+                                className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${activeStrip === i ? "opacity-0" : "opacity-60"}`}
                             >
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="space-y-1">
-                                        <Label className="text-xs uppercase tracking-wide text-gray-400">
-                                            First Name
-                                        </Label>
-                                        <Input
-                                            required
-                                            value={firstName}
-                                            onChange={(e) =>
-                                                setFirstName(e.target.value)
-                                            }
-                                            placeholder="Grace"
-                                        />
-                                    </div>
-                                    <div className="space-y-1">
-                                        <Label className="text-xs uppercase tracking-wide text-gray-400">
-                                            Last Name
-                                        </Label>
-                                        <Input
-                                            required
-                                            value={lastName}
-                                            onChange={(e) =>
-                                                setLastName(e.target.value)
-                                            }
-                                            placeholder="Okonkwo"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="space-y-1">
-                                    <Label className="text-xs uppercase tracking-wide text-gray-400">
-                                        Email Address
-                                    </Label>
-                                    <Input
-                                        type="email"
-                                        required
-                                        value={email}
-                                        onChange={(e) =>
-                                            setEmail(e.target.value)
-                                        }
-                                        placeholder="grace@email.com"
-                                    />
-                                </div>
-
-                                <div className="space-y-1">
-                                    <Label className="text-xs uppercase tracking-wide text-gray-400">
-                                        Phone Number
-                                    </Label>
-                                    <Input
-                                        type="tel"
-                                        required
-                                        value={phone}
-                                        onChange={(e) =>
-                                            setPhone(e.target.value)
-                                        }
-                                        placeholder="+234 800 000 0000"
-                                    />
-                                </div>
-
-                                <div className="space-y-1">
-                                    <Label className="text-xs uppercase tracking-wide text-gray-400">
-                                        Team &amp; Unit
-                                    </Label>
-                                    <Input
-                                        readOnly
-                                        value={`${selectedUnit.name} (${selectedCalling.teamName})`}
-                                        className="bg-gray-50 cursor-default text-gray-500"
-                                    />
-                                </div>
-
-                                <div className="space-y-1">
-                                    <Label className="text-xs uppercase tracking-wide text-gray-400">
-                                        Anything you&apos;d like us to know?{" "}
-                                        <span className="normal-case">
-                                            (optional)
-                                        </span>
-                                    </Label>
-                                    <Textarea
-                                        value={notes}
-                                        onChange={(e) =>
-                                            setNotes(e.target.value)
-                                        }
-                                        placeholder="Skills, availability, previous experience…"
-                                        rows={3}
-                                    />
-                                </div>
-
-                                <Button
-                                    type="submit"
-                                    disabled={submitting}
-                                    className="w-full bg-appRed hover:bg-appRed/90 text-white rounded-xl py-5 mt-2"
-                                >
-                                    {submitting ? "Submitting…" : "Submit →"}
-                                </Button>
-                            </form>
+                                <p className="text-white text-[10px] font-medium tracking-widest uppercase">
+                                    {strip.label}
+                                </p>
+                            </div>
                         </div>
-
-                        <div className="mt-4">
-                            <button
-                                onClick={() => goTo(3)}
-                                className="flex items-center gap-1 text-xs text-gray-400 hover:text-appDark transition-colors"
-                            >
-                                <ChevronLeft className="w-3 h-3" /> Back to my
-                                match
-                            </button>
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 }
