@@ -6,7 +6,7 @@ import { GlobalHero } from "@/components/global-hero";
 import IntroSection from "@/components/giving/intro-section";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { givingBg } from "@/constants/AppImages";
+import { givingBg, givingMobileBanking, givingCreditCard } from "@/constants/AppImages";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -155,7 +155,7 @@ export default function GivingPage() {
                   </motion.div>
                   <div className="relative min-h-[400px]">
                     <Image
-                      src="/images/first-mobile.jpg"
+                      src={givingMobileBanking}
                       alt="Person using mobile banking"
                       fill
                       className="object-cover"
@@ -171,7 +171,7 @@ export default function GivingPage() {
                 <div className="grid md:grid-cols-2">
                   <div className="relative min-h-[400px]">
                     <Image
-                      src="/images/credit-card.jpg"
+                      src={givingCreditCard}
                       alt="Credit cards"
                       fill
                       className="object-cover"

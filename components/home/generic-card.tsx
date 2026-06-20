@@ -1,6 +1,6 @@
 "use client";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { JoinMinistryModal } from "../ministries/join-ministry-modal";
@@ -10,7 +10,7 @@ interface GenericCardProps {
   title: string;
   description: string;
   icon: string;
-  imageSrc?: string;
+  imageSrc?: string | StaticImageData;
   imageAlt?: string;
   time?: string;
   venue?: string;

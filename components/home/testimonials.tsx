@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import TestimonialCard from "./testimonial-card";
 import Image from "next/image";
+import { testimonialBg } from "@/constants/AppImages";
 
 const testimonials = [
   {
@@ -47,7 +48,7 @@ export default function TestimonialSlider() {
       <Image
         width={1000}
         height={1000}
-        src={"/images/testimonial_bg.jpeg"}
+        src={testimonialBg}
         alt=""
         className="w-full h-full absolute top-0 left-0 object-cover"
       />

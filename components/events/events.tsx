@@ -1,12 +1,21 @@
 "use client";
 import { GenericCard } from "../home/generic-card";
+import {
+    eventSundayService,
+    eventNightOfIncense,
+    eventChristmas,
+    eventMovieNight,
+    eventPowerPoint,
+    eventThanksgiving,
+    eventHeritage,
+} from "@/constants/AppImages";
 
 const events = [
   {
     title: "Sunday Service",
     description: "Join us for a powerful time of worship and the word.",
     icon: "mdi:church",
-    image: "/images/events/sunday-service.jpg",
+    image: eventSundayService,
     time: "9:30 AM & 11:00 AM",
     venue: "The Big Tent",
   },
@@ -14,7 +23,7 @@ const events = [
     title: "Night of Incense",
     description: "A quarterly night of worship, prayer, and encounter.",
     icon: "mdi:fire",
-    image: "/images/events/Night-of-Incense.png",
+    image: eventNightOfIncense,
     time: "Last Friday of each quarter, 6:00 PM",
     venue: "The Big Tent",
   },
@@ -23,7 +32,7 @@ const events = [
     description:
       "A special week celebrating the birth of Christ with various activites.",
     icon: "mingcute:christmas-hat-line",
-    image: "/images/events/christmas-at-city-church.png",
+    image: eventChristmas,
     time: "Christmas Week",
     venue: "The Big Tent",
   },
@@ -31,7 +40,7 @@ const events = [
     title: "Movie Night",
     description: "A fun and inspiring movie night for all.",
     icon: "mdi:movie",
-    image: "/images/events/MOVIE-NIGHT.png",
+    image: eventMovieNight,
     time: "Every 3rd Friday, 7:00 PM",
     venue: "The Big Tent",
   },
@@ -39,7 +48,7 @@ const events = [
     title: "Power Point",
     description: "A time of teaching, impartation, communion, and prayer.",
     icon: "mdi:lightning-bolt",
-    image: "/images/events/Power Point.jpg",
+    image: eventPowerPoint,
     time: "Last Friday of each month, 6:00 PM",
     venue: "The Big Tent",
   },
@@ -48,7 +57,7 @@ const events = [
     description:
       "A special time to give thanks and celebrate God’s faithfulness with worship, testimonies, and fellowship.",
     icon: "mdi:hand-heart",
-    image: "/images/events/ANNUAL-THANKSGIVING.png",
+    image: eventThanksgiving,
     time: "First Sunday of January",
     venue: "The Big Tent",
   },
@@ -56,7 +65,7 @@ const events = [
     title: "Heritage Sunday",
     description: "Celebrating our rich cultural heritage in Christ.",
     icon: "mdi:earth",
-    image: "/images/events/heritage-2.jpg",
+    image: eventHeritage,
     time: "First Sunday of each month",
     venue: "The Big Tent",
   },
@@ -64,7 +73,6 @@ const events = [
     title: "Friday Prayers",
     description: "A time of intense prayer and intercession.",
     icon: "mdi:hands-pray",
-    // image:"/images/events/",
     time: "6:00 PM",
     venue: "The Big Tent",
   },

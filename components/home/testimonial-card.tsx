@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { avatar } from "@/constants/AppImages";
 
 interface TestimonialCardProps {
   name: string;
@@ -16,7 +17,7 @@ export default function TestimonialCard({
       <div className="flex flex-col items-center">
         <div className="w-20 h-20 rounded-full border-b-4 border-appRed overflow-hidden bg-gray-200 mb-4">
           <Image
-            src={avatarUrl || "/images/avatar.png"}
+            src={avatarUrl || avatar}
             alt={`${name}'s avatar`}
             width={80}
             height={80}
