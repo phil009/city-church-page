@@ -6,6 +6,7 @@ import { Music, Package } from "lucide-react";
 import Link from "next/link";
 import { PaystackProduct } from "@/types/store";
 import { MinisterFormDialog } from "./MinisterFormDialog";
+import { eventSundayService } from "@/constants/AppImages";
 
 const MINISTER_FORM_PRODUCTS = ["change agent", "catalysis"];
 
@@ -44,7 +45,7 @@ export function ProductCard({ product }: ProductCardProps) {
                         <Image
                             src={
                                 product?.files[0]?.path ||
-                                "/images/events/sunday-service.jpg"
+                                eventSundayService
                             }
                             alt={product?.name}
                             fill

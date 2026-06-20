@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { favicon } from "@/constants/AppImages";
 
 export default function SignalLogo() {
   return (
@@ -36,7 +37,7 @@ export default function SignalLogo() {
         className="relative z-10"
       >
         <Image
-          src={"/images/favicon.png"}
+          src={favicon}
           alt="Signal Logo"
           width={1000}
           height={1000}
