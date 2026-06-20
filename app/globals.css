@@ -1,4 +1,17 @@
-@import url(https://fonts.googleapis.com/css?family=Rubik:300,regular,500,600,700,800,900,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+@font-face { font-family: "Rubik"; src: url("/fonts/Rubik/Rubik-Light.ttf") format("truetype"); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: "Rubik"; src: url("/fonts/Rubik/Rubik-LightItalic.ttf") format("truetype"); font-weight: 300; font-style: italic; font-display: swap; }
+@font-face { font-family: "Rubik"; src: url("/fonts/Rubik/Rubik-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Rubik"; src: url("/fonts/Rubik/Rubik-Italic.ttf") format("truetype"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Rubik"; src: url("/fonts/Rubik/Rubik-Medium.ttf") format("truetype"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Rubik"; src: url("/fonts/Rubik/Rubik-MediumItalic.ttf") format("truetype"); font-weight: 500; font-style: italic; font-display: swap; }
+@font-face { font-family: "Rubik"; src: url("/fonts/Rubik/Rubik-SemiBold.ttf") format("truetype"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Rubik"; src: url("/fonts/Rubik/Rubik-SemiBoldItalic.ttf") format("truetype"); font-weight: 600; font-style: italic; font-display: swap; }
+@font-face { font-family: "Rubik"; src: url("/fonts/Rubik/Rubik-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Rubik"; src: url("/fonts/Rubik/Rubik-BoldItalic.ttf") format("truetype"); font-weight: 700; font-style: italic; font-display: swap; }
+@font-face { font-family: "Rubik"; src: url("/fonts/Rubik/Rubik-ExtraBold.ttf") format("truetype"); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "Rubik"; src: url("/fonts/Rubik/Rubik-ExtraBoldItalic.ttf") format("truetype"); font-weight: 800; font-style: italic; font-display: swap; }
+@font-face { font-family: "Rubik"; src: url("/fonts/Rubik/Rubik-Black.ttf") format("truetype"); font-weight: 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "Rubik"; src: url("/fonts/Rubik/Rubik-BlackItalic.ttf") format("truetype"); font-weight: 900; font-style: italic; font-display: swap; }
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

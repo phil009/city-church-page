@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
         const body = await request.json();
 
         const response = await fetch(
-            `https://api.airtable.com/v0/${process.env.AIRTABLE_BASE_ID}/${process.env.AIRTABLE_TABLE_ID}`,
+            `https://api.airtable.com/v0/${process.env.AIRTABLE_MINISTERS_BASE_ID}/${process.env.AIRTABLE_MINISTERS_TABLE_ID}`,
             {
                 method: "POST",
                 headers: {
