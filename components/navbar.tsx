@@ -77,6 +77,12 @@ export default function Navbar() {
                                 <li>
                                     <Link href={"/giving"}>Give</Link>
                                 </li>
+                                <span className="opacity-70">/</span>
+                                <li>
+                                    <Link href={"/shape-assessment"}>
+                                        S.H.A.P.E.
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
                     </motion.div>
@@ -247,6 +253,14 @@ export default function Navbar() {
                                         onClick={closeMenu}
                                     >
                                         Send Prayer Request
+                                    </Link>
+                                </li>
+                                <li className="hover:text-appRed">
+                                    <Link
+                                        href="/shape-assessment"
+                                        onClick={closeMenu}
+                                    >
+                                        S.H.A.P.E. Assessment
                                     </Link>
                                 </li>
                             </ul>
