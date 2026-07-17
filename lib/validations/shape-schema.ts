@@ -13,13 +13,10 @@ export const shapeSchema = z
     spiritualGifts: z.record(z.string(), z.number().min(0).max(3)),
 
     // Step 3 – Heart
-    passions:      z.array(z.string()).min(1, "Please select at least one passion"),
-    people:        z.array(z.string()),
-    causes:        z.array(z.string()),
-    heartServing:  z.string().min(1, "Please share a serving opportunity"),
-    heartExperience: z.string().optional(),
-    heartInfluence:  z.string().optional(),
-    heartDream:      z.string().optional(),
+    passions:     z.array(z.string()).min(1, "Please select at least one passion"),
+    people:       z.array(z.string()),
+    causes:       z.array(z.string()),
+    heartServing: z.string().min(1, "Please share a serving opportunity"),
 
     // Step 4 – Abilities
     abilities: z.array(z.string()).min(1, "Please select at least one ability"),
@@ -27,17 +24,20 @@ export const shapeSchema = z
     // Step 5 – DISC (keys are row numbers as strings)
     disc: z.record(z.string(), z.enum(["D", "I", "S", "C"])),
 
-    // Step 6 – Experiences
+    // Step 6 – 16 Personalities (keys are question ids as strings, values -3 to +3)
+    p16: z.record(z.string(), z.number().min(-3).max(3)),
+
+    // Step 7 – Experiences
     expEducation: z.string().min(10, "Please share at least a brief description"),
     expMinistry:  z.string().min(10, "Please share at least a brief description"),
     expPainful:   z.string().min(10, "Please share at least a brief description"),
     expSpiritual: z.string().min(10, "Please share at least a brief description"),
 
-    // Step 7 – Summary
+    // Step 8 – Summary
     additionalComments: z.string().optional(),
   })
   .superRefine((data, ctx) => {
-    // Enforce all 133 spiritual gift questions answered on final submit
+    // Enforce all 96 spiritual gift questions answered on final submit
     const allQNums = GIFT_CATEGORIES.flatMap((c) => c.questions as readonly number[]);
     const missing = allQNums.filter((n) => data.spiritualGifts[String(n)] === undefined);
     if (missing.length > 0) {
@@ -57,6 +57,18 @@ export const shapeSchema = z
         path: ["disc"],
       });
     }
+
+    // Enforce all 60 sixteen-personalities questions answered on final submit
+    const missingP16 = Array.from({ length: 60 }, (_, i) => i + 1).filter(
+      (n) => data.p16[String(n)] === undefined
+    );
+    if (missingP16.length > 0) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: `Please answer all personality questions (${missingP16.length} remaining)`,
+        path: ["p16"],
+      });
+    }
   });
 
 export type ShapeFormValues = z.infer<typeof shapeSchema>;
@@ -68,5 +80,6 @@ export const STEP_FIELDS = {
   3: ["passions", "heartServing"] as const,
   4: ["abilities"] as const,
   5: ["disc"] as const,
-  6: ["expEducation", "expMinistry", "expPainful", "expSpiritual"] as const,
+  6: ["p16"] as const,
+  7: ["expEducation", "expMinistry", "expPainful", "expSpiritual"] as const,
 } satisfies Record<number, readonly (keyof ShapeFormValues)[]>;

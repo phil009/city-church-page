@@ -1,134 +1,61 @@
-import {
-  daddyTInBlue,
-  daddyTInAction,
-  daddyTPortrait,
-  pstGeeinAction1,
-  pstGeeinAction2,
-  pstGeePotrait,
-  pstAniekanInAction1,
-  pstAniekanInAction2,
-  pstAniekanPotrait,
-  pstAnointedInAction1,
-  pstAnointedInAction2,
-  pstAnointedPotrait,
-  pstMarkInAction1,
-  pstMarkInAction2,
-  pstMarkPotrait,
-} from "@/constants/AppImages";
+"use client";
+
+import { useInView } from "@/hooks/useInView";
 import { PastorCard } from "./pastor-card";
 
-export const MeetOurPastors = () => {
-  const pastors = [
-    {
-      name: "Pst. Tony Aleogena-Raphael",
-      position: "Lead Pastor",
-      images: [
-        {
-          id: 1,
-          src: daddyTInBlue,
-          alt: "Pastor preaching",
-        },
-        {
-          id: 2,
-          src: daddyTInAction,
-          alt: "Pastor praying",
-        },
-        {
-          id: 3,
-          src: daddyTPortrait,
-          alt: "Pastor profile",
-        },
-      ],
-    },
+const pastors = [
+  {
+    name: "Pst. Tony Aleogena-Raphael",
+    position: "Lead Pastor",
+    video: "/videos/pastor-tony-1.mp4",
+  },
+  {
+    name: "Pst. Anointed Enoh",
+    position: "Team Pastor",
+    video: "/videos/pastor-anointed-1.mp4",
+  },
+  {
+    name: "Pst. Aniekan Umoh",
+    position: "Team Pastor",
+    video: "/videos/pastor-ani-1.mp4",
+  },
+  {
+    name: "Pst. Goodluck Opue",
+    position: "Team Pastor",
+    video: "/videos/pastor-gee-1.mp4",
+  },
+  {
+    name: "Pst. Richard Etim",
+    position: "Team Pastor",
+    video: "/videos/pst-richard-1.mp4",
+  },
+  {
+    name: "Pst. Emmanuel Obeten",
+    position: "Team Pastor",
+    video: "/videos/pastor-obeten-1.mp4",
+  },
+  {
+    name: "Pst. Daniel Essien",
+    position: "Team Pastor",
+    video: "/videos/pastor-dan-1.mp4",
+  },
+  {
+    name: "Pst. Uma Ukpai",
+    position: "Team Pastor",
+    video: "/videos/pastor-uma-1.mp4",
+  },
+  {
+    name: "Pst. Esta Etim",
+    position: "Team Pastor",
+    video: "/videos/pst-esta-1.mp4",
+  },
+];
 
-    {
-      name: "Pst. Anointed Enoh",
-      position: "Team Pastor",
-      images: [
-        {
-          id: 1,
-          src: pstAnointedInAction1,
-          alt: "Pastor preaching",
-        },
-        {
-          id: 2,
-          src: pstAnointedInAction2,
-          alt: "Pastor praying",
-        },
-        {
-          id: 3,
-          src: pstAnointedPotrait,
-          alt: "Pastor profile",
-        },
-      ],
-    },
-    {
-      name: "Pst. Mark Ettan",
-      position: "Team Pastor",
-      images: [
-        {
-          id: 1,
-          src: pstMarkInAction1,
-          alt: "Pastor preaching",
-        },
-        {
-          id: 2,
-          src: pstMarkInAction2,
-          alt: "Pastor praying",
-        },
-        {
-          id: 3,
-          src: pstMarkPotrait,
-          alt: "Pastor profile",
-        },
-      ],
-    },
-    {
-      name: "Pst. Aniekan Umoh",
-      position: "Team Pastor",
-      images: [
-        {
-          id: 1,
-          src: pstAniekanInAction1,
-          alt: "Pastor preaching",
-        },
-        {
-          id: 2,
-          src: pstAniekanInAction2,
-          alt: "Pastor praying",
-        },
-        {
-          id: 3,
-          src: pstAniekanPotrait,
-          alt: "Pastor profile",
-        },
-      ],
-    },
-    {
-      name: "Pst. Goodluck Opue",
-      position: "Team Pastor",
-      images: [
-        {
-          id: 1,
-          src: pstGeeinAction1,
-          alt: "Pastor preaching",
-        },
-        {
-          id: 2,
-          src: pstGeeinAction2,
-          alt: "Pastor praying",
-        },
-        {
-          id: 3,
-          src: pstGeePotrait,
-          alt: "Pastor profile",
-        },
-      ],
-    },
-  ];
+export const MeetOurPastors = () => {
+  const [ref, isInView] = useInView({ threshold: 0.3 });
 
   return (
-    <section className="p-6 md:p-20">
+    <section ref={ref} className="p-6 md:p-20">
       <div className="text-center grid justify-center">
         <p className="text-appRed text-base md:text-2xl mb-2">
           Meet Our Pastors
@@ -144,7 +71,8 @@ export const MeetOurPastors = () => {
             key={index}
             name={pastor.name}
             position={pastor.position}
-            images={pastor.images}
+            video={pastor.video}
+            play={isInView}
           />
         ))}
       </div>

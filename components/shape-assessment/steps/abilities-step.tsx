@@ -2,8 +2,23 @@
 
 import { useFormContext } from "react-hook-form";
 import { FormField, FormItem, FormMessage } from "@/components/ui/form";
-import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
+import { Check } from "lucide-react";
+
+function CheckIcon({ checked }: { checked: boolean }) {
+  return (
+    <div
+      className={cn(
+        "h-4 w-4 shrink-0 rounded-sm border transition-colors",
+        checked
+          ? "bg-appRed border-appRed flex items-center justify-center"
+          : "border-gray-300 bg-white"
+      )}
+    >
+      {checked && <Check className="h-3 w-3 text-white" strokeWidth={3} />}
+    </div>
+  );
+}
 import { ABILITIES } from "@/data/shape-data";
 import { type ShapeFormValues } from "@/lib/validations/shape-schema";
 
@@ -40,9 +55,13 @@ export default function AbilitiesStep() {
                 {ABILITIES.map((ability) => {
                   const isSelected = selected.includes(ability);
                   return (
-                    <label
+                    <div
                       key={ability}
+                      role="checkbox"
+                      aria-checked={isSelected}
+                      tabIndex={0}
                       onClick={() => toggle(ability)}
+                      onKeyDown={(e) => e.key === " " && toggle(ability)}
                       className={cn(
                         "flex items-center gap-2 border rounded-lg px-3 py-2 cursor-pointer text-sm transition-colors select-none",
                         isSelected
@@ -50,12 +69,9 @@ export default function AbilitiesStep() {
                           : "border-appGhost hover:border-gray-300 text-gray-600"
                       )}
                     >
-                      <Checkbox
-                        checked={isSelected}
-                        className="data-[state=checked]:bg-appRed data-[state=checked]:border-appRed shrink-0 pointer-events-none"
-                      />
+                      <CheckIcon checked={isSelected} />
                       <span className="leading-snug">{ability}</span>
-                    </label>
+                    </div>
                   );
                 })}
               </div>

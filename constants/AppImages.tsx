@@ -17,9 +17,7 @@ export { default as pstAnointedInAction1 } from "../public/images/pastors/who-4.
 export { default as pstAnointedInAction2 } from "../public/images/pastors/pst-anointed-in-white.jpg";
 export { default as pstAnointedPotrait } from "../public/images/pastors/pst-anointed-portrait.jpg";
 
-export { default as pstMarkInAction1 } from "../public/images/pastors/pst-mark-action.jpg";
-export { default as pstMarkInAction2 } from "../public/images/pastors/pst-mark-action-2.jpg";
-export { default as pstMarkPotrait } from "../public/images/pastors/pst-mark-temp-potrait.jpg";
+export { default as pastorPlaceholder } from "../public/images/avatar.png";
 
 // ─── Who We Are slider ────────────────────────────────────────────────────────
 // Used in: components/home/who-we-are.tsx

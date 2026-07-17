@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 // import { Rubik } from "next/font/google";
 import "./globals.css";
 import { Suspense } from "react";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import Loading from "./loading";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
@@ -19,6 +20,8 @@ export const metadata: Metadata = {
   icons: "/images/favicon.png",
 };
 
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -35,6 +38,7 @@ export default function RootLayout({
           <WelcomeModal />
         </Suspense>
       </body>
+      {GA_MEASUREMENT_ID && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}
     </html>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useFormContext, useController } from "react-hook-form";
+import { useEffect, useRef } from "react";
 import { FormMessage, FormItem, FormField } from "@/components/ui/form";
 import { cn } from "@/lib/utils";
 import { GIFT_CATEGORIES, GIFT_QUESTIONS } from "@/data/shape-data";
@@ -59,6 +60,26 @@ export default function SpiritualGiftsStep({
     (q) => giftsWatch[String(q)] !== undefined
   ).length;
 
+  const categoryComplete = answeredInCategory === 3;
+  const advancedRef = useRef(false);
+
+  useEffect(() => {
+    if (categoryComplete && !advancedRef.current) {
+      advancedRef.current = true;
+      const timer = setTimeout(() => {
+        if (giftPage === GIFT_CATEGORIES.length - 1) {
+          onOuterNext();
+        } else {
+          setGiftPage(giftPage + 1);
+        }
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+    if (!categoryComplete) {
+      advancedRef.current = false;
+    }
+  }, [categoryComplete, giftPage, onOuterNext, setGiftPage]);
+
   const handlePrev = () => {
     if (giftPage === 0) {
       onOuterBack();
@@ -82,7 +103,7 @@ export default function SpiritualGiftsStep({
         <span>
           Category {giftPage + 1} of {GIFT_CATEGORIES.length}
         </span>
-        <span>{totalAnswered} / 133 answered</span>
+        <span>{totalAnswered} / 96 answered</span>
       </div>
 
       {/* Category progress bar */}
@@ -116,7 +137,7 @@ export default function SpiritualGiftsStep({
         <div>
           <p className="text-sm font-semibold">{category.name}</p>
           <p className="text-xs opacity-50">
-            {answeredInCategory} / 7 answered
+            {answeredInCategory} / 3 answered
           </p>
         </div>
       </div>
@@ -159,15 +180,9 @@ export default function SpiritualGiftsStep({
         >
           ← {giftPage === 0 ? "Back to Intro" : "Previous Category"}
         </button>
-        <button
-          type="button"
-          onClick={handleNext}
-          className="text-sm font-semibold text-appRed hover:text-red-700 transition-colors flex items-center gap-1"
-        >
-          {giftPage === GIFT_CATEGORIES.length - 1
-            ? "Finish Gifts →"
-            : "Next Category →"}
-        </button>
+        <p className="text-xs text-gray-400 italic">
+          {categoryComplete ? "Moving on…" : `${3 - answeredInCategory} left`}
+        </p>
       </div>
     </div>
   );

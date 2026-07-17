@@ -8,9 +8,24 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
+import { Check } from "lucide-react";
+
+function CheckIcon({ checked }: { checked: boolean }) {
+  return (
+    <div
+      className={cn(
+        "h-4 w-4 shrink-0 rounded-sm border transition-colors",
+        checked
+          ? "bg-appRed border-appRed flex items-center justify-center"
+          : "border-gray-300 bg-white"
+      )}
+    >
+      {checked && <Check className="h-3 w-3 text-white" strokeWidth={3} />}
+    </div>
+  );
+}
 import { PASSIONS, PEOPLE_GROUPS, CAUSES } from "@/data/shape-data";
 import { type ShapeFormValues } from "@/lib/validations/shape-schema";
 
@@ -52,9 +67,13 @@ function CheckboxList({
               {items.map((item) => {
                 const isSelected = selected.includes(item);
                 return (
-                  <label
+                  <div
                     key={item}
+                    role="checkbox"
+                    aria-checked={isSelected}
+                    tabIndex={0}
                     onClick={() => toggle(item)}
+                    onKeyDown={(e) => e.key === " " && toggle(item)}
                     className={cn(
                       "flex items-center gap-2 border rounded-lg px-3 py-2 cursor-pointer text-sm transition-colors select-none",
                       isSelected
@@ -62,12 +81,9 @@ function CheckboxList({
                         : "border-appGhost hover:border-gray-300 text-gray-600"
                     )}
                   >
-                    <Checkbox
-                      checked={isSelected}
-                      className="data-[state=checked]:bg-appRed data-[state=checked]:border-appRed shrink-0 pointer-events-none"
-                    />
+                    <CheckIcon checked={isSelected} />
                     <span className="leading-snug">{item}</span>
-                  </label>
+                  </div>
                 );
               })}
             </div>
@@ -110,9 +126,13 @@ export default function HeartStep() {
                 {PASSIONS.map((p) => {
                   const isSelected = selected.includes(p.title);
                   return (
-                    <label
+                    <div
                       key={p.title}
+                      role="checkbox"
+                      aria-checked={isSelected}
+                      tabIndex={0}
                       onClick={() => toggle(p.title)}
+                      onKeyDown={(e) => e.key === " " && toggle(p.title)}
                       className={cn(
                         "border rounded-xl px-4 py-3 cursor-pointer transition-all select-none",
                         isSelected
@@ -121,10 +141,7 @@ export default function HeartStep() {
                       )}
                     >
                       <div className="flex items-start gap-2">
-                        <Checkbox
-                          checked={isSelected}
-                          className="data-[state=checked]:bg-appRed data-[state=checked]:border-appRed shrink-0 mt-0.5 pointer-events-none"
-                        />
+                        <CheckIcon checked={isSelected} />
                         <div>
                           <p className="text-sm font-semibold text-appDark leading-tight">
                             {p.title}
@@ -134,7 +151,7 @@ export default function HeartStep() {
                           </p>
                         </div>
                       </div>
-                    </label>
+                    </div>
                   );
                 })}
               </div>
@@ -152,91 +169,29 @@ export default function HeartStep() {
       <SectionDivider label="Issues or causes I feel most strongly about" />
       <CheckboxList name="causes" items={CAUSES} />
 
-      {/* Reflection questions */}
-      <SectionDivider label="Reflection questions" />
-      <div className="space-y-4">
-        <FormField
-          control={form.control}
-          name="heartServing"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-sm font-semibold text-appDark">
-                What serving opportunity would you most enjoy?{" "}
-                <span className="text-appRed">*</span>
-              </FormLabel>
-              <FormControl>
-                <Textarea
-                  rows={3}
-                  placeholder="Describe the kind of service that excites you most…"
-                  className="bg-gray-50 border-0 resize-none focus-visible:ring-1 focus-visible:ring-appRed"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="heartExperience"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-sm font-semibold text-appDark">
-                Five areas where you currently or previously serve
-              </FormLabel>
-              <FormControl>
-                <Textarea
-                  rows={4}
-                  placeholder={"1.\n2.\n3.\n4.\n5."}
-                  className="bg-gray-50 border-0 resize-none focus-visible:ring-1 focus-visible:ring-appRed"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="heartInfluence"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-sm font-semibold text-appDark">
-                Who do you most feel called to influence for God?
-              </FormLabel>
-              <FormControl>
-                <Textarea
-                  rows={3}
-                  placeholder="Describe the people you feel most called to serve…"
-                  className="bg-gray-50 border-0 resize-none focus-visible:ring-1 focus-visible:ring-appRed"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="heartDream"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-sm font-semibold text-appDark">
-                What dream would release your passions to serve God?
-              </FormLabel>
-              <FormControl>
-                <Textarea
-                  rows={3}
-                  placeholder="What pursuit would you love to undertake for God's kingdom?…"
-                  className="bg-gray-50 border-0 resize-none focus-visible:ring-1 focus-visible:ring-appRed"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-      </div>
+      {/* Reflection question */}
+      <SectionDivider label="Reflection" />
+      <FormField
+        control={form.control}
+        name="heartServing"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel className="text-sm font-semibold text-appDark">
+              What is the serving opportunity that excites you the most?{" "}
+              <span className="text-appRed">*</span>
+            </FormLabel>
+            <FormControl>
+              <Textarea
+                rows={4}
+                placeholder="Describe the kind of service that excites you most…"
+                className="bg-gray-50 border-0 resize-none focus-visible:ring-1 focus-visible:ring-appRed"
+                {...field}
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
     </div>
   );
 }
