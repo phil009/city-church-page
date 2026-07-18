@@ -37,16 +37,12 @@ export default function LiveStream() {
     };
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const [setLatestVideo] = useState<any>(null);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [recentVideos, setRecentVideos] = useState<any[]>([]);
 
     useEffect(() => {
         const getVideos = async () => {
             const videos = await fetchLatestSermons(channelID, YOUTUBE_API_KEY);
-            setLatestVideo(videos[0]); // First video (most recent)
             setRecentVideos(videos.slice(2)); // Next 3 videos
-            console.log("Latest Video:", videos[0]);
         };
 
         getVideos();
