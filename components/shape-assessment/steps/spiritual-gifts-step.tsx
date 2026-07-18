@@ -88,14 +88,6 @@ export default function SpiritualGiftsStep({
     }
   };
 
-  const handleNext = () => {
-    if (giftPage === GIFT_CATEGORIES.length - 1) {
-      onOuterNext();
-    } else {
-      setGiftPage(giftPage + 1);
-    }
-  };
-
   return (
     <div className="space-y-4">
       {/* Overall progress */}

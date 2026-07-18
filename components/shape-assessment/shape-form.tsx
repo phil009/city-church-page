@@ -299,7 +299,6 @@ function SuccessScreen({
     const pdfRef = useRef<ShapeResultPdfHandle>(null);
 
     // Auto-upload PDF to Airtable after the success screen renders
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         if (!recordId) return;
         let cancelled = false;
@@ -321,7 +320,7 @@ function SuccessScreen({
         return () => {
             cancelled = true;
         };
-    }, [recordId]);
+    }, [recordId, data.firstName, data.lastName]);
     const matches = computeMatches(
         topGifts.map((g) => g.name),
         primaryDiscType,

@@ -12,7 +12,8 @@ const DISC_COLS: DiscKey[] = ["D", "I", "S", "C"];
 
 export default function DiscStep() {
   const form = useFormContext<ShapeFormValues>();
-  const discWatch = form.watch("disc") ?? {};
+  const discWatchRaw = form.watch("disc");
+  const discWatch = useMemo(() => discWatchRaw ?? {}, [discWatchRaw]);
 
   const scores = useMemo(() => {
     const s: Record<DiscKey, number> = { D: 0, I: 0, S: 0, C: 0 };

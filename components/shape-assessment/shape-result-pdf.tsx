@@ -258,7 +258,7 @@ const ShapeResultPdf = forwardRef<ShapeResultPdfHandle, Props>(function ShapeRes
           </section>
 
           <p style={{ marginTop: "40px", fontSize: "12px", color: "#aaa", textAlign: "center", fontStyle: "italic" }}>
-            "For we are God's masterpiece." — Ephesians 2:10 · City Church Calabar
+            &ldquo;For we are God&apos;s masterpiece.&rdquo; — Ephesians 2:10 · City Church Calabar
           </p>
         </div>
       </div>
