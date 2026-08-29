@@ -77,12 +77,12 @@ export default function Navbar() {
                                 <li>
                                     <Link href={"/giving"}>Give</Link>
                                 </li>
-                                <span className="opacity-70">/</span>
+                                {/* <span className="opacity-70">/</span>
                                 <li>
                                     <Link href={"/shape-assessment"}>
                                         S.H.A.P.E.
                                     </Link>
-                                </li>
+                                </li> */}
                             </ul>
                         </div>
                     </motion.div>
