@@ -81,12 +81,15 @@ export { default as testimonialBg } from "../public/images/testimonial_bg.jpeg";
 // Used in: components/events/events.tsx, store/ProductCard.tsx
 
 export { default as eventSundayService } from "../public/images/events/sunday-service.jpg";
+export { default as eventSmallGroup } from "../public/images/events/small_group.jpg";
+export { default as eventTelegramPrayer } from "../public/images/events/hour_of_tounges.jpg";
+export { default as eventCityQueens } from "../public/images/events/city_queens.jpg";
+export { default as eventMandate } from "../public/images/events/mandate.jpg";
+export { default as eventBlaze } from "../public/images/events/blaze.jpg";
+export { default as eventCouplesFellowship } from "../public/images/events/couples_fellowship.jpg";
+export { default as eventFathersDay } from "../public/images/events/fathers_day.jpg";
 export { default as eventNightOfIncense } from "../public/images/events/Night-of-Incense.png";
 export { default as eventChristmas } from "../public/images/events/christmas-at-city-church.png";
-export { default as eventMovieNight } from "../public/images/events/MOVIE-NIGHT.png";
-export { default as eventPowerPoint } from "../public/images/events/Power Point.jpg";
-export { default as eventThanksgiving } from "../public/images/events/ANNUAL-THANKSGIVING.png";
-export { default as eventHeritage } from "../public/images/events/heritage-2.jpg";
 export { default as liveCommunityBanner } from "../public/images/events/40Community.jpg";
 export { default as storeBg } from "../public/images/events/SERIES - YOU, YOUR MONEY AND GOD.jpg";
 
