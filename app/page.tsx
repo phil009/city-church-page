@@ -3,6 +3,7 @@ import HomeHeroSlider from "@/components/home/hero-slider";
 import { Introduction } from "@/components/home/introduction";
 import { MeetOurPastors } from "@/components/home/meet-our-pastors";
 import TestimonialSlider from "@/components/home/testimonials";
+import VideoTestimonies from "@/components/home/video-testimonies";
 import { WhoWeAre } from "@/components/home/who-we-are";
 import { Suspense } from "react";
 import Loading from "./loading";
@@ -16,6 +17,7 @@ export default function Home() {
         <HomeHeroSlider />
         <Introduction />
         <TestimonialSlider />
+        <VideoTestimonies />
         <WhoWeAre />
         <Gallery />
         <MeetOurPastors />
