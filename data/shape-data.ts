@@ -274,6 +274,18 @@ export const SHAPE_STEPS = [
   { id: 8, label: "Summary",      letter: null },
 ];
 
+// ─── Step headers (title + subtitle shown above each step's content) ──────────
+// Steps 1 and 8 render their own intro copy inline, so they have no entry here.
+
+export const SHAPE_STEP_HEADERS: Record<number, { title: string; subtitle: string }> = {
+  2: { title: "Spiritual Gifts Inventory", subtitle: "96 statements · rate each on a scale of 0–3" },
+  3: { title: "Heart & Passion",           subtitle: "Discover what you are passionate about" },
+  4: { title: "Abilities",                 subtitle: "Select skills and talents you enjoy and are proven in" },
+  5: { title: "Personality: DISC",         subtitle: "Choose the word that best describes you in each row" },
+  6: { title: "Personality: 16 Types",     subtitle: "60 questions · 7-point scale · 5 personality dimensions" },
+  7: { title: "Experiences",               subtitle: "Reflect on the experiences that have shaped you" },
+};
+
 // ─── DISC type metadata ────────────────────────────────────────────────────────
 
 export const DISC_TYPES = {

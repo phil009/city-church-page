@@ -60,13 +60,7 @@ export default function TestimonialSlider() {
           <h2 className="text-3xl sm:text-5xl font-bold mb-2 sm:mb-4">
             Testimonies
           </h2>
-          <p className="text-gray-600 text-base sm:text-xl max-w-3xl mx-auto">
-            Testimonies contribute to the spiritual growth and edification of
-            believers, fostering a deeper sense of faith, unity, and connection
-            among members. We celebrate God&apos;s work in individuals&apos;
-            lives because it provides valuable lessons and inspiration to the
-            entire congregation.
-          </p>
+          
         </div>
 
         <div className="relative translate-x-1/2 md:translate-x-3/4 lg:translate-x-2/3 xl:translate-x-1/3">
