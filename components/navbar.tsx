@@ -115,11 +115,6 @@ export default function Navbar() {
                             <Link href="/small-groups">Group Life</Link>
                         </li>
                         <li>
-                            <Link href="/digital-disciples">
-                                Digital Disciples
-                            </Link>
-                        </li>
-                        <li>
                             <Link href="/live">Watch</Link>
                         </li>
                         <li>
