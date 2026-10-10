@@ -48,7 +48,8 @@ export default function HowItWorks() {
     },
     {
       title: "Join The Group Chat",
-      description: "Kindly join the whatsapp group chat you're redirtected to",
+      description:
+        "Connect directly to the WhatsApp group where members share prayer points, updates, and meeting details.",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"

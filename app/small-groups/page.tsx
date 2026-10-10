@@ -65,22 +65,24 @@ export default function SmallGroupsPage() {
                         transition={{ delay: 0.3, duration: 0.3 }}
                         className="w-full md:w-1/2 text-appDark"
                     >
-                        <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                            Connect, Grow, and Transform Togethers
+                        <div className="mb-4">
+                            <span className="text-xs uppercase font-bold tracking-widest text-appRed bg-red-50 px-3.5 py-1.5 rounded-full inline-block">
+                                Connect → Grow → Transform
+                            </span>
+                        </div>
+                        <h2 className="text-3xl md:text-5xl font-bold mb-5 text-zinc-900 leading-tight">
+                            You weren&apos;t created to do life alone.
                         </h2>
-                        <p className="text-lg text-appBorderGray max-w-3xl mb-10">
-                            Small groups are the heart of our church community.
-                            They provide a place where you can connect with
-                            others, grow in your faith, and experience life
-                            transformation in a supportive environment.
+                        <p className="text-base sm:text-lg text-zinc-600 max-w-2xl mb-8 leading-relaxed">
+                            Small Groups are where Sunday becomes relationship, where questions can be asked, friendships can grow, and faith can become part of everyday life.
                         </p>
                         <Button
                             onClick={scrollToGroups}
                             size="lg"
-                            className="group bg-appRed text-white"
+                            className="group bg-appRed hover:bg-red-700 text-white font-semibold rounded-full px-8 py-3.5 shadow-md"
                         >
-                            Find a Group
-                            <ArrowDown className="ml-2 h-4 w-4 group-hover:animate-bounce" />
+                            Find a Small Group →
+                            <ArrowDown className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
                         </Button>
                     </motion.div>
                     <motion.div

@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { Leaf } from "lucide-react";
+import Link from "next/link";
+import { Leaf, HeartHandshake } from "lucide-react";
 import { prayersBg, congregationPrayerMan } from "@/constants/AppImages";
 
 interface PrayerEvent {
@@ -53,28 +54,51 @@ export const Prayers = () => {
                         often accompanied by actions demonstrating that trust.
                         It&apos;s a potent expression of unwavering belief.
                     </p>
-                    <div className="max-w-3xl mt-8 space-y-12">
+                    <div className="max-w-3xl mt-8 space-y-8">
                         {prayerEvents.map((event, index) => (
                             <div
                                 key={index}
                                 className="flex items-start gap-4"
                             >
                                 <div className="bg-red-600 shadow-lg rounded-lg p-3 shrink-0">
-                                    <Leaf className="w-8 sm:w-12 md:w-16 h-8 sm:h-12 md:h-16 text-white" />
+                                    <Leaf className="w-6 sm:w-8 h-6 sm:h-8 text-white" />
                                 </div>
                                 <div className="space-y-1">
-                                    <h2 className="text-base sm:text-2xl font-semibold mb-2 sm:mb-4">
+                                    <h2 className="text-base sm:text-xl font-semibold">
                                         {event.title}
                                     </h2>
-                                    <p className="text-xs sm:text-base text-gray-300">
+                                    <p className="text-xs sm:text-sm text-gray-300">
                                         {event.time}
                                     </p>
-                                    <p className="text-xs sm:text-base text-gray-300">
+                                    <p className="text-xs sm:text-sm text-gray-300">
                                         {event.location}
                                     </p>
                                 </div>
                             </div>
                         ))}
+                    </div>
+
+                    {/* Section 8 Homepage Prayer CTA */}
+                    <div className="mt-8 p-6 sm:p-8 bg-black/60 backdrop-blur-md rounded-2xl border border-appRed/40 max-w-3xl shadow-xl">
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+                            <div className="space-y-2">
+                                <span className="text-xs uppercase font-bold tracking-wider text-appRed">
+                                    Need Prayer?
+                                </span>
+                                <h3 className="text-lg sm:text-2xl font-bold text-white">
+                                    You don&apos;t have to carry everything alone. Let us pray with you.
+                                </h3>
+                                <p className="text-xs sm:text-sm text-gray-300">
+                                    Our pastoral & intercessory prayer team will faithfully stand with you in faith.
+                                </p>
+                            </div>
+                            <Link
+                                href="/prayer-request"
+                                className="shrink-0 bg-appRed hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-full text-sm transition-colors shadow-md text-center"
+                            >
+                                Request Prayer →
+                            </Link>
+                        </div>
                     </div>
 
                     <div className="pt-8 border-t text-sm sm:text-base border-zinc-800">
@@ -83,7 +107,10 @@ export const Prayers = () => {
                             stay updated weekly:
                         </p>
                         <p className="text-gray-300 mt-2">
-                            @citychurchcalabar or +234 803 681 1155
+                            @citychurchcalabar or{" "}
+                            <a href="tel:+2348036811155" className="hover:text-appRed transition-colors font-medium">
+                                +234 803 681 1155
+                            </a>
                         </p>
                     </div>
                 </div>

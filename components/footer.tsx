@@ -62,33 +62,68 @@ const Footer = () => {
         className="w-full h-full object-cover absolute top-0 left-0"
       />
       <div className="relative px-4 sm:px-12 md:px-20 py-12 border-b border-appBorderGray">
-        <div className="flex flex-col gap-4 lg:flex-row justify-between md:items-start w-full">
-          <div className="md:w-1/3">
+        <div className="flex flex-col gap-6 lg:flex-row justify-between md:items-start w-full">
+          <div className="md:w-1/4">
             <div className="max-w-64">
               <Logo />
             </div>
+            <p className="text-xs sm:text-sm text-gray-300 mt-3 max-w-[34ch]">
+              Learning to follow Jesus, find community, and raise change agents who carry His love into our city and beyond.
+            </p>
           </div>
-          <div className="md:w-1/3">
-            <span className="text-appRed text-base md:text-xl">
-              Have Any Question?{" "}
-            </span>{" "}
+          <div className="md:w-1/4">
+            <span className="text-appRed text-sm md:text-base font-medium">
+              Visit Us
+            </span>
             <br />
-            <b className="md:text-2xl">+234 803 681 1155</b>
+            <b className="text-base sm:text-lg block mt-1">
+              The Big Tent, 98 Marian road, Calabar
+            </b>
+            <span className="text-xs text-gray-400 block mt-1">
+              Sundays: 9:30 AM & 11:00 AM | Fridays: 6:00 PM
+            </span>
           </div>
-          <div className="md:w-1/3">
-            <span className="text-appRed text-base md:text-xl">Send Email</span>{" "}
+          <div className="md:w-1/4">
+            <span className="text-appRed text-sm md:text-base font-medium">
+              Have Any Questions?
+            </span>
             <br />
-            <b className="md:text-2xl">info@citychurchcalabar.org</b>
+            <a
+              href="tel:+2348036811155"
+              className="text-base sm:text-xl font-bold hover:text-appRed block mt-1 transition-colors"
+            >
+              +234 803 681 1155
+            </a>
+            <a
+              href="https://wa.me/2348036811155"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block text-xs text-emerald-400 hover:text-emerald-300 mt-1"
+            >
+              Chat on WhatsApp →
+            </a>
+          </div>
+          <div className="md:w-1/4">
+            <span className="text-appRed text-sm md:text-base font-medium">
+              Send Email
+            </span>
             <br />
-            <b className="md:text-2xl">calabarcitychurch@gmail.com</b>
+            <a
+              href="mailto:info@citychurchcalabar.org"
+              className="text-sm sm:text-base font-bold hover:text-appRed block mt-1 transition-colors"
+            >
+              info@citychurchcalabar.org
+            </a>
           </div>
         </div>
       </div>
       <div className="relative text-appGhost flex flex-col gap-12 md:gap-4 md:flex-row justify-between px-4 sm:px-12 md:px-20 py-10">
         <div className="md:w-1/3">
-          <p className="text-sm sm:text-base mb-6 max-w-[40ch]">
-            We are a Life Development Church with practical teachings and loving
-            relationships, led by Tony Aleogena-Raphael
+          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-4 text-white">
+            Connect
+          </h2>
+          <p className="text-sm mb-4 max-w-[36ch] text-gray-300">
+            Follow our journey and stay updated with teachings, events, and community stories.
           </p>
           <div className="flex gap-2">
             {socials.map((link, index) => (
@@ -97,26 +132,32 @@ const Footer = () => {
           </div>
         </div>
         <div className="md:w-1/3">
-          <h2 className="text-base sm:text-lg md:text-2xl font-bold mb-6">
-            Explore
+          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-4 text-white">
+            Quick Links
           </h2>
-          <ul className="grid grid-cols-2 gap-2 uppercase text-sm sm:text-base md:text-lg font-medium">
-            <li>
+          <ul className="grid grid-cols-2 gap-2 text-sm sm:text-base font-medium">
+            <li className="hover:text-appRed transition-colors">
               <Link href={"/about"}>About</Link>
             </li>
-            <li>
+            <li className="hover:text-appRed transition-colors">
+              <Link href={"/live"}>Watch</Link>
+            </li>
+            <li className="hover:text-appRed transition-colors">
+              <Link href={"/small-groups"}>Small Groups</Link>
+            </li>
+            <li className="hover:text-appRed transition-colors">
               <Link href={"/ministries"}>Ministries</Link>
             </li>
-            <li>
+            <li className="hover:text-appRed transition-colors">
               <Link href={"/events"}>Events</Link>
             </li>
-            <li>
-              <Link href={"/store"}>Store</Link>
+            <li className="hover:text-appRed transition-colors">
+              <Link href={"/prayer-request"}>Prayer</Link>
             </li>
-            <li>
-              <Link href={"/giving"}>Giving</Link>
+            <li className="hover:text-appRed transition-colors">
+              <Link href={"/giving"}>Give</Link>
             </li>
-            <li>
+            <li className="hover:text-appRed transition-colors">
               <Link href={"/contact"}>Contact</Link>
             </li>
           </ul>

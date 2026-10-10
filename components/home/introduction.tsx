@@ -1,6 +1,7 @@
 "use client";
 import { GenericCard } from "./generic-card";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import {
     introMinisterEvelyn,
     introPtWordByRevelation,
@@ -47,26 +48,25 @@ export const Introduction = () => {
     };
 
     return (
-        <section className="px-4 sm:px-12 md:px-20 py-14 bg-appOffWhite">
-            <div className="mb-16 flex flex-col md:flex-row justify-between">
+        <section className="px-4 sm:px-12 md:px-20 py-16 bg-appOffWhite text-zinc-900">
+            <div className="mb-14 flex flex-col md:flex-row md:items-end justify-between gap-6">
                 <div>
-                    <p className="text-appRed textbase sm:text-xl">
+                    <p className="text-appRed font-semibold tracking-wider text-sm sm:text-base uppercase">
                         Welcome to
                     </p>
-                    <h2 className="text-2xl sm:text-4xl font-bold">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-zinc-900">
                         City Church Calabar
                     </h2>
                 </div>
-                <p className="max-w-[38ch] text-base sm:text-xl">
-                    A Life Development Church with practical teachings and
-                    loving relationships, led by Tony Aleogena-Raphael
+                <p className="max-w-[42ch] text-base sm:text-lg text-zinc-600 leading-relaxed">
+                    A welcoming church family learning to follow Jesus, find community, and live out His love in every sphere of life.
                 </p>
             </div>
             <motion.div
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
             >
                 {services.map((service, index) => (
                     <GenericCard
@@ -80,16 +80,38 @@ export const Introduction = () => {
                     />
                 ))}
             </motion.div>
-            <p className="text-center text-base md:text-2xl my-16">
-                We currently run two amazing services on{" "}
-                <span className="text-appRed">Sundays - 9:30am and 11am</span>.
-                In those ninety minutes, we make it easy for attendees to
-                connect intimately with God using contemporary worship music,
-                reflect on His person and nature using other artistic and
-                creative art forms; and challenge them to make deliberate
-                behavioural and character change with a Bible-based teaching
-                format giving them principles they can readily apply.
-            </p>
+
+            {/* Standardized Service Times & Location Callout */}
+            <div className="mt-16 bg-white rounded-2xl p-6 sm:p-10 shadow-sm border border-zinc-200/80 flex flex-col lg:flex-row items-center justify-between gap-8">
+                <div className="space-y-3 text-center lg:text-left max-w-2xl">
+                    <span className="inline-block text-xs font-bold text-appRed tracking-widest uppercase bg-red-50 px-3 py-1 rounded-full">
+                        Join Us This Week
+                    </span>
+                    <h3 className="text-2xl sm:text-3xl font-bold text-zinc-900">
+                        Sundays at The Big Tent
+                    </h3>
+                    <p className="text-zinc-600 text-sm sm:text-base">
+                        <strong className="text-zinc-900">1st Service:</strong> 9:30 AM – 11:00 AM &nbsp;|&nbsp;{" "}
+                        <strong className="text-zinc-900">2nd Service:</strong> 11:00 AM – 12:30 PM
+                        <br />
+                        <span className="text-zinc-500 text-xs sm:text-sm">Location: The Big Tent, 98 Marian road, Calabar</span>
+                    </p>
+                </div>
+                <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+                    <Link
+                        href="/plan-your-visit"
+                        className="bg-appRed hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-full text-sm text-center shadow transition-colors"
+                    >
+                        Plan Your Visit →
+                    </Link>
+                    <Link
+                        href="/events"
+                        className="border border-zinc-300 hover:border-zinc-400 text-zinc-700 hover:text-zinc-900 font-medium px-6 py-3 rounded-full text-sm text-center transition-colors"
+                    >
+                        View Weekly Schedule
+                    </Link>
+                </div>
+            </div>
         </section>
     );
 };

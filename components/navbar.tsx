@@ -14,7 +14,7 @@ export default function Navbar() {
 
     useEffect(() => {
         const checkIsMobile = () => {
-            setIsMobile(window.innerWidth < 768);
+            setIsMobile(window.innerWidth < 1024);
         };
 
         checkIsMobile();
@@ -49,14 +49,16 @@ export default function Navbar() {
                                 <span>
                                     Address:{" "}
                                     <span className="cursor-pointer hover:text-appRed">
-                                        98 Ndidem Usang Iso Rd, Efut Ekondo
-                                        540222, Calabar, Cross River
+                                        The Big Tent, 98 Marian road, Calabar
                                     </span>
                                 </span>
                                 <span className="opacity-70">/</span>
-                                <span className="cursor-pointer hover:text-appRed">
+                                <a
+                                    href="mailto:info@citychurchcalabar.org"
+                                    className="cursor-pointer hover:text-appRed"
+                                >
                                     info@citychurchcalabar.org
-                                </span>
+                                </a>
                             </div>
 
                             <ul className="hidden md:flex gap-4">
@@ -104,33 +106,50 @@ export default function Navbar() {
                     <div className="w-32 lg:w-60">
                         <Logo />
                     </div>
-                    <ul className="hidden md:flex gap-6 uppercase text-sm lg:text-base font-semibold">
-                        <li>
+                    <ul className="hidden lg:flex gap-5 lg:gap-7 uppercase text-xs lg:text-sm font-semibold tracking-wide items-center">
+                        <li className="hover:text-appRed transition-colors">
+                            <Link href="/">Home</Link>
+                        </li>
+                        <li className="hover:text-appRed transition-colors">
                             <Link href="/about">About</Link>
                         </li>
-                        <li>
-                            <Link href="/ministries">Ministries</Link>
-                        </li>
-                        <li>
-                            <Link href="/small-groups">Group Life</Link>
-                        </li>
-                        <li>
+                        <li className="hover:text-appRed transition-colors">
                             <Link href="/live">Watch</Link>
                         </li>
-                        <li>
-                            <Link href="/contact">Contact</Link>
+                        <li className="hover:text-appRed transition-colors">
+                            <Link href="/small-groups">Connect</Link>
+                        </li>
+                        <li className="hover:text-appRed transition-colors">
+                            <Link href="/ministries">Ministries</Link>
+                        </li>
+                        <li className="hover:text-appRed transition-colors">
+                            <Link href="/events">Events</Link>
+                        </li>
+                        <li className="hover:text-appRed transition-colors">
+                            <Link href="/giving">Give</Link>
                         </li>
                     </ul>
                 </div>
-                <div className="hidden xl:flex items-center gap-2">
-                    <Icon
-                        className="text-2xl lg:text-5xl text-appRed"
-                        icon={"solar:phone-line-duotone"}
-                    />
-                    <div className="text-">
-                        We CARE! Call us: <br />
-                        <b>+234 803 681 1155</b>
-                    </div>
+                <div className="hidden lg:flex items-center gap-4">
+                    <Link
+                        href="/plan-your-visit"
+                        className="bg-appRed hover:bg-red-700 text-white font-semibold text-xs lg:text-sm px-4 py-2.5 rounded-full uppercase tracking-wider transition-colors shadow-md"
+                    >
+                        Plan Your Visit
+                    </Link>
+                    <a
+                        href="tel:+2348036811155"
+                        className="hidden xl:flex items-center gap-2 hover:text-appRed transition-colors"
+                    >
+                        <Icon
+                            className="text-2xl lg:text-4xl text-appRed"
+                            icon={"solar:phone-line-duotone"}
+                        />
+                        <div className="text-xs">
+                            We CARE! Call us: <br />
+                            <b className="text-sm">+234 803 681 1155</b>
+                        </div>
+                    </a>
                 </div>
                 {isMobile && (
                     <button
@@ -169,113 +188,66 @@ export default function Navbar() {
                                     />
                                 </button>
                             </div>
-                            <ul className="flex-grow p-4 space-y-4">
+                            <ul className="flex-grow p-4 space-y-3.5 text-sm font-medium">
                                 <li className="hover:text-appRed">
-                                    <Link
-                                        href="/"
-                                        onClick={closeMenu}
-                                    >
-                                        Home
-                                    </Link>
+                                    <Link href="/" onClick={closeMenu}>Home</Link>
                                 </li>
                                 <li className="hover:text-appRed">
-                                    <Link
-                                        href="/about"
-                                        onClick={closeMenu}
-                                    >
-                                        About
-                                    </Link>
+                                    <Link href="/about" onClick={closeMenu}>About</Link>
                                 </li>
                                 <li className="hover:text-appRed">
-                                    <Link
-                                        href="/ministries"
-                                        onClick={closeMenu}
-                                    >
-                                        Ministries
-                                    </Link>
+                                    <Link href="/live" onClick={closeMenu}>Watch</Link>
                                 </li>
                                 <li className="hover:text-appRed">
-                                    <Link
-                                        href="/small-groups"
-                                        onClick={closeMenu}
-                                    >
-                                        Group Life
-                                    </Link>
+                                    <Link href="/small-groups" onClick={closeMenu}>Connect / Small Groups</Link>
                                 </li>
                                 <li className="hover:text-appRed">
-                                    <Link
-                                        href="/events"
-                                        onClick={closeMenu}
-                                    >
-                                        Events
-                                    </Link>
+                                    <Link href="/ministries" onClick={closeMenu}>Ministries</Link>
                                 </li>
                                 <li className="hover:text-appRed">
-                                    <Link
-                                        href="/giving"
-                                        onClick={closeMenu}
-                                    >
-                                        Giving
-                                    </Link>
+                                    <Link href="/events" onClick={closeMenu}>Events</Link>
                                 </li>
                                 <li className="hover:text-appRed">
-                                    <Link
-                                        href="/store"
-                                        onClick={closeMenu}
-                                    >
-                                        Store
-                                    </Link>
+                                    <Link href="/giving" onClick={closeMenu}>Give</Link>
                                 </li>
                                 <li className="hover:text-appRed">
-                                    <Link
-                                        href="/live"
-                                        onClick={closeMenu}
-                                    >
-                                        Watch
-                                    </Link>
+                                    <Link href="/prayer-request" onClick={closeMenu}>Prayer Request</Link>
                                 </li>
                                 <li className="hover:text-appRed">
-                                    <Link
-                                        href="/contact"
-                                        onClick={closeMenu}
-                                    >
-                                        Contact
-                                    </Link>
-                                </li>
-                                <li className="hover:text-appRed">
-                                    <Link
-                                        href="/prayer-request"
-                                        onClick={closeMenu}
-                                    >
-                                        Send Prayer Request
-                                    </Link>
-                                </li>
-                                <li className="hover:text-appRed">
-                                    <Link
-                                        href="/shape-assessment"
-                                        onClick={closeMenu}
-                                    >
-                                        S.H.A.P.E. Assessment
-                                    </Link>
+                                    <Link href="/contact" onClick={closeMenu}>Contact</Link>
                                 </li>
                             </ul>
                             <div className="p-4 border-t border-appBorderGray">
-                                <div className="flex items-center gap-2 mb-2">
+                                <Link
+                                    href="/plan-your-visit"
+                                    onClick={closeMenu}
+                                    className="block w-full text-center bg-appRed hover:bg-red-700 text-white font-semibold text-sm py-2.5 rounded-full uppercase tracking-wider mb-4 shadow"
+                                >
+                                    Plan Your Visit
+                                </Link>
+                                <a
+                                    href="tel:+2348036811155"
+                                    className="flex items-center gap-2 mb-3 hover:text-appRed transition-colors"
+                                >
                                     <Icon
                                         className="text-2xl text-appRed"
                                         icon={"solar:phone-line-duotone"}
                                     />
                                     <div className="text-xs">
                                         We CARE! Call us: <br />
-                                        <b>+234 803 681 1155</b>
+                                        <b className="text-sm">+234 803 681 1155</b>
                                     </div>
-                                </div>
-                                <div className="text-xs grid gap-2">
+                                </a>
+                                <div className="text-xs grid gap-1.5 opacity-90">
                                     <p>
-                                        Address: 98 Ndidem Usang Iso Rd, Efut
-                                        Ekondo 540222, Calabar, Cross River
+                                        <b className="text-white">Address:</b> The Big Tent, 98 Marian road, Calabar
                                     </p>
-                                    <p>Email: info@citychurchcalabar.org</p>
+                                    <p>
+                                        <b className="text-white">Email:</b>{" "}
+                                        <a href="mailto:info@citychurchcalabar.org" className="hover:text-appRed">
+                                            info@citychurchcalabar.org
+                                        </a>
+                                    </p>
                                 </div>
                             </div>
                         </div>
