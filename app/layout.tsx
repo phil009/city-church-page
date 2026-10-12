@@ -7,7 +7,6 @@ import Loading from "./loading";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import { Toaster } from "sonner";
-import WelcomeModal from "@/components/welcomebanner";
 
 // const font = Rubik({
 //   subsets: ["latin"],
@@ -16,7 +15,7 @@ import WelcomeModal from "@/components/welcomebanner";
 
 export const metadata: Metadata = {
   title: "City Church Calabar",
-  description: "",
+  description: "A church family where people can grow in their relationship with Jesus, build meaningful relationships, and live out their influence.",
   icons: "/images/favicon.png",
 };
 
@@ -35,7 +34,6 @@ export default function RootLayout({
           <div className="min-h-screen">{children}</div>
           <Footer />
           <Toaster richColors />
-          <WelcomeModal />
         </Suspense>
       </body>
       {GA_MEASUREMENT_ID && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}
