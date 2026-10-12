@@ -88,10 +88,10 @@ export default function SuccessScreen({
             </p>
             <p className="text-sm text-gray-700">
               <span className="font-semibold text-appDark">
-                {primaryDiscType} — {DISC_TYPES[primaryDiscType].name}
+                {primaryDiscType} — {(DISC_TYPES as Record<string, any>)[primaryDiscType]?.name}
               </span>
               <span className="text-gray-400 text-xs ml-2">
-                {DISC_TYPES[primaryDiscType].desc}
+                {(DISC_TYPES as Record<string, any>)[primaryDiscType]?.desc}
               </span>
             </p>
           </div>
@@ -124,7 +124,7 @@ export default function SuccessScreen({
           Your Top Ministry Matches
         </p>
         <div className="space-y-3">
-          {matches.map((m, i) => (
+          {matches.map((m: any, i: number) => (
             <div
               key={m.unit.name}
               className="border border-appGhost rounded-xl overflow-hidden"
@@ -154,7 +154,7 @@ export default function SuccessScreen({
                 </div>
                 {/* Reason tags */}
                 <div className="flex flex-wrap gap-1.5 pb-3">
-                  {m.reasons.map((r) => (
+                  {m.reasons.map((r: string) => (
                     <span
                       key={r}
                       className="text-xs px-2 py-0.5 bg-red-50 border border-appRed/20 rounded-full text-appDark"

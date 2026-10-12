@@ -1,11 +1,12 @@
 "use client";
-import { Share2 } from "lucide-react";
+import Link from "next/link";
+import { Share2, HeartHandshake, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface IntroMessageProps {
   isLive: boolean;
   handleShare: () => void;
-  handleNotificationSubscribe: () => void;
+  handleNotificationSubscribe?: () => void;
 }
 
 export default function IntroMessage({
@@ -14,59 +15,75 @@ export default function IntroMessage({
 }: IntroMessageProps) {
   return (
     <div className="mb-8 text-appGhost">
-      <h2 className="text-2xl font-bold mb-4">
+      <h2 className="text-2xl sm:text-3xl font-bold mb-3 text-white">
         {isLive
           ? "Welcome to Our Live Service"
-          : "Welcome to Our Online Church"}
+          : "There's Something Here for Your Next Step"}
       </h2>
 
       {isLive ? (
         <div className="space-y-4">
-          <p>
-            We&apos;re excited you&apos;ve joined us for today&apos;s live
-            service! Get ready for a time of worship, praise and teaching in the
-            house of God.
+          <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+            We&apos;re excited you&apos;ve joined us for today&apos;s live service! Get ready for a time of worship, praise and teaching in the presence of God.
           </p>
-          <p>
-            Feel free to engage in the live chat, share prayer requests, and
-            connect with our online community. Our digital prayer team is
-            standing by to pray with you.
+          <p className="text-gray-400 text-xs sm:text-sm">
+            Feel free to share the stream with friends and family, request prayer, or connect with our church community.
           </p>
-          <div className="flex space-x-4 mt-4">
-            <Button onClick={handleShare} className="flex items-center">
+          <div className="flex flex-wrap gap-3 pt-2">
+            <Button
+              onClick={handleShare}
+              className="bg-appRed hover:bg-appRed/90 text-white flex items-center"
+            >
               <Share2 className="mr-2 h-4 w-4" />
-              Share
+              Share Stream
             </Button>
             <Button
               variant="outline"
-              onClick={() =>
-                window.open("https://forms.gle/yourPrayerRequestForm", "_blank")
-              }
+              asChild
+              className="border-gray-600 text-white hover:bg-white/10"
             >
-              Request Prayer
+              <Link href="/prayer-request" className="flex items-center">
+                <HeartHandshake className="mr-2 h-4 w-4 text-appRed" />
+                Request Prayer
+              </Link>
             </Button>
           </div>
         </div>
       ) : (
         <div className="space-y-4">
-          <p>
-            Thank you for visiting our online church! While we&apos;re not
-            currently streaming live, you can watch our previous services and
-            prepare to join us for our next live service.
+          <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+            Catch up on recent messages, revisit a series, or find a word for where you are right now. Whether you&apos;re exploring faith or growing as a change agent, engage with God&apos;s word at your own pace.
           </p>
-          <p>
-            Don&apos;t miss our next live stream! Subscribe to receive
-            notifications when we go live, and check out our service schedule
-            below.
+          <p className="text-gray-400 text-xs sm:text-sm">
+            Join us live every Sunday at 9:30 AM & 11:00 AM, or watch previous sermons below anytime.
           </p>
-          <div className="flex space-x-4 mt-4">
+          <div className="flex flex-wrap gap-3 pt-2">
             <Button
               variant="outline"
               onClick={handleShare}
-              className="flex items-center"
+              className="border-gray-600 text-white hover:bg-white/10 flex items-center"
             >
               <Share2 className="mr-2 h-4 w-4" />
-              Share
+              Share with a Friend
+            </Button>
+            <Button
+              variant="outline"
+              asChild
+              className="border-gray-600 text-white hover:bg-white/10"
+            >
+              <Link href="/prayer-request" className="flex items-center">
+                <HeartHandshake className="mr-2 h-4 w-4 text-appRed" />
+                Need Prayer?
+              </Link>
+            </Button>
+            <Button
+              asChild
+              className="bg-appRed hover:bg-appRed/90 text-white"
+            >
+              <Link href="/plan-your-visit" className="flex items-center">
+                <MapPin className="mr-2 h-4 w-4" />
+                Plan Your Visit
+              </Link>
             </Button>
           </div>
         </div>
@@ -74,3 +91,4 @@ export default function IntroMessage({
     </div>
   );
 }
+

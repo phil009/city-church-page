@@ -1,6 +1,7 @@
 "use client";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import Image, { StaticImageData } from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { JoinMinistryModal } from "../ministries/join-ministry-modal";
@@ -14,6 +15,9 @@ interface GenericCardProps {
   imageAlt?: string;
   time?: string;
   venue?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  whoFor?: string;
 }
 
 export const GenericCard: React.FC<GenericCardProps> = ({
@@ -25,6 +29,9 @@ export const GenericCard: React.FC<GenericCardProps> = ({
   imageAlt,
   time,
   venue,
+  ctaText,
+  ctaLink,
+  whoFor,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -62,10 +69,33 @@ export const GenericCard: React.FC<GenericCardProps> = ({
           <h3 className="text-xl sm:text-2xl font-medium">{title}</h3>
         </div>
         <p className="mb-4 text-xs sm:text-sm opacity-60">{description}</p>
-        {type === "event" && (time || venue) && (
-          <div className="mb-4 text-sm text-gray-600">
-            {time && <p>Time: {time}</p>}
-            {venue && <p>Venue: {venue}</p>}
+        {type === "event" && (
+          <div className="mb-4 space-y-1.5 text-xs sm:text-sm text-gray-600">
+            {whoFor && (
+              <p className="text-appRed font-medium text-xs">
+                For: <span className="text-gray-700">{whoFor}</span>
+              </p>
+            )}
+            {time && <p><span className="font-medium text-gray-700">Time:</span> {time}</p>}
+            {venue && <p><span className="font-medium text-gray-700">Venue:</span> {venue}</p>}
+            {ctaText && ctaLink && (
+              <div className="pt-2">
+                <Link
+                  href={ctaLink}
+                  className={`inline-flex items-center text-xs sm:text-sm font-semibold transition-colors duration-200 ${
+                    isHovered ? "text-appRed" : "text-appDark"
+                  }`}
+                >
+                  {ctaText}
+                  <Icon
+                    icon="akar-icons:arrow-right"
+                    className={`ml-1.5 w-4 h-4 p-0.5 rounded-full transition-transform duration-300 ${
+                      isHovered ? "translate-x-1" : ""
+                    }`}
+                  />
+                </Link>
+              </div>
+            )}
           </div>
         )}
         {type === "ministry" && (

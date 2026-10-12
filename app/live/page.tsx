@@ -8,6 +8,7 @@ import ConnectWays from "@/components/live/ConnectWays";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { watchBg } from "@/constants/AppImages";
+import DiscipleshipNextSteps from "@/components/live/DiscipleshipNextSteps";
 
 const channelID = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID;
 const YOUTUBE_API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
@@ -41,8 +42,16 @@ export default function LiveStream() {
 
     useEffect(() => {
         const getVideos = async () => {
-            const videos = await fetchLatestSermons(channelID, YOUTUBE_API_KEY);
-            setRecentVideos(videos.slice(2)); // Next 3 videos
+            try {
+                if (channelID && YOUTUBE_API_KEY) {
+                    const videos = await fetchLatestSermons(channelID, YOUTUBE_API_KEY);
+                    if (videos && Array.isArray(videos) && videos.length > 0) {
+                        setRecentVideos(videos);
+                    }
+                }
+            } catch (error) {
+                console.log("Error loading YouTube sermons, using fallback:", error);
+            }
         };
 
         getVideos();
@@ -122,6 +131,9 @@ export default function LiveStream() {
                         <ConnectWays channelID={channelID} />
                     </div>
                 </div>
+
+                {/* Discipleship Next Steps & Journey (Sections 6 & 16) */}
+                <DiscipleshipNextSteps />
 
                 {/* Mobile: Floating button to open LiveStreamTabs modal */}
                 {/* <button

@@ -3,6 +3,12 @@ import IntroSection from "@/components/events/intro-section";
 import { GlobalHero } from "@/components/global-hero";
 import { eventsBg } from "@/constants/AppImages";
 
+export const metadata = {
+  title: "Events & Gatherings | City Church Calabar",
+  description:
+    "Join us for Sunday worship at The Big Tent, midweek Small Groups, prayer services, and special fellowship gatherings at City Church Calabar.",
+};
+
 export default function Events() {
   return (
     <section className="before:block before:h-12">
