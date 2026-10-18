@@ -158,6 +158,9 @@ const Footer = () => {
               <Link href={"/giving"}>Give</Link>
             </li>
             <li className="hover:text-appRed transition-colors">
+              <Link href={"/business-hub"}>Business Hub</Link>
+            </li>
+            <li className="hover:text-appRed transition-colors">
               <Link href={"/contact"}>Contact</Link>
             </li>
           </ul>
