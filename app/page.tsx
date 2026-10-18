@@ -10,6 +10,8 @@ import Loading from "./loading";
 import { Prayers } from "@/components/home/prayers";
 import ContactSection from "@/components/home/contact-section";
 
+import { HomeBusinessHubBanner } from "@/components/home/business-hub-banner";
+
 export default function Home() {
   return (
     <Suspense fallback={<Loading />}>
@@ -18,6 +20,7 @@ export default function Home() {
         <Introduction />
         <VideoTestimonies />
         <WhoWeAre />
+        <HomeBusinessHubBanner />
         <Gallery />
         <MeetOurPastors />
         <Prayers />
