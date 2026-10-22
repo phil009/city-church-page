@@ -4,6 +4,12 @@
 export { default as daddyTInBlue } from "../public/images/pastors/daddy-t-in-blue.jpg";
 export { default as daddyTInAction } from "../public/images/pastors/daddy-t-action-2.jpg";
 export { default as daddyTPortrait } from "../public/images/pastors/Pastor-Tony-potrait.jpg";
+export { default as daddyTInBlue2 } from "../public/images/pastors/daddy-t-in-blue-2.jpg";
+export { default as daddyTInRed } from "../public/images/pastors/daddy-t-in-red.jpg";
+export { default as daddyTHebrews } from "../public/images/pastors/daddy-t-hebrews-distant-view.jpg";
+export { default as pastorTonyBlueSuit } from "../public/images/pastors/pastor-tony-blue-suit.jpg";
+export { default as pastorTonyTraditionalStanding } from "../public/images/pastors/pastor-tony-traditional-standing.jpg";
+export { default as pastorTonyTraditionalSmile } from "../public/images/pastors/pastor-tony-traditional-smile.jpg";
 
 export { default as pstGeeinAction1 } from "../public/images/pastors/pst-gee-action-2.jpg";
 export { default as pstGeeinAction2 } from "../public/images/pastors/pst-gee-action.jpg";

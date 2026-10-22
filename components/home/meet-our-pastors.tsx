@@ -8,6 +8,7 @@ const pastors = [
     name: "Pst. Tony Aleogena-Raphael",
     position: "Lead Pastor",
     video: "/videos/pastor-tony-1.mp4",
+    href: "/pastor",
   },
   {
     name: "Pst. Anointed Enoh",
@@ -73,6 +74,7 @@ export const MeetOurPastors = () => {
             position={pastor.position}
             video={pastor.video}
             play={isInView}
+            href={pastor.href}
           />
         ))}
       </div>

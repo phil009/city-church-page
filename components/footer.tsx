@@ -105,6 +105,9 @@ const Footer = () => {
               <Link href={"/about"}>About</Link>
             </li>
             <li>
+              <Link href={"/pastor"}>Meet Pastor Tony</Link>
+            </li>
+            <li>
               <Link href={"/ministries"}>Ministries</Link>
             </li>
             <li>

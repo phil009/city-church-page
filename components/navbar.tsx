@@ -109,6 +109,9 @@ export default function Navbar() {
                             <Link href="/about">About</Link>
                         </li>
                         <li>
+                            <Link href="/pastor">Pastor Tony</Link>
+                        </li>
+                        <li>
                             <Link href="/ministries">Ministries</Link>
                         </li>
                         <li>
@@ -184,6 +187,14 @@ export default function Navbar() {
                                         onClick={closeMenu}
                                     >
                                         About
+                                    </Link>
+                                </li>
+                                <li className="hover:text-appRed">
+                                    <Link
+                                        href="/pastor"
+                                        onClick={closeMenu}
+                                    >
+                                        Meet Pastor Tony
                                     </Link>
                                 </li>
                                 <li className="hover:text-appRed">
