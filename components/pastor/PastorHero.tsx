@@ -16,10 +16,10 @@ import {
   ShieldCheck,
   ChevronDown
 } from "lucide-react";
+import { Icon } from "@iconify/react";
 import { pastorTonyBlueSuit } from "@/constants/AppImages";
 import MinistryInviteDialog from "./MinistryInviteDialog";
-
-export const PASTOR_PERSONAL_WEBSITE_URL = "https://tonyaleogenaraphael.com";
+import PersonalWebsiteDialog, { PASTOR_SOCIALS } from "./PersonalWebsiteDialog";
 
 export default function PastorHero() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -96,18 +96,9 @@ export default function PastorHero() {
           </div>
 
           {/* Call to Actions */}
-          <div className="pt-2 flex flex-wrap items-center gap-4">
-            {/* Primary link: Pastor's personal website backlink */}
-            <a
-              href={PASTOR_PERSONAL_WEBSITE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              id="pastor-personal-website-btn"
-              className="bg-appRed hover:bg-red-700 text-white font-semibold px-7 py-3.5 rounded-full text-sm sm:text-base transition-all duration-300 flex items-center gap-2 shadow-lg shadow-red-950/40 hover:shadow-red-700/30 hover:scale-[1.02] active:scale-[0.98]"
-            >
-              <span>Visit Pastor Tony&apos;s Website</span>
-              <ExternalLink className="w-4 h-4" />
-            </a>
+          <div className="pt-2 flex flex-wrap items-center gap-3.5">
+            {/* Personal Website Trigger Dialog */}
+            <PersonalWebsiteDialog />
 
             <Link
               href="/plan-your-visit"
@@ -117,6 +108,41 @@ export default function PastorHero() {
             </Link>
 
             <MinistryInviteDialog />
+          </div>
+
+          {/* Social Links Row */}
+          <div className="flex items-center gap-3 text-xs text-zinc-400 pt-1">
+            <span className="text-zinc-500 font-medium">Connect:</span>
+            <a
+              href={PASTOR_SOCIALS.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Pastor Tony LinkedIn"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-900/90 border border-zinc-800 hover:border-[#0a66c2]/60 hover:text-white transition-all text-zinc-300"
+            >
+              <Icon icon="mdi:linkedin" className="w-4 h-4 text-[#0a66c2]" />
+              <span className="font-medium">LinkedIn</span>
+            </a>
+
+            <a
+              href={PASTOR_SOCIALS.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Pastor Tony Facebook"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-900/90 border border-zinc-800 hover:border-[#1877f2]/60 hover:text-white transition-all text-zinc-300"
+            >
+              <Icon icon="mdi:facebook" className="w-4 h-4 text-[#1877f2]" />
+              <span className="font-medium">Facebook</span>
+            </a>
+
+            <a
+              href={`mailto:${PASTOR_SOCIALS.email}`}
+              aria-label="Pastor Tony Email"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-900/90 border border-zinc-800 hover:border-red-500/60 hover:text-white transition-all text-zinc-300"
+            >
+              <Icon icon="solar:letter-line-duotone" className="w-4 h-4 text-appRed" />
+              <span className="font-medium">{PASTOR_SOCIALS.email}</span>
+            </a>
           </div>
 
           {/* Quick Metrics / Pillar highlights */}

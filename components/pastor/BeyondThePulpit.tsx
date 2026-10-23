@@ -9,11 +9,13 @@ import {
   Briefcase, 
   Sparkles, 
   ArrowRight,
-  BookMarked
+  BookMarked,
+  Mail
 } from "lucide-react";
+import { Icon } from "@iconify/react";
 import { pastorTonyTraditionalSmile } from "@/constants/AppImages";
-import { PASTOR_PERSONAL_WEBSITE_URL } from "./PastorHero";
 import MinistryInviteDialog from "./MinistryInviteDialog";
+import PersonalWebsiteDialog, { PASTOR_SOCIALS } from "./PersonalWebsiteDialog";
 
 export default function BeyondThePulpit() {
   return (
@@ -46,20 +48,10 @@ export default function BeyondThePulpit() {
 
               <div className="p-5 rounded-2xl bg-zinc-900/60 border border-zinc-800/80 space-y-2">
                 <p className="text-zinc-300 text-sm sm:text-base font-normal">
-                  To explore more of his work, teachings and resources, visit his personal website.
+                  To explore more of his work, teachings and resources, visit his personal platform or connect directly:
                 </p>
-                <div className="pt-2 flex flex-wrap gap-4 items-center">
-                  <a
-                    href={PASTOR_PERSONAL_WEBSITE_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    id="visit-pastor-tony-website-cta"
-                    className="bg-appRed hover:bg-red-700 text-white font-semibold px-7 py-3.5 rounded-full text-sm sm:text-base transition-all duration-300 inline-flex items-center gap-2 shadow-lg shadow-red-950/40 hover:scale-[1.02] active:scale-[0.98]"
-                  >
-                    <span>Visit Pastor Tony&apos;s Website</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </a>
-
+                <div className="pt-2 flex flex-wrap gap-3.5 items-center">
+                  <PersonalWebsiteDialog />
                   <MinistryInviteDialog />
                 </div>
               </div>
@@ -82,51 +74,78 @@ export default function BeyondThePulpit() {
                   </div>
                 </div>
 
-                <div className="space-y-3">
+                <div className="space-y-2.5">
                   <div className="flex items-center justify-between text-xs text-zinc-400 border-b border-zinc-800 pb-2">
-                    <span className="text-white font-semibold">Initiatives & Outreach</span>
-                    <span className="text-appRed">City Church Calabar</span>
+                    <span className="text-white font-semibold">Connect Directly</span>
+                    <span className="text-appRed">Pastor Tony</span>
                   </div>
 
-                  <Link 
-                    href="/ministries"
+                  {/* LinkedIn */}
+                  <a
+                    href={PASTOR_SOCIALS.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center justify-between p-3 rounded-xl bg-zinc-950 hover:bg-zinc-800/80 border border-zinc-800 transition-colors group"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-appRed">
-                        <Briefcase className="w-4 h-4" />
+                      <div className="w-8 h-8 rounded-lg bg-[#0077b5]/15 border border-[#0077b5]/30 flex items-center justify-center text-[#0a66c2]">
+                        <Icon icon="mdi:linkedin" className="w-4 h-4" />
                       </div>
                       <div>
-                        <div className="text-sm font-bold text-white group-hover:text-red-400 transition-colors">
-                          Leadership & Discipleship
+                        <div className="text-sm font-bold text-white group-hover:text-blue-400 transition-colors">
+                          LinkedIn
                         </div>
                         <div className="text-xs text-zinc-400">
-                          Equipping believers to lead with character, vision, and kingdom purpose
+                          Professional & Leadership Profile
                         </div>
                       </div>
                     </div>
-                    <ArrowRight className="w-4 h-4 text-zinc-500 group-hover:text-white group-hover:translate-x-1 transition-all" />
-                  </Link>
+                    <ExternalLink className="w-4 h-4 text-zinc-500 group-hover:text-white transition-colors" />
+                  </a>
 
-                  <Link 
-                    href="/store"
+                  {/* Facebook */}
+                  <a
+                    href={PASTOR_SOCIALS.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between p-3 rounded-xl bg-zinc-950 hover:bg-zinc-800/80 border border-zinc-800 transition-colors group"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-[#1877f2]/15 border border-[#1877f2]/30 flex items-center justify-center text-[#1877f2]">
+                        <Icon icon="mdi:facebook" className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="text-sm font-bold text-white group-hover:text-blue-400 transition-colors">
+                          Facebook
+                        </div>
+                        <div className="text-xs text-zinc-400">
+                          Ministry Updates & Community
+                        </div>
+                      </div>
+                    </div>
+                    <ExternalLink className="w-4 h-4 text-zinc-500 group-hover:text-white transition-colors" />
+                  </a>
+
+                  {/* Email */}
+                  <a
+                    href={`mailto:${PASTOR_SOCIALS.email}`}
                     className="flex items-center justify-between p-3 rounded-xl bg-zinc-950 hover:bg-zinc-800/80 border border-zinc-800 transition-colors group"
                   >
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-appRed">
-                        <BookMarked className="w-4 h-4" />
+                        <Mail className="w-4 h-4" />
                       </div>
                       <div>
                         <div className="text-sm font-bold text-white group-hover:text-red-400 transition-colors">
-                          Message Library & Teachings
+                          Direct Email
                         </div>
                         <div className="text-xs text-zinc-400">
-                          Comprehensive audio/video resources on daily Christian living
+                          {PASTOR_SOCIALS.email}
                         </div>
                       </div>
                     </div>
-                    <ArrowRight className="w-4 h-4 text-zinc-500 group-hover:text-white group-hover:translate-x-1 transition-all" />
-                  </Link>
+                    <ArrowRight className="w-4 h-4 text-zinc-500 group-hover:text-white transition-colors" />
+                  </a>
                 </div>
               </div>
             </div>

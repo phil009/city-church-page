@@ -42,11 +42,18 @@ export default function MinistryInviteDialog({
     e.preventDefault();
     setSubmitting(true);
 
-    // Simulate sending / logging request
+    const subject = encodeURIComponent(`Speaking / Ministry Invitation: ${formData.organization}`);
+    const body = encodeURIComponent(
+      `Full Name: ${formData.name}\nChurch/Organization: ${formData.organization}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nProposed Date: ${formData.date}\n\nDetails:\n${formData.message}`
+    );
+
+    // Open email client with pre-filled details to t.aleogena@gmail.com
+    window.location.href = `mailto:t.aleogena@gmail.com?subject=${subject}&body=${body}`;
+
     setTimeout(() => {
       setSubmitting(false);
       setSubmitted(true);
-      toast.success("Invitation sent successfully! Our team will reach out soon.");
+      toast.success("Invitation prepared! Sent to t.aleogena@gmail.com");
       setTimeout(() => {
         setOpen(false);
         setSubmitted(false);
@@ -61,7 +68,7 @@ export default function MinistryInviteDialog({
           message: "",
         });
       }, 1500);
-    }, 900);
+    }, 600);
   };
 
   return (
@@ -88,7 +95,14 @@ export default function MinistryInviteDialog({
           <DialogDescription className="text-zinc-400 text-sm">
             Interested in inviting Pastor Tony Aleogena Raphael to minister at
             your church, conference, or leadership summit? Please share your
-            event details below.
+            event details below or email directly to{" "}
+            <a
+              href="mailto:t.aleogena@gmail.com"
+              className="text-appRed hover:underline font-medium"
+            >
+              t.aleogena@gmail.com
+            </a>
+            .
           </DialogDescription>
         </DialogHeader>
 
