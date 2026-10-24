@@ -97,8 +97,15 @@ export default function PastorHero() {
 
           {/* Call to Actions */}
           <div className="pt-2 flex flex-wrap items-center gap-3.5">
-            {/* Personal Website Trigger Dialog */}
-            <PersonalWebsiteDialog />
+            <a
+              href={PASTOR_SOCIALS.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-appRed hover:bg-red-700 text-white font-semibold px-7 py-3.5 rounded-full text-sm sm:text-base transition-all duration-300 flex items-center gap-2 shadow-lg shadow-red-950/40 hover:shadow-red-700/30 hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <span>Visit Pastor Tony&apos;s Website</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
 
             <Link
               href="/plan-your-visit"
@@ -111,8 +118,19 @@ export default function PastorHero() {
           </div>
 
           {/* Social Links Row */}
-          <div className="flex items-center gap-3 text-xs text-zinc-400 pt-1">
+          <div className="flex flex-wrap items-center gap-2.5 text-xs text-zinc-400 pt-1">
             <span className="text-zinc-500 font-medium">Connect:</span>
+            <a
+              href={PASTOR_SOCIALS.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Pastor Tony Official Website"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-900/90 border border-zinc-800 hover:border-emerald-500/60 hover:text-white transition-all text-zinc-300"
+            >
+              <Icon icon="solar:global-line-duotone" className="w-4 h-4 text-emerald-400" />
+              <span className="font-medium">tonyaleogena.com</span>
+            </a>
+
             <a
               href={PASTOR_SOCIALS.linkedin}
               target="_blank"
@@ -125,14 +143,25 @@ export default function PastorHero() {
             </a>
 
             <a
-              href={PASTOR_SOCIALS.facebook}
+              href={PASTOR_SOCIALS.facebookProfile}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Pastor Tony Facebook"
+              aria-label="Pastor Tony Facebook Profile"
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-900/90 border border-zinc-800 hover:border-[#1877f2]/60 hover:text-white transition-all text-zinc-300"
             >
               <Icon icon="mdi:facebook" className="w-4 h-4 text-[#1877f2]" />
-              <span className="font-medium">Facebook</span>
+              <span className="font-medium">Facebook Profile</span>
+            </a>
+
+            <a
+              href={PASTOR_SOCIALS.facebookPage}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Pastor Tony Facebook Page"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-900/90 border border-zinc-800 hover:border-[#1877f2]/60 hover:text-white transition-all text-zinc-300"
+            >
+              <Icon icon="mdi:facebook" className="w-4 h-4 text-[#1877f2]" />
+              <span className="font-medium">Facebook Page</span>
             </a>
 
             <a

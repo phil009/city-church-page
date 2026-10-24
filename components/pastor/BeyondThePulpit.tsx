@@ -51,7 +51,15 @@ export default function BeyondThePulpit() {
                   To explore more of his work, teachings and resources, visit his personal platform or connect directly:
                 </p>
                 <div className="pt-2 flex flex-wrap gap-3.5 items-center">
-                  <PersonalWebsiteDialog />
+                  <a
+                    href={PASTOR_SOCIALS.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-appRed hover:bg-red-700 text-white font-semibold px-6 py-3.5 rounded-full text-sm sm:text-base transition-all duration-300 flex items-center gap-2 shadow-lg shadow-red-950/40 hover:shadow-red-700/30 hover:scale-[1.02] active:scale-[0.98]"
+                  >
+                    <span>Visit Pastor Tony&apos;s Website</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
                   <MinistryInviteDialog />
                 </div>
               </div>
@@ -80,6 +88,32 @@ export default function BeyondThePulpit() {
                     <span className="text-appRed">Pastor Tony</span>
                   </div>
 
+                  {/* Official Website */}
+                  <a
+                    href={PASTOR_SOCIALS.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between p-3 rounded-xl bg-gradient-to-r from-red-950/40 to-zinc-950 hover:from-red-900/50 hover:to-zinc-900 border border-red-500/30 hover:border-red-500/60 transition-colors group"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-red-600/20 border border-red-500/30 flex items-center justify-center text-red-400">
+                        <Globe className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="text-sm font-bold text-white group-hover:text-red-300 transition-colors flex items-center gap-2">
+                          <span>Official Website</span>
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded-full border border-emerald-500/30">
+                            Live
+                          </span>
+                        </div>
+                        <div className="text-xs text-zinc-400 font-mono">
+                          tonyaleogena.com
+                        </div>
+                      </div>
+                    </div>
+                    <ExternalLink className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors" />
+                  </a>
+
                   {/* LinkedIn */}
                   <a
                     href={PASTOR_SOCIALS.linkedin}
@@ -96,16 +130,16 @@ export default function BeyondThePulpit() {
                           LinkedIn
                         </div>
                         <div className="text-xs text-zinc-400">
-                          Professional & Leadership Profile
+                          Tony Aleogena-Raphael
                         </div>
                       </div>
                     </div>
                     <ExternalLink className="w-4 h-4 text-zinc-500 group-hover:text-white transition-colors" />
                   </a>
 
-                  {/* Facebook */}
+                  {/* Facebook Profile */}
                   <a
-                    href={PASTOR_SOCIALS.facebook}
+                    href={PASTOR_SOCIALS.facebookProfile}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-between p-3 rounded-xl bg-zinc-950 hover:bg-zinc-800/80 border border-zinc-800 transition-colors group"
@@ -116,10 +150,33 @@ export default function BeyondThePulpit() {
                       </div>
                       <div>
                         <div className="text-sm font-bold text-white group-hover:text-blue-400 transition-colors">
-                          Facebook
+                          Facebook Profile
                         </div>
                         <div className="text-xs text-zinc-400">
-                          Ministry Updates & Community
+                          Personal Profile & Community
+                        </div>
+                      </div>
+                    </div>
+                    <ExternalLink className="w-4 h-4 text-zinc-500 group-hover:text-white transition-colors" />
+                  </a>
+
+                  {/* Facebook Page */}
+                  <a
+                    href={PASTOR_SOCIALS.facebookPage}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between p-3 rounded-xl bg-zinc-950 hover:bg-zinc-800/80 border border-zinc-800 transition-colors group"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-[#1877f2]/15 border border-[#1877f2]/30 flex items-center justify-center text-[#1877f2]">
+                        <Icon icon="mdi:facebook" className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="text-sm font-bold text-white group-hover:text-blue-400 transition-colors">
+                          Facebook Page
+                        </div>
+                        <div className="text-xs text-zinc-400">
+                          Official Ministry Updates
                         </div>
                       </div>
                     </div>
