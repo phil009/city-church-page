@@ -72,11 +72,11 @@ const Footer = () => {
             </p>
           </div>
           <div className="md:w-1/4">
-            <span className="text-appRed text-sm md:text-base font-medium">
+            <span className="text-white text-xs sm:text-sm uppercase tracking-wider font-bold">
               Visit Us
             </span>
             <br />
-            <b className="text-base sm:text-lg block mt-1">
+            <b className="text-base sm:text-lg block mt-1 text-gray-100">
               The Big Tent, 98 Marian road, Calabar
             </b>
             <span className="text-xs text-gray-400 block mt-1">
@@ -84,13 +84,13 @@ const Footer = () => {
             </span>
           </div>
           <div className="md:w-1/4">
-            <span className="text-appRed text-sm md:text-base font-medium">
+            <span className="text-white text-xs sm:text-sm uppercase tracking-wider font-bold">
               Have Any Questions?
             </span>
             <br />
             <a
               href="tel:+2348036811155"
-              className="text-base sm:text-xl font-bold hover:text-appRed block mt-1 transition-colors"
+              className="text-base sm:text-xl font-bold hover:text-appRed block mt-1 transition-colors text-white"
             >
               +234 803 681 1155
             </a>
@@ -104,13 +104,13 @@ const Footer = () => {
             </a>
           </div>
           <div className="md:w-1/4">
-            <span className="text-appRed text-sm md:text-base font-medium">
+            <span className="text-white text-xs sm:text-sm uppercase tracking-wider font-bold">
               Send Email
             </span>
             <br />
             <a
               href="mailto:info@citychurchcalabar.org"
-              className="text-sm sm:text-base font-bold hover:text-appRed block mt-1 transition-colors"
+              className="text-sm sm:text-base font-bold hover:text-appRed block mt-1 transition-colors text-white"
             >
               info@citychurchcalabar.org
             </a>

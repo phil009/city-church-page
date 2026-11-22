@@ -72,26 +72,26 @@ export default function ContactSection() {
                             </p>
                         </div>
 
-                        <div className="space-y-6">
+                        <div className="space-y-4">
                             {/* Phone & WhatsApp */}
-                            <div className="flex items-start gap-4">
-                                <div className="bg-red-600 rounded-lg p-4 shrink-0">
+                            <div className="bg-white text-zinc-900 rounded-2xl p-5 shadow-lg flex items-start gap-4 transition-transform hover:-translate-y-0.5">
+                                <div className="bg-red-600 rounded-xl p-3 sm:p-3.5 shrink-0 shadow-md shadow-red-600/20">
                                     <Phone className="w-6 h-6 text-white" />
                                 </div>
-                                <div className="space-y-1">
-                                    <p className="text-red-600 mb-1 font-medium">
+                                <div className="space-y-1 flex-1">
+                                    <p className="text-zinc-900 font-bold text-base sm:text-lg leading-snug">
                                         Have Any Questions? Call or Chat
                                     </p>
                                     <a
                                         href="tel:+2348036811155"
-                                        className="text-white text-sm sm:text-lg hover:text-red-400 block transition-colors"
+                                        className="text-zinc-700 text-sm sm:text-base font-semibold hover:text-red-600 block transition-colors"
                                     >
                                         +234 803 681 1155
                                     </a>
-                                    <div className="flex flex-wrap gap-2 pt-1">
+                                    <div className="flex flex-wrap gap-2 pt-1.5">
                                         <a
                                             href="tel:+2348036811155"
-                                            className="inline-flex items-center text-xs bg-zinc-800 hover:bg-zinc-700 text-white px-3 py-1.5 rounded transition-colors"
+                                            className="inline-flex items-center text-xs font-semibold bg-zinc-900 hover:bg-zinc-800 text-white px-3.5 py-1.5 rounded-lg transition-colors shadow-sm"
                                         >
                                             Call Us
                                         </a>
@@ -99,7 +99,7 @@ export default function ContactSection() {
                                             href="https://wa.me/2348036811155"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-flex items-center text-xs bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded transition-colors"
+                                            className="inline-flex items-center text-xs font-semibold bg-emerald-600 hover:bg-emerald-700 text-white px-3.5 py-1.5 rounded-lg transition-colors shadow-sm"
                                         >
                                             Chat on WhatsApp
                                         </a>
@@ -108,17 +108,17 @@ export default function ContactSection() {
                             </div>
 
                             {/* Email */}
-                            <div className="flex items-start gap-4">
-                                <div className="bg-red-600 rounded-lg p-4 shrink-0">
+                            <div className="bg-white text-zinc-900 rounded-2xl p-5 shadow-lg flex items-start gap-4 transition-transform hover:-translate-y-0.5">
+                                <div className="bg-red-600 rounded-xl p-3 sm:p-3.5 shrink-0 shadow-md shadow-red-600/20">
                                     <Mail className="w-6 h-6 text-white" />
                                 </div>
-                                <div>
-                                    <p className="text-red-600 mb-1 font-medium">
+                                <div className="space-y-1 flex-1">
+                                    <p className="text-zinc-900 font-bold text-base sm:text-lg leading-snug">
                                         Send Email
                                     </p>
                                     <a
                                         href="mailto:info@citychurchcalabar.org"
-                                        className="text-white text-sm sm:text-lg hover:text-red-400 block transition-colors"
+                                        className="text-zinc-700 text-sm sm:text-base font-semibold hover:text-red-600 block transition-colors"
                                     >
                                         info@citychurchcalabar.org
                                     </a>
@@ -126,21 +126,23 @@ export default function ContactSection() {
                             </div>
 
                             {/* Address */}
-                            <div className="flex items-start gap-4">
-                                <div className="bg-red-600 rounded-lg p-4 shrink-0">
+                            <div className="bg-white text-zinc-900 rounded-2xl p-5 shadow-lg flex items-start gap-4 transition-transform hover:-translate-y-0.5">
+                                <div className="bg-red-600 rounded-xl p-3 sm:p-3.5 shrink-0 shadow-md shadow-red-600/20">
                                     <MapPin className="w-6 h-6 text-white" />
                                 </div>
-                                <div className="space-y-1">
-                                    <p className="text-red-600 mb-1 font-medium">Visit Us</p>
-                                    <p className="text-white text-sm sm:text-lg">
+                                <div className="space-y-1 flex-1">
+                                    <p className="text-zinc-900 font-bold text-base sm:text-lg leading-snug">
+                                        Visit Us
+                                    </p>
+                                    <p className="text-zinc-700 text-sm sm:text-base font-medium">
                                         The Big Tent, 98 Marian road, Calabar
                                     </p>
-                                    <div className="pt-1">
+                                    <div className="pt-1.5">
                                         <a
                                             href="https://maps.google.com/?q=The+Big+Tent+98+Marian+Road+Calabar"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-flex items-center text-xs bg-zinc-800 hover:bg-zinc-700 text-white px-3 py-1.5 rounded transition-colors"
+                                            className="inline-flex items-center text-xs font-semibold bg-zinc-900 hover:bg-zinc-800 text-white px-3.5 py-1.5 rounded-lg transition-colors shadow-sm"
                                         >
                                             Get Directions →
                                         </a>
