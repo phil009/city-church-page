@@ -63,13 +63,6 @@ export default function Navbar() {
 
                             <ul className="hidden md:flex gap-4">
                                 <li>
-                                    <Link href={"/business-hub"} className="text-amber-400 font-bold hover:text-white flex items-center gap-1.5 transition-colors">
-                                        <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                                        ACCELER8 Hub
-                                    </Link>
-                                </li>
-                                <span className="opacity-70">/</span>
-                                <li>
                                     <Link href={"/events"}>Events</Link>
                                 </li>
                                 <span className="opacity-70">/</span>
@@ -125,12 +118,6 @@ export default function Navbar() {
                         </li>
                         <li className="hover:text-appRed transition-colors">
                             <Link href="/events">Events</Link>
-                        </li>
-                        <li className="hover:text-appRed transition-colors">
-                            <Link href="/business-hub" className="flex items-center gap-1">
-                                <span>Business Hub</span>
-                                <span className="text-[10px] bg-appRed text-white px-1.5 py-0.2 rounded-full font-bold uppercase tracking-wider">New</span>
-                            </Link>
                         </li>
                         <li className="hover:text-appRed transition-colors">
                             <Link href="/giving">Give</Link>
@@ -215,9 +202,8 @@ export default function Navbar() {
                                     <Link href="/events" onClick={closeMenu}>Events</Link>
                                 </li>
                                 <li className="hover:text-appRed">
-                                    <Link href="/business-hub" onClick={closeMenu} className="flex items-center justify-between">
-                                        <span>ACCELER8 Business Hub</span>
-                                        <span className="text-[10px] bg-appRed text-white px-2 py-0.5 rounded-full font-bold">New</span>
+                                    <Link href="/business-hub" onClick={closeMenu}>
+                                        ACCELER8 Business Hub
                                     </Link>
                                 </li>
                                 <li className="hover:text-appRed">
